@@ -13,12 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/login',function(){
     return view('login');
+});
+
+Route::get('/register',function(){
+    return view('register');
 });
 
 Route::get('/cliente', function () {
@@ -28,3 +32,8 @@ Route::get('/cliente', function () {
 Route::get('/empleado', function() {
     return view('FormEmpleado');
 });
+
+Route::get('/negocios', function() {
+    return view('Negocios');
+});
+
