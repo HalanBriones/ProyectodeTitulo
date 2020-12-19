@@ -16,10 +16,20 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
+    protected $primaryKey = 'rut';
+
+    public function perfil(){
+        $this->belongsTo(Perfil::class,'nombre', 'nombre');
+    }
+
     protected $fillable = [
-        'name',
+        'rut',
+        'nombre',
+        'apellido',
         'email',
         'password',
+        'telefono'
     ];
 
     /**
