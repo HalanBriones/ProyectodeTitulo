@@ -28,12 +28,11 @@ class User extends Authenticatable
         'idPerfil'
     ];
 
-    public function oportunidad_negocio(){
-        return $this->belongsToMany('App\Models\OportunidadNegocio','idNegocio','idNegocio');
-    }
-
     public function perfil(){
         return $this->belongsTo('App\Models\Perfil','idPerfil','idPerfil');
+    }
+    public function oportunidad_negocio(){
+        return $this->belongsToMany('App\Models\OportunidadNegocio','idNegocio','idNegocio');
     }
     /**
      * The attributes that should be hidden for arrays.
@@ -41,7 +40,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
         'remember_token',
     ];
 

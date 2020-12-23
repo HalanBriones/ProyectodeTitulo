@@ -11,6 +11,6 @@ class Perfil extends Model
     protected $primaryKey = 'idPerfil';
     protected $fillable = [
         'idPerfil',
-        'nombre'
+        'nombre_perfil'
     ];
 }

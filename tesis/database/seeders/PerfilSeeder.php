@@ -15,22 +15,22 @@ class PerfilSeeder extends Seeder
     {
         DB::table('perfil')->insert([
             'idPerfil' => 1,
-            'nombre' => 'Administrador'
+            'nombre_perfil' => 'Administrador'
         ]);
 
         DB::table('perfil')->insert([
             'idPerfil' => 2,
-            'nombre' => 'Tecnico'
+            'nombre_perfil' => 'Tecnico'
         ]);
 
         DB::table('perfil')->insert([
             'idPerfil' => 3,
-            'nombre' => 'Comercial'
+            'nombre_perfil' => 'Comercial'
         ]);
 
         DB::table('perfil')->insert([
             'idPerfil' => 4,
-            'nombre' => 'Usuario'
+            'nombre_perfil' => 'Usuario'
         ]);
     }
 }
