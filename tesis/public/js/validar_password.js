@@ -1,12 +1,12 @@
-var pass = document.getElementById('password');
-var pass_conf = document.getElementById('password_conf');
+var pass = document.getElementById('pass1');
+var pass_conf = document.getElementById('pass2');
 
 pass_conf.onkeyup = function () {
-    let pass1 = pass.value;
-    let pass2 = pass_conf.value;
+    let p1 = pass.value;
+    let p2 = pass_conf.value;
 
-    if (pass1) {
-        if (pass1 == pass2) {
+    if (p1) {
+        if (p1 == p2) {
             pass_conf.className = "form-control has-feedback-left is-valid"
         } else {
             pass_conf.className = "form-control has-feedback-left is-invalid"
@@ -15,11 +15,11 @@ pass_conf.onkeyup = function () {
 }
 
 pass.onkeyup = function () {
-    let pass1 = pass.value;
-    let pass2 =pass_conf.value;
+    let p1 = pass.value;
+    let p2 = pass_conf.value;
 
-    if (pass2) {
-        if (pass1 == pass2) {
+    if (p2) {
+        if (p1 == p2) {
             pass_conf.className = "form-control has-feedback-left is-valid"
         } else {
             pass_conf.className = "form-control has-feedback-left is-invalid"

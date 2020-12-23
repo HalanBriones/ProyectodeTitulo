@@ -18,20 +18,19 @@ class User extends Authenticatable
      */
     protected $table = 'users';
     protected $primaryKey = 'rut';
-
-    public function perfil(){
-        $this->belongsTo(Perfil::class,'nombre', 'nombre');
-    }
-
     protected $fillable = [
         'rut',
         'nombre',
         'apellido',
         'email',
         'password',
-        'telefono'
+        'telefono',
+        'idPerfil'
     ];
 
+    public function perfil(){
+        return $this->belongsTo('App\Models\Perfil','idPerfil','idPerfil');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
