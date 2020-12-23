@@ -18,7 +18,7 @@ class CreateOportunidadNegocio extends Migration
             $table->string('nombre_negocio');
             $table->string('siglas')->unique();
             $table->string('descripcion');
-            $table->float('precio-final');
+            $table->float('precio_final');
             $table->float('margen');
             $table->integer('idEstado')->unsigned();
             $table->foreign('idEstado')->references('idEstado')->on('estado');

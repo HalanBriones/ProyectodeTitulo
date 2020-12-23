@@ -28,6 +28,10 @@ class User extends Authenticatable
         'idPerfil'
     ];
 
+    public function oportunidad_negocio(){
+        return $this->belongsToMany('App\Models\OportunidadNegocio','idNegocio','idNegocio');
+    }
+
     public function perfil(){
         return $this->belongsTo('App\Models\Perfil','idPerfil','idPerfil');
     }
