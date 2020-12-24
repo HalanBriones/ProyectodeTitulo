@@ -124,7 +124,11 @@
                                     @enderror
                                 </div>
                             </div>
-    
+                            @if(session('warning_msg'))
+                                <div class="alert alert-success">
+                                    {{session('warning_msg')}}
+                                </div>
+                            @endif
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary" >
@@ -138,7 +142,10 @@
             </div>
         </div>
     </div>
+    @include('sweetalert::alert')
     </main>
     <script src="{{ asset('js/validacion_email.js') }}"></script>
     <script src="{{ asset('js/validar_password.js') }}"></script>
+
+
 @endsection

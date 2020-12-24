@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OportunidadNegocioController;
 use App\Http\Controllers\UserController;
 use App\Models\OportunidadNegocio;
 use App\Models\User;
@@ -45,11 +46,11 @@ Route::put('/usuarios/{user}',[UserController::class, 'updateRol'])->name('usuar
 Route::get('usuario/{rut}/editPerfil',[UserController::class,'editPerfil'])->name('usuarios.editPerfil');
 Route::post('/usuarios/{user}',[UserController::class, 'updatePerfil'])->name('usuarios.updatePerfil');
 //Negocio//
-Route::get('/negocio', [OportunidadNegocio::class,'vistaNegocio'])->name('negocio.crear');
+Route::get('/negocio', [OportunidadNegocioController::class,'vistaNegocio'])->name('negocio.crear');
 
 //--//
 //Productos//
-
+Route::get('/producto', [ProductoController::class,'vistaProducto'])->name('productos.vista');
 //--//
 //Servicios//
 

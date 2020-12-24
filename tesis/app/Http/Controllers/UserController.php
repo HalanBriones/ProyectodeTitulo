@@ -8,10 +8,15 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Alert;
+
+
 
 class UserController extends Controller
 {
-    
+
+
+
     public function vistaRegistro(){
         return view('Usuario.registro');
     }
@@ -48,7 +53,7 @@ class UserController extends Controller
 
         //guardar datos
         if($buscarRut || $buscarEmail){
-            return 'Datos pertenecen a un usuario ya existente';
+            return redirect('/registro')->with('warning','Lo sentimos ya existe un usuario con estas credenciales');
         }else{
             $user = new User();
             $user->rut = $rut;
@@ -64,9 +69,9 @@ class UserController extends Controller
             
             if($user->save()){
 
-                return view('welcome',compact('perfil'));
+                return redirect('/inicio',compact('perfil'))->with('success','Registro exitoso');
             }else{
-                return 'Error al Registrarse';
+                return redirect('/registro',compact('perfil'))->with('warning','Lo sentimos no se pudo registrar');
             }
         }
     }
@@ -81,7 +86,7 @@ class UserController extends Controller
     }
 
     public function updateRol(Request $request, User $user){
-          return $request;  
+        return $request;  
     }
 
     public function editPerfil($rut){
@@ -97,6 +102,7 @@ class UserController extends Controller
 
         try{
             $user->save();
+
             return view('/welcome');
         }catch(Exception $e){
             return view('Usuario.edit');

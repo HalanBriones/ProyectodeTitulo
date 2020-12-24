@@ -29,7 +29,7 @@ class LoginController extends Controller
                 $_SESSION['email'] = $usuario->email;
                 $_SESSION['telefono'] = $usuario->email;
                 $_SESSION['idPerfil'] = $usuario->idPerfil;
-                $_SESSION['perfil'] = $perfil->nombre;
+                $_SESSION['perfil'] = $perfil->nombre_perfil;
         
                 return  redirect('/inicio');
             }

@@ -102,8 +102,10 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
     <script src="{{ asset('js/validacion_email.js') }}"></script>
     <script src="{{ asset('js/validar_password.js') }}"></script>
+    @include('sweetalert::alert')
 </body>

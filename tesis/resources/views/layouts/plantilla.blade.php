@@ -63,7 +63,7 @@
             
             @if ($_SESSION['perfil'] == 'Administrador')
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/registro">
+              <a class="nav-link" aria-current="page" href="/registro">
                 <span data-feather="home"></span>
                 Registrar Usuarios
               </a>
@@ -116,5 +116,6 @@
       </main>
     </div>
   </div>
+  @include('sweetalert::alert')
 </body>
 </html>

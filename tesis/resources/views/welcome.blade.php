@@ -7,4 +7,6 @@
 
 
     <h1>Página de Inicio</h1>
+
+    @include('sweetalert::alert')
 @endsection
