@@ -24,12 +24,10 @@ class CreateProductos extends Migration
             $table->float('precioPcosto');
             $table->integer('idMarca')->unsigned();
             $table->foreign('idMarca')->references('idMarca')->on('mac');
-            $table->integer('idProHW')->unsigned();
-            $table->foreign('idProHW')->references('idProHW')->on('tipo_producto_hw');
-            $table->integer('idProSW')->unsigned();
-            $table->foreign('idProSW')->references('idProSW')->on('tipo_producto_sw');
-            $table->integer('idTcp')->unsigned();
-            $table->foreign('idTcp')->references('idTcp')->on('tipo_comercializacion_pro');
+            $table->integer('idTipoProducto')->unsigned();
+            $table->foreign('idTipoProducto')->references('idTipoProducto')->on('tipo_producto');
+            $table->integer('idComercializacion')->unsigned();
+            $table->foreign('idComercializacion')->references('idComercializacion')->on('comercializacion');
         });
     }
 

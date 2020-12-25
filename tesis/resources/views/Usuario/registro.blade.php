@@ -124,14 +124,9 @@
                                     @enderror
                                 </div>
                             </div>
-                            @if(session('warning_msg'))
-                                <div class="alert alert-success">
-                                    {{session('warning_msg')}}
-                                </div>
-                            @endif
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" >
+                                    <button type="submit" class="btn btn-dark" >
                                         {{ __('Register') }}
                                     </button>
                                 </div>

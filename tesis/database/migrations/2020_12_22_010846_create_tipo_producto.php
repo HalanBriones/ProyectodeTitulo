@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoProductoHW extends Migration
+class CreateTipoProducto extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTipoProductoHW extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_producto_hw', function (Blueprint $table) {
-            $table->increments('idProHW');
-            $table->string('nombre_tp_hw');
+        Schema::create('tipo_producto', function (Blueprint $table) {
+            $table->increments('idTipoProducto');
+            $table->string('nombre_tipo_producto');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateTipoProductoHW extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_producto_h_w');
+        Schema::dropIfExists('tipo_producto');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoProductoSW extends Migration
+class CreateTipoComercializacion extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTipoProductoSW extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_producto_sw', function (Blueprint $table) {
-            $table->increments('idProSW');
-            $table->string('nombre_tp_sw');
+        Schema::create('tipo_comercializacion', function (Blueprint $table) {
+            $table->increments('idTipoComercializacion');
+            $table->string('nombre_tipo_comercializacion');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateTipoProductoSW extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_producto_s_w');
+        Schema::dropIfExists('tipo_comercializacion');
     }
 }

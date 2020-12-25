@@ -4,25 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Mac;
 use App\Models\Producto;
-use App\Models\TipoProductoHW;
-use App\Models\TipoProductoSW;
+use App\Models\TipoProducto;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
-    public function vistaProductos(){
 
-        //mandar productos
-        $productos = Producto::whith('tipo_produto_hw')->whith('tipo_produto_sw')->get();
-        return $productos;
-        return view('producto.vista',compact('productos'));
-    }
-    //Mandar datos a la vista crear Productos
+    //vista creacion producto
 
-    public function vista_creacion_producto(){
-        $prohw = TipoProductoHW::all();
-        $prosw = TipoProductoSW::all();
-        $mac = Mac::all();
-        
+    public function vistaRegistro_Producto(){
+        $macs = Mac::all();
+        $tipo_productos = TipoProducto::all();
+        return view('Producto.creacionProducto', compact('tipo_productos','macs'));
     }
+
 }

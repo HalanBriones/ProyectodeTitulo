@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OportunidadNegocioController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UserController;
 use App\Models\OportunidadNegocio;
 use App\Models\User;
@@ -50,7 +51,7 @@ Route::get('/negocio', [OportunidadNegocioController::class,'vistaNegocio'])->na
 
 //--//
 //Productos//
-Route::get('/producto', [ProductoController::class,'vistaProducto'])->name('productos.vista');
+Route::get('/registroProducto', [ProductoController::class,'vistaRegistro_Producto']);
 //--//
 //Servicios//
 
