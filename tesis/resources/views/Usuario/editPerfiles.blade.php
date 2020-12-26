@@ -30,7 +30,7 @@
             <select name="perfil" class="form-control " id="perfil" required>
               <option selected disabled>Escoger Rol</option>
               @foreach ($perfiles as $perfil)
-              <option value="{{$perfil->idPerfil}}">{{$perfil->nombre}}</option>
+              <option value="{{$perfil->idPerfil}}">{{$perfil->nombre_perfil}}</option>
               @endforeach
             </select>
           </div>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNegocioPersonal extends Migration
+class CreateOportunidadNegocioHasServicio extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateNegocioPersonal extends Migration
      */
     public function up()
     {
-        Schema::create('negocio_personal', function (Blueprint $table) {
+        Schema::create('oportunidad_negocio_has_servicio', function (Blueprint $table) {
             $table->integer('idNegocio')->unsigned();
             $table->foreign('idNegocio')->references('idNegocio')->on('oportunidad_negocio');
-            $table->string('rut');
-            $table->foreign('rut')->references('rut')->on('users');
-            $table->date('creacion_negocio');
-            $table->string('propietario');
+            $table->integer('idServicio')->unsigned();
+            $table->foreign('idServicio')->references('idServicio')->on('servicio');
+            $table->float('precioSventa');
+            $table->float('precioScosto');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateNegocioPersonal extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('negocio_personal');
+        Schema::dropIfExists('oportunidad_negocio_has_servicio');
     }
 }

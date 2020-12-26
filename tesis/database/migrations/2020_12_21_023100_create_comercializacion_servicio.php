@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoComercializacionSer extends Migration
+class CreateComercializacionServicio extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateTipoComercializacionSer extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_comercializacion_ser', function (Blueprint $table) {
-            $table->increments('idTcs');
+        Schema::create('comercializacion_servicio', function (Blueprint $table) {
+            $table->increments('idComercializacion_servicio');
             $table->string('nombre_comercializacion_ser');
             $table->float('valor');
         });

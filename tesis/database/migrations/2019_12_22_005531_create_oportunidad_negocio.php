@@ -25,7 +25,7 @@ class CreateOportunidadNegocio extends Migration
             $table->integer('idTipoNegocio')->unsigned();
             $table->foreign('idTipoNegocio')->references('idTipoNegocio')->on('tipo_negocio');
             $table->integer('idMoneda')->unsigned();
-            $table->foreign('idMoneda')->references('idMoneda')->on('tipo_moneda');
+            $table->foreign('idMoneda')->references('idMoneda')->on('moneda');
         });
     }
 

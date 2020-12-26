@@ -17,8 +17,6 @@ class CreateComercializacion extends Migration
             $table->increments('idComercializacion');
             $table->string('nombre_comercializacion');
             $table->float('valor');
-            $table->integer('idTipoComercializacion')->unsigned();
-            $table->foreign('idTipoComercializacion')->references('idTipoComercializacion')->on('tipo_comercializacion');
         });
     }
 

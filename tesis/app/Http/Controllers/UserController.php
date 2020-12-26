@@ -68,7 +68,6 @@ class UserController extends Controller
             $perfil = Perfil::where('idPerfil',$user->idPerfil)->first();
             
             if($user->save()){
-
                 return redirect('/inicio',compact('perfil'))->with('success','Registro exitoso');
             }else{
                 return redirect('/registro',compact('perfil'))->with('warning','Lo sentimos no se pudo registrar');
@@ -80,13 +79,19 @@ class UserController extends Controller
     public function editRol($rut){
 
         $user = User::with('perfil')->where('rut',$rut)->first();
-
         $perfiles = Perfil::all();
         return view('Usuario.editPerfiles', compact('user','perfiles'));
     }
 
     public function updateRol(Request $request, User $user){
-        return $request;  
+        $user->idPerfil = $request->perfil;
+
+        if($user->save()){
+            return redirect('/mostrar')->with('succes','Actualización de rol correctamente');
+        }else{
+            return redirect('/mostrar')->with('warning','Error al actualizar el rol');
+        }
+
     }
 
     public function editPerfil($rut){
@@ -102,10 +107,9 @@ class UserController extends Controller
 
         try{
             $user->save();
-
-            return view('/welcome');
+            return view('/welcome')->with('succes','Actualización del Perfil correctamente');
         }catch(Exception $e){
-            return view('Usuario.edit');
+            return view('Usuario.edit')->with('warning','Error al actualizar su perfil');
         }
 
     }
