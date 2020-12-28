@@ -17,8 +17,6 @@ class CreateServicios extends Migration
             $table->increments('idServicio');
             $table->string('nombre_servicio');
             $table->string('descripcion');
-            $table->integer('idTipoServicio')->unsigned();
-            $table->foreign('idTipoServicio')->references('idTipoServicio')->on('tipo_servicio');
        });
     }
 

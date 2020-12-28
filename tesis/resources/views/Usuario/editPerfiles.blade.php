@@ -1,14 +1,20 @@
 @extends('layouts.plantilla')
 @php
-    session_start(['name' => 'Login']);
+    session_start(['name' =>'Login']);
 @endphp
 @section('content')
-<div class="container mt-5">
-    <form method="post" action="{{route('usuarios.update',$user)}}" >
-      @csrf
-      @method('put')
+<main>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">{{ __('Editar Rol') }}</div>
+    
+                    <div class="card-body">
+      <form method="post" action="{{route('usuarios.update',$user)}}" >
+        @csrf
+        @method('put')
       <div class="row">
-        <h4>Perfil de {{$user->nombre}}</h4>
         <div class="col">
           <div class="form-group">
             <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -28,7 +34,7 @@
           <label for="perfil" class="col-sm-2 col-form-label">Perfil</label>
             <div class="col-lg-8">
             <select name="perfil" class="form-control " id="perfil" required>
-              <option selected disabled>Escoger Rol</option>
+              <option value="" selected>Seleccione Rol</option>
               @foreach ($perfiles as $perfil)
               <option value="{{$perfil->idPerfil}}">{{$perfil->nombre_perfil}}</option>
               @endforeach
@@ -60,5 +66,13 @@
           </div>
         </div>
       </form>
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @include('sweetalert::alert')
+    </main>
+
+
 @endsection

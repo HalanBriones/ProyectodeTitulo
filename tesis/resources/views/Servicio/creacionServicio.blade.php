@@ -70,8 +70,6 @@
     </div>
     @include('sweetalert::alert')
     </main>
-    <script src="{{ asset('js/validacion_email.js') }}"></script>
-    <script src="{{ asset('js/validar_password.js') }}"></script>
 
 
 @endsection

@@ -87,7 +87,7 @@ class UserController extends Controller
         $user->idPerfil = $request->perfil;
 
         if($user->save()){
-            return redirect('/mostrar')->with('succes','Actualización de rol correctamente');
+            return redirect('/mostrar')->with('success','Actualización de rol correctamente');
         }else{
             return redirect('/mostrar')->with('warning','Error al actualizar el rol');
         }
@@ -107,7 +107,7 @@ class UserController extends Controller
 
         try{
             $user->save();
-            return view('/welcome')->with('succes','Actualización del Perfil correctamente');
+            return view('/welcome')->with('success','Actualización del Perfil correctamente');
         }catch(Exception $e){
             return view('Usuario.edit')->with('warning','Error al actualizar su perfil');
         }

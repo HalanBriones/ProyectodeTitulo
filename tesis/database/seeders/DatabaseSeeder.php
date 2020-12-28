@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
             PerfilSeeder::class,
             UserSeeder::class,
             MarcaSeeder::class,
-            TipoProductoSeeder::class
+            TipoProductoSeeder::class,
+            ConocimientoServicioSeeder::class,
+            TipoComercializacionServicioSeeder::class
         ]);
     }
 }

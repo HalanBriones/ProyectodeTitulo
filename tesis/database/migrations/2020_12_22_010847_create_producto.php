@@ -17,6 +17,7 @@ class CreateProducto extends Migration
             $table->increments('idPro');
             $table->string('nombre_producto');
             $table->string('descripcion');
+            $table->string('sigla_producto');
             $table->integer('idMarca')->unsigned();
             $table->foreign('idMarca')->references('idMarca')->on('mac');
             $table->integer('idTipoProducto')->unsigned();

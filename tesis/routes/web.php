@@ -43,7 +43,7 @@ Route::get('/registro',[UserController::class,'vistaRegistro'])->name('usuario.r
 Route::get('/usuarios',[UserController::class,'vistaUsuarios']); //mostrar vista de tabla usuarios
 Route::post('/registrar',[UserController::class,'registrar']); //accion de registrar
 Route::get('/usuarios/{rut}/editarRol',[UserController::class,'editRol'])->name('usuarios.editRol');
-Route::put('/usuarios/{user}',[UserController::class, 'updateRol'])->name('usuarios.update'); //incompleto
+Route::put('/usuarios/{user}',[UserController::class, 'updateRol'])->name('usuarios.update');
 Route::get('usuario/{rut}/editPerfil',[UserController::class,'editPerfil'])->name('usuarios.editPerfil');
 Route::post('/usuarios/{user}',[UserController::class, 'updatePerfil'])->name('usuarios.updatePerfil');
 //Negocio//
@@ -52,6 +52,11 @@ Route::get('/negocio', [OportunidadNegocioController::class,'vistaNegocio'])->na
 //--//
 //Productos//
 Route::get('/registroProducto', [ProductoController::class,'vistaRegistro_Producto']);
+Route::post('/registrarProducto',[ProductoController::class,'store_producto'])->name('producto.registrar');
+Route::get('/productos',[ProductoController::class,'mostrar_productos'])->name('productos.mostrar');
+Route::get('editar/{idproducto}',[ProductoController::class,'edit_producto'])->name('producto.edit'); //vista editar producto
+Route::post('/productos/{producto}',[ProductoController::class, 'update_producto'])->name('producto.updateProducto');
+Route::delete('producto/{producto}', [ProductoController::class,'delete'])->name('producto.delete');
 //--//
 //Servicios//
 
