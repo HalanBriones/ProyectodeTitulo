@@ -17,6 +17,7 @@ class CreateServicios extends Migration
             $table->increments('idServicio');
             $table->string('nombre_servicio');
             $table->string('descripcion');
+            $table->string('sigla_servicio');
        });
     }
 
@@ -27,6 +28,6 @@ class CreateServicios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('servicios');
+        Schema::dropIfExists('servicio');
     }
 }

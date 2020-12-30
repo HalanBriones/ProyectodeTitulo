@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OportunidadNegocioController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UserController;
 use App\Models\OportunidadNegocio;
 use App\Models\User;
@@ -59,7 +60,11 @@ Route::post('/productos/{producto}',[ProductoController::class, 'update_producto
 Route::delete('producto/{producto}', [ProductoController::class,'delete'])->name('producto.delete');
 //--//
 //Servicios//
-
+Route::get('/registroServicio', [ServicioController::class,'vistaRegistro_Servicio']);
+Route::post('/servicio',[ServicioController::class,'store_servicio'])->name('servicio.registrar');
+Route::get('/servicios',[ServicioController::class,'mostrar_servicios'])->name('servicio.mostrar');
+Route::get('/editar/{idServicio}/servicios', [ServicioController::class,'edit_servicio'])->name('servicio.edit');
+Route::put('/servicio/{servicio}',[ServicioController::class, 'update_servicio'])->name('servicio.update');
 //--//
 
 

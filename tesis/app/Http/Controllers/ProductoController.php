@@ -70,11 +70,5 @@ class ProductoController extends Controller
         }
     }
 
-    public function delete(Producto $producto){
-        
-    
-        // return back()->with('info', 'Se eliminó la categoría'. $producto->nombre_producto. ' correctamente');
-        
-    }
 
 }

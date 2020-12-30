@@ -50,7 +50,6 @@ class UserController extends Controller
 
         $buscarRut = User::where('rut',$rut)->first();
         $buscarEmail = User::where('email',$request->email)->first();
-
         //guardar datos
         if($buscarRut || $buscarEmail){
             return redirect('/registro')->with('warning','Lo sentimos ya existe un usuario con estas credenciales');

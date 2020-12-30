@@ -14,7 +14,7 @@ class CreateComercializacionServicio extends Migration
     public function up()
     {
         Schema::create('comercializacion_servicio', function (Blueprint $table) {
-            $table->increments('idComercializacion_servicio');
+            $table->increments('idComer_servicio');
             $table->string('nombre_comercializacion_ser');
             $table->float('valor');
         });
