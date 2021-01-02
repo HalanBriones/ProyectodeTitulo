@@ -98,7 +98,7 @@
             @endif
             @if ($_SESSION['perfil'] == 'Administrador')
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="/negocio">
                 <span data-feather="layers"></span>
                 Negocios
               </a>

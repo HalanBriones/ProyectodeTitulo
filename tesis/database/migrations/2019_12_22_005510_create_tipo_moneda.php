@@ -16,7 +16,7 @@ class CreateTipoMoneda extends Migration
         Schema::create('moneda', function (Blueprint $table) {
             $table->increments('idMoneda');
             $table->string('nombre');
-            $table->float('transformacion');
+            $table->float('transformacion')->nullable();
         });
     }
 

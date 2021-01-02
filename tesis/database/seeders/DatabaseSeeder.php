@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ComercializacionProducto;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +20,10 @@ class DatabaseSeeder extends Seeder
             MarcaSeeder::class,
             TipoProductoSeeder::class,
             ConocimientoServicioSeeder::class,
-            TipoComercializacionServicioSeeder::class
+            TipoComercializacionServicioSeeder::class,
+            MonedaSeeder::class,
+            TipoNegocioSeeder::class,
+            ComercializacionProductoSeeder::class
         ]);
     }
 }

@@ -32,21 +32,20 @@ class UserController extends Controller
 
 
     public function registrar(Request $request){
- 
+
         request()->validate([
             "rut" =>"required |  max:12",
             "nombre" =>"required  | max:255",
             "apellido" =>"required  | max:255",
             "email" => ["email"],
-            "email_validacion" => ["email"],
+            "email_vali" => ["email"],
             "password" => "required | min:8",
-            "password_confirm" => "require | min:8",
+            "password_conf" => "require | min:8",
             "telefono" => "required | max:9"
         ]);
 
         $rut = str_ireplace("-", "", $request->rut);
         $rut = str_ireplace(".", "", $rut);
-           
 
         $buscarRut = User::where('rut',$rut)->first();
         $buscarEmail = User::where('email',$request->email)->first();
@@ -62,14 +61,11 @@ class UserController extends Controller
             $user->password =  Hash::make($request->password);
             $user->telefono = $request->telefono;
             $user->idPerfil = 4; //por defecto es un usuario corriente
-
-            //Obtener rol en base a id
-            $perfil = Perfil::where('idPerfil',$user->idPerfil)->first();
             
             if($user->save()){
-                return redirect('/inicio',compact('perfil'))->with('success','Registro exitoso');
+                return redirect('/inicio')->with('success','Registro exitoso');
             }else{
-                return redirect('/registro',compact('perfil'))->with('warning','Lo sentimos no se pudo registrar');
+                return redirect('/registro')->with('warning','Lo sentimos no se pudo registrar');
             }
         }
     }

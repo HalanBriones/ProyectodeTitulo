@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Perfil;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use Illuminate\Http\Request;
 
@@ -32,10 +33,14 @@ class LoginController extends Controller
                 $_SESSION['perfil'] = $perfil->nombre_perfil;
         
                 return  redirect('/inicio');
+            }else{
+                toast('Error al ingresar las credenciales','error');
+                return redirect('login');
             }
 
         }else{
-            return view('login');
+            toast('Error al ingresar las credenciales','error');
+            return redirect('login');
         }
         
 

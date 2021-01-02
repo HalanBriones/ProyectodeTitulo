@@ -98,10 +98,10 @@
                             </div>
     
                             <div class="form-group row mb-2">
-                                <label for="password_conf" class="col-md-4 col-form-label text-md-right">{{ __('Confirmación Password') }}</label>
+                                <label for="password_confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmación Password') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="pass2" type="password" class="form-control has-feedback-left @error('pass_conf') is-invalid @enderror" name="password_conf" required autocomplete="new-password">
+                                    <input id="pass2" type="password" class="form-control has-feedback-left @error('pass_conf') is-invalid @enderror" name="password_confirm" required autocomplete="new-password">
     
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -126,7 +126,7 @@
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-dark" >
+                                    <button type="submit" id="boton" class="btn btn-dark" >
                                         {{ __('Registrar') }}
                                     </button>
                                 </div>
@@ -141,6 +141,7 @@
     </main>
     <script src="{{ asset('js/validacion_email.js') }}"></script>
     <script src="{{ asset('js/validar_password.js') }}"></script>
+    <script src="{{ asset('js/validacion_rut.js') }}"></script>
 
 
 @endsection
