@@ -11,13 +11,13 @@ class OportunidadNegocio extends Model
     protected $primaryKey = 'idNegocio';
     protected $fillable = [
         'nombre_negocio',
-        'siglas',
+        'sigla_negocio',
         'descripcion',
         'precio_final',
         'margen',
-        'idEstado',
-        'idTipoNegocio',
-        'idMoneda'
+        'fecha_creacion',
+        'estado_idestado',
+        'usuario_rut'
     ];
     public $timestamps= false;
 
@@ -27,14 +27,6 @@ class OportunidadNegocio extends Model
 
     public function estado(){
         return $this->belongsTo('App\Models\Estado','idEstado','idEstado');
-    }
-
-    public function tipo_negocio(){
-        return $this->belongsTo('App\Models\TipoNegocio','idTipoNegocio','idTipoNegocio');
-    }
-
-    public function tipo_moneda(){
-        return $this->belongsTo('App\Models\TipoMoneda','idMoneda','idMoneda');
-    }
+    }   
 
 }

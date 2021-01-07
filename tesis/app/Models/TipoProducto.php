@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class TipoProducto extends Model
 {
     protected $table = 'tipo_producto';
-    protected $primaryKey = 'idTipoProducto';
+    protected $primaryKey = 'idtipoProducto';
     protected $fillable = [
-        'idTipoProducto',
+        'idtipoProducto',
         'nombre_tipo_producto'
     ];
     public $timestamps = false;

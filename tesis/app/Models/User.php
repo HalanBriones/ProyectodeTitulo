@@ -25,14 +25,14 @@ class User extends Authenticatable
         'email',
         'password',
         'telefono',
-        'idPerfil'
+        'rol_idRol'
     ];
 
-    public function perfil(){
-        return $this->belongsTo('App\Models\Perfil','idPerfil','idPerfil');
+    public function rol(){
+        return $this->belongsTo('App\Models\Rol','idRol','idRol');
     }
     public function oportunidad_negocio(){
-        return $this->belongsToMany('App\Models\OportunidadNegocio','idNegocio','idNegocio');
+        return $this->belongsToMany('App\Models\OportunidadNegocio','idoportunidad_negocio','idoportunidad_negocio');
     }
     /**
      * The attributes that should be hidden for arrays.

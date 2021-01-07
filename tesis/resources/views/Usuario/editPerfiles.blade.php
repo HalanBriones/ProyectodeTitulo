@@ -31,12 +31,12 @@
           </div>
 
         <div class="form-group">
-          <label for="perfil" class="col-sm-2 col-form-label">Perfil</label>
+          <label for="perfil" class="col-sm-2 col-form-label">Rol</label>
             <div class="col-lg-8">
-            <select name="perfil" class="form-control " id="perfil" required>
+            <select name="rol" class="form-control " id="rol" required>
               <option value="" selected>Seleccione Rol</option>
-              @foreach ($perfiles as $perfil)
-              <option value="{{$perfil->idPerfil}}">{{$perfil->nombre_perfil}}</option>
+              @foreach ($roles as $rol)
+              <option value="{{$rol->idRol}}">{{$rol->nombre_rol}}</option>
               @endforeach
             </select>
           </div>

@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Mac extends Model
 {
     protected $table = 'mac';
-    protected $primaryKey = 'idMarca';
+    protected $primaryKey = 'idMac';
     protected $fillable = [
-        'idMarca',
+        'idMac',
         'nombre_marca'
     ];
     public $timestamps = false;

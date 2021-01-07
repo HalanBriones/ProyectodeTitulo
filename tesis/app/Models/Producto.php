@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     protected $table = 'producto';
-    protected $primaryKey = 'idPro';
+    protected $primaryKey = 'idproducto';
     protected $fillable = [
-        'idPro',
+        'idproducto',
         'nombre_producto',
+        'sigla_producto',
         'descripcion',
-        'idMarca',
-        'idPro'
+        'tipo_producto_idtipo_producto',
+        'mac_idMac'
     ];
     public $timestamps=false;
 

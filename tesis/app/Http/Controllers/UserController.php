@@ -9,8 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Alert;
-
-
+use App\Models\Rol;
 
 class UserController extends Controller
 {
@@ -26,7 +25,7 @@ class UserController extends Controller
     }
 
     public function index(){
-        $usuarios = User::with('perfil')->get();
+        $usuarios = User::with('rol')->get();
         return view('Usuario.mostrarUsers',compact('usuarios'));
     }
 
@@ -60,7 +59,7 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->password =  Hash::make($request->password);
             $user->telefono = $request->telefono;
-            $user->idPerfil = 4; //por defecto es un usuario corriente
+            $user->rol_idRol = 4; //por defecto es un usuario corriente
             
             if($user->save()){
                 return redirect('/inicio')->with('success','Registro exitoso');
@@ -74,12 +73,12 @@ class UserController extends Controller
     public function editRol($rut){
 
         $user = User::with('perfil')->where('rut',$rut)->first();
-        $perfiles = Perfil::all();
-        return view('Usuario.editPerfiles', compact('user','perfiles'));
+        $roles = Rol::all();
+        return view('Usuario.editPerfiles', compact('user','roles'));
     }
 
     public function updateRol(Request $request, User $user){
-        $user->idPerfil = $request->perfil;
+        $user->rol_idRol = $request->rol;
 
         if($user->save()){
             return redirect('/mostrar')->with('success','Actualización de rol correctamente');
@@ -90,7 +89,7 @@ class UserController extends Controller
     }
 
     public function editPerfil($rut){
-        $user = User::with('perfil')->where('rut',$rut)->first();
+        $user = User::with('rol')->where('rut',$rut)->first();
         return view('Usuario.edit', compact('user'));
     }
 

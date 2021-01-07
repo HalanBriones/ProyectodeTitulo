@@ -49,7 +49,7 @@ Route::get('usuario/{rut}/editPerfil',[UserController::class,'editPerfil'])->nam
 Route::post('/usuarios/{user}',[UserController::class, 'updatePerfil'])->name('usuarios.updatePerfil');
 //Negocio//
 Route::get('/negocio', [OportunidadNegocioController::class,'vistaNegocio'])->name('negocio.crear');
-Route::post('/negocios',[OportunidadNegocioController::class,'store_negocio'])->name('negocio.store');
+Route::post('/negocios',[OportunidadNegocioController::class,'crear_negocio'])->name('negocio.store');
 
 //--//
 //Productos//

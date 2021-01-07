@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TipoProductoHasComercializacion extends Model
+class SubComerHasComerProducto extends Model
 {
-    protected $table = 'tipo_producto_has_comercializacion'; 
+    protected $table = 'sub_comer_has_comerc_producto';
     protected $fillable = [
-        'tipo_producto_idtipo_producto',
+        'sub_comercializacion_idsub_comercializacion',
         'comercializacion_idcomercializacion'
     ];
 }

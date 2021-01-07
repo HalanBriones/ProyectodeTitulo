@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ComercializacionProducto extends Model
 {
-    protected $table = 'comercializacion';
+    protected $table = 'comercializacion_producto';
     protected $primaryKey = 'idComercializacion';
     protected $fillable = [
-        'nombre_comercializacion',
-        'valor'
+        'nombre_comercializacion'
     ];
     public $timestamps = false;
 

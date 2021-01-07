@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ConocimientoServicioHasServicio extends Model
 {
     protected $table ='conocimiento_servicio_has_servicio';
-    protected $fillable = ['idConocimiento','idServicio'];
+    protected $fillable = ['conocimiento_servicio_idconocimiento_servicio','servicio_idservicio'];
     public $timestamps = false;
 }

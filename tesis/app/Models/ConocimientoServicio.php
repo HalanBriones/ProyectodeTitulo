@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ConocimientoServicio extends Model
 {
     protected $table = 'conocimiento_servicio';
-    protected $primaryKey = 'idConocimiento';
+    protected $primaryKey = 'idconocimiento_servicio';
     protected $fillable = [
-        'idConocimiento',
+        'idconocimiento_servicio',
         'nombre_conocimiento',
-        'valor_conocimiento'
     ];
     public $timestamps = false;
 

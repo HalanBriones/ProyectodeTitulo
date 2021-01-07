@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Perfil;
+use App\Models\Rol;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -22,15 +23,15 @@ class LoginController extends Controller
 
             if(Hash::check($request->password,$usuario->password)){
                 
-                $perfil = Perfil::where('idPerfil',$usuario->idPerfil)->first();
+                $perfil = Rol::where('idRol',$usuario->idPerfil)->first();
                 session_start(['name' => 'Login']);
                 $_SESSION['rut'] = $usuario->rut;
                 $_SESSION['nombre'] = $usuario->nombre;
-                $_SESSION['apellidos'] = $usuario->apellido;
+                $_SESSION['apellido'] = $usuario->apellido;
                 $_SESSION['email'] = $usuario->email;
                 $_SESSION['telefono'] = $usuario->email;
-                $_SESSION['idPerfil'] = $usuario->idPerfil;
-                $_SESSION['perfil'] = $perfil->nombre_perfil;
+                $_SESSION['idRol'] = $usuario->idPerfil;
+                $_SESSION['rol'] = $perfil->nombre_rol;
         
                 return  redirect('/inicio');
             }else{

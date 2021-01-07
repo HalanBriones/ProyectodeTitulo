@@ -16,7 +16,6 @@ class CreateConocimientoServicio extends Migration
         Schema::create('conocimiento_servicio', function (Blueprint $table) {
             $table->increments('idConocimiento');
             $table->string('nombre_conocimiento');
-            $table->float('valor_conocimiento');
         });
     }
 

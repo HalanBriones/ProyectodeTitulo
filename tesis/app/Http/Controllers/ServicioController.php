@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\ComercializacionServicio;
 use App\Models\ServicioHasComercializacion;
 use Alert;
+use App\Models\ComercializacioServicioHasServicio;
 use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class ServicioController extends Controller
@@ -20,7 +21,7 @@ class ServicioController extends Controller
     }
 
     public function edit_servicio($idServicio){
-        $servicio = Servicio::where('idServicio',$idServicio)->first();
+        $servicio = Servicio::where('idservicio',$idServicio)->first();
         return view('Servicio.editServicio',compact('servicio'));
     }
 
@@ -35,6 +36,7 @@ class ServicioController extends Controller
         ]);    
         $sigla_servicio= substr($request->nombre_servicio,0,-4);
         $servicio = new Servicio();
+        $servicio->idChileCompra = $request->idChileCompra;
         $servicio->nombre_servicio = $request->nombre_servicio;
         $servicio->descripcion = $request->descripcion;
         $servicio->sigla_servicio = $sigla_servicio;
@@ -63,9 +65,9 @@ class ServicioController extends Controller
 
             foreach($comer as $com)
             {
-                $ser_comer = new ServicioHasComercializacion();
-                $ser_comer->idComer_servicio = $com->idComer_servicio;
-                $ser_comer->idServicio = $servicio->idServicio;
+                $ser_comer = new ComercializacioServicioHasServicio();
+                $ser_comer->comercializacon_servicio_idcomercializacon_servicio = $com->idcomer_servicio;
+                $ser_comer->servicio_idservicio = $servicio->idservicio;
 
                 $ser_comer->save();
             }

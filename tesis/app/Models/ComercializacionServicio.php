@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ComercializacionServicio extends Model
 {
     protected $table = 'comercializacion_servicio';
-    protected $primaryKey = 'idComer_servicio';
+    protected $primaryKey = 'idcomer_servicio';
     protected $fillable = [
-        'idComer_servicio',
+        'idcomer_servicio',
         'nombre_comercializacion_ser',
-        'valor'
     ];
     public $timestamps = false;
     public function servicio(){
