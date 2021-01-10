@@ -6,10 +6,8 @@ use App\Models\Servicio;
 use App\Models\ConocimientoServicioHasServicio;
 use Illuminate\Http\Request;
 use App\Models\ComercializacionServicio;
-use App\Models\ServicioHasComercializacion;
 use Alert;
-use App\Models\ComercializacioServicioHasServicio;
-use Symfony\Component\CssSelector\Node\FunctionNode;
+use App\Models\ComercializacionServicioHasServicio;
 
 class ServicioController extends Controller
 {
@@ -26,7 +24,16 @@ class ServicioController extends Controller
     }
 
     public function update_servicio(Request $request, Servicio $servicio){
-        return 'hola';
+
+        $servicio->nombre_servicio = $request->nombre_servicio;
+        $servicio->idChileCompra = $request->idChileCompra;
+        $servicio->descripcion = $request->descripcion;
+
+        if($servicio->save()){
+            return redirect('/servicios')->with('success','Servicio editado Correctamente');
+        }else{
+            return redirect('/servicios')->with('warning','Error al editar servicio');
+        }
     }
 
     public function store_servicio(Request $request){
@@ -43,7 +50,7 @@ class ServicioController extends Controller
 
         $existe = Servicio::where('nombre_servicio',$servicio->nombre_servicio)->first();
          if($existe){
-            return back()->with('warning', 'El Producto ya existe');
+            return back()->with('warning', 'El Servicio ya existe');
          }
 
         if($servicio->save()){
@@ -53,8 +60,8 @@ class ServicioController extends Controller
             foreach($conocimientos as $conociemiento){
                 $conociemiento_has_servicio = new ConocimientoServicioHasServicio();
 
-                $conociemiento_has_servicio->idConocimiento = $conociemiento->idConocimiento;
-                $conociemiento_has_servicio->idServicio = $servicio->idServicio;
+                $conociemiento_has_servicio->conocimiento_servicio_idconocimiento_servicio = $conociemiento->idconocimiento_servicio;
+                $conociemiento_has_servicio->servicio_idservicio = $servicio->idservicio;
 
                 $conociemiento_has_servicio->save();
             }
@@ -65,20 +72,17 @@ class ServicioController extends Controller
 
             foreach($comer as $com)
             {
-                $ser_comer = new ComercializacioServicioHasServicio();
-                $ser_comer->comercializacon_servicio_idcomercializacon_servicio = $com->idcomer_servicio;
+                $ser_comer = new ComercializacionServicioHasServicio();
+                $ser_comer->comercializacion_servicio_idcomercializacion_servicio = $com->idcomercializacion_servicio;
                 $ser_comer->servicio_idservicio = $servicio->idservicio;
 
                 $ser_comer->save();
             }
 
-            return redirect('/registroServicio')->with('success','Producto Creado Correctamente');
+            return redirect('/registroServicio')->with('success','Servicio creado correctamente');
         }else{
             return redirect('/registroServicio')->whith('warning','Error al crear el servicio');
         }
-
-
-
     }
 
     public function mostrar_servicios(){
@@ -87,4 +91,4 @@ class ServicioController extends Controller
     }
 
 
-}   
+}

@@ -15,18 +15,15 @@ class ConocimientoServicioSeeder extends Seeder
     public function run()
     {
         DB::table('conocimiento_servicio')->insert([
-            'idConocimiento' => 1,
-            'nombre_conocimiento' => 'Junior',
+            'nombre_conocimiento' => 'Junior'
         ]);
 
         DB::table('conocimiento_servicio')->insert([
-            'idConocimiento' => 2,
-            'nombre_conocimiento' => 'Senior',
+            'nombre_conocimiento' => 'Senior'
         ]);
 
         DB::table('conocimiento_servicio')->insert([
-            'idConocimiento' => 3,
-            'nombre_conocimiento' => 'Experto',
+            'nombre_conocimiento' => 'Experto'
         ]);
     }
 }

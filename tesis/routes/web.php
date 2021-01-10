@@ -65,7 +65,7 @@ Route::get('/registroServicio', [ServicioController::class,'vistaRegistro_Servic
 Route::post('/servicio',[ServicioController::class,'store_servicio'])->name('servicio.registrar');
 Route::get('/servicios',[ServicioController::class,'mostrar_servicios'])->name('servicio.mostrar');
 Route::get('/editar/{idServicio}/servicios', [ServicioController::class,'edit_servicio'])->name('servicio.edit');
-Route::put('/servicio/{servicio}',[ServicioController::class, 'update_servicio'])->name('servicio.update');
+Route::post('/servicio/{servicio}',[ServicioController::class, 'update_servicio'])->name('servicio.updateServicio');
 //--//
 
 

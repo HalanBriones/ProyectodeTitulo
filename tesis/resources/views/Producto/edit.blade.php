@@ -29,7 +29,7 @@
                                 <select class="form-control" name="tipo_producto" id="tipo_producto" required>
                                   <option value="" selected>Seleccione tipo producto</option>
                                   @foreach ($tipo_productos as $tipo_producto)
-                                     <option value="{{$tipo_producto->idTipoProducto}}">{{$tipo_producto->nombre_tipo_producto}}</option>   
+                                     <option value="{{$tipo_producto->idtipo_producto}}">{{$tipo_producto->nombre_tipo_producto}}</option>   
                                   @endforeach
                                 </select>
                               </div>
@@ -41,7 +41,7 @@
                                 <select class="form-control" name="marca" id="marca" required>
                                   <option value="" selected>Seleccione marca</option>
                                   @foreach ($macs as $mac)
-                                     <option value="{{$mac->idMarca}}">{{$mac->nombre_marca}}</option>   
+                                     <option value="{{$mac->idMac}}">{{$mac->nombre_marca}}</option>   
                                   @endforeach
                                 </select>
                               </div>

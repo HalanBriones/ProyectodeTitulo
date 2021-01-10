@@ -20,10 +20,14 @@ class Producto extends Model
     public $timestamps=false;
 
     public function mac(){
-        return $this->belongsTo('App\Models\Mac','idMarca','idMarca');
+        return $this->belongsTo('App\Models\Mac','mac_idMac','idMac');
     }
 
     public function tipo_producto(){
-        return $this->belongsTo('App\Models\TipoProducto', 'idTipoProducto', 'idTipoProducto');
+        return $this->belongsTo('App\Models\TipoProducto', 'tipo_producto_idtipo_producto', 'idtipo_producto');
+    }
+
+    public function oportunidad_negocio_pro(){
+        return $this->belongsToMany('App\Models\OportunidadNegocio','oportunidad_negocio_idoportunidad_negocio','idNegocio');
     }
 }

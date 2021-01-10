@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'email' => 'halanbm98@gmail.com',
             'password' => Hash::make('olakase1998'),
             'telefono' => '975467938',
-            'idPerfil' => 1
+            'rol_idRol' => 1
         ]);
 
         DB::table('users')->insert([
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'email' => 'karenmerino@gmail.com',
             'password' => Hash::make('12345678'),
             'telefono' => '984287749',
-            'idPerfil' => 4
+            'rol_idRol' => 4
         ]);
     }
 }

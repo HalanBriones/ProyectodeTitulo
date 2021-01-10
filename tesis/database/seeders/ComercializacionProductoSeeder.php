@@ -14,39 +14,32 @@ class ComercializacionProductoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('comercializacion')->insert([
-            'nombre_comercializacion' => 'Suscripcion',
-            'valor' => '20000'
+        DB::table('comercializacion_producto')->insert([
+            'nombre_comercializacion' => 'Suscripcion'
         ]);
 
-        DB::table('comercializacion')->insert([
-            'nombre_comercializacion' => 'Arriendo',
-            'valor' => '25000'
+        DB::table('comercializacion_producto')->insert([
+            'nombre_comercializacion' => 'Arriendo'
         ]);
 
-        DB::table('comercializacion')->insert([
-            'nombre_comercializacion' => 'Proyecto',
-            'valor' => '29000'
+        DB::table('comercializacion_producto')->insert([
+            'nombre_comercializacion' => 'Proyecto'
         ]);
 
-        DB::table('comercializacion')->insert([
-            'nombre_comercializacion' => 'Venta Transaccional',
-            'valor' => '30000'
+        DB::table('comercializacion_producto')->insert([
+            'nombre_comercializacion' => 'Venta Transaccional'
         ]);
 
-        DB::table('comercializacion')->insert([
-            'nombre_comercializacion' => 'Renovacion',
-            'valor' => '20000'
+        DB::table('comercializacion_producto')->insert([
+            'nombre_comercializacion' => 'Renovacion'
         ]);
         
-        DB::table('comercializacion')->insert([
-            'nombre_comercializacion' => 'Leasing A',
-            'valor' => '16000'
+        DB::table('comercializacion_producto')->insert([
+            'nombre_comercializacion' => 'Leasing A'
         ]);
 
-        DB::table('comercializacion')->insert([
-            'nombre_comercializacion' => 'Leasing B',
-            'valor' => '32000'
+        DB::table('comercializacion_producto')->insert([
+            'nombre_comercializacion' => 'Leasing B'
         ]);
     }
 }

@@ -15,12 +15,10 @@ class TipoProductoSeeder extends Seeder
     public function run()
     {
         DB::table('tipo_producto')->insert([
-            'idTipoProducto' => 1,
             'nombre_tipo_producto' => 'Hardware'
         ]);
 
         DB::table('tipo_producto')->insert([
-            'idTipoProducto' => 2,
             'nombre_tipo_producto' => 'Software'
         ]);
     }

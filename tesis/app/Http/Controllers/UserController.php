@@ -31,7 +31,6 @@ class UserController extends Controller
 
 
     public function registrar(Request $request){
-
         request()->validate([
             "rut" =>"required |  max:12",
             "nombre" =>"required  | max:255",
@@ -45,7 +44,6 @@ class UserController extends Controller
 
         $rut = str_ireplace("-", "", $request->rut);
         $rut = str_ireplace(".", "", $rut);
-
         $buscarRut = User::where('rut',$rut)->first();
         $buscarEmail = User::where('email',$request->email)->first();
         //guardar datos
@@ -72,7 +70,7 @@ class UserController extends Controller
 
     public function editRol($rut){
 
-        $user = User::with('perfil')->where('rut',$rut)->first();
+        $user = User::with('rol')->where('rut',$rut)->first();
         $roles = Rol::all();
         return view('Usuario.editPerfiles', compact('user','roles'));
     }
@@ -98,7 +96,7 @@ class UserController extends Controller
         $user->apellido = $request->apellido;
         $user->email = $request->email;
         $user->telefono = $request->telefono;
-
+        $user->password =  Hash::make($request->password);
         try{
             $user->save();
             return view('/welcome')->with('success','Actualización del Perfil correctamente');

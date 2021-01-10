@@ -14,4 +14,8 @@ class Documento extends Model
         'fecha_subida',
         'oportunidad_negocio_idoportunidad_negocio'
     ];
+
+    public function oportunidad_negocio(){
+        return $this->belongsTo('App\Models\OportunidadNegocio','oportunidad_negocio_idoportunidad_negocio','idNeogocio',);
+    }
 }

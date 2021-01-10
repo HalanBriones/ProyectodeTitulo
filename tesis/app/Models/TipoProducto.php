@@ -15,7 +15,7 @@ class TipoProducto extends Model
     ];
     public $timestamps = false;
 
-    public function comercializacion(){
-        return $this->belongsToMany('App\Models\ComercializacionProducto','idComercializacion','idComercializacion');
+    public function comercializacion_producto(){
+        return $this->belongsToMany('App\Models\ComercializacionProducto','comercializacion_producto_idcomercializacion','idcomercializacion');
     }
 }

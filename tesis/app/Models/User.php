@@ -27,12 +27,14 @@ class User extends Authenticatable
         'telefono',
         'rol_idRol'
     ];
+    public $timestamps = false;
 
     public function rol(){
-        return $this->belongsTo('App\Models\Rol','idRol','idRol');
+        return $this->belongsTo('App\Models\Rol','rol_idRol','idRol');
     }
-    public function oportunidad_negocio(){
-        return $this->belongsToMany('App\Models\OportunidadNegocio','idoportunidad_negocio','idoportunidad_negocio');
+
+    public function oportunidades_negocios(){
+        return $this->belongsToMany('App\Models\OportunidadNegocio','oportunidad_negocio_idoportunidad','idNegocio',);
     }
     /**
      * The attributes that should be hidden for arrays.

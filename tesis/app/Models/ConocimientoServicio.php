@@ -16,6 +16,6 @@ class ConocimientoServicio extends Model
     public $timestamps = false;
 
     public function servicio(){
-        return $this->belongsToMany('App\Models\Servicio','idServicio','idServicio');
+        return $this->belongsToMany('App\Models\Servicio','servicio_idservicio','idservicio');
     }
 }

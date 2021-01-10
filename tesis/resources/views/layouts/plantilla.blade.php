@@ -64,7 +64,7 @@
         <div class="position-sticky pt-3">
           <ul class="nav flex-column">
 
-            @if ($_SESSION['perfil'] == 'Administrador')
+            @if ($_SESSION['nombre_rol'] == 'Administrador')
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/registro">
                 <span data-feather="home"></span>
@@ -91,7 +91,7 @@
                 Servicios
               </a>
             </li>
-            @if ($_SESSION['perfil'] == 'Administrador')
+            @if ($_SESSION['nombre_rol'] == 'Administrador')
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <span data-feather="bar-chart-2"></span>
@@ -99,7 +99,7 @@
               </a>
             </li>
             @endif
-            @if ($_SESSION['perfil'] == 'Administrador')
+            @if ($_SESSION['nombre_rol'] == 'Administrador')
             <li class="nav-item">
               <a class="nav-link" href="/negocio">
                 <span data-feather="layers"></span>

@@ -33,7 +33,7 @@ class ProductoController extends Controller
         $producto->nombre_producto = $request->nombre_producto;
         $producto->descripcion = $request->descripcion;
         $producto->sigla_producto = $sigla_producto;
-        $producto->idMac = $request->marca;
+        $producto->mac_idMac = $request->marca;
         $producto->tipo_producto_idtipo_producto = $request->tipo_producto;
         
         if($producto->save()){
@@ -59,7 +59,7 @@ class ProductoController extends Controller
     public function update_producto(Request $request, Producto $producto){
         $producto->nombre_producto = $request->nombre_producto;
         $producto->tipo_producto_idtipo_producto = $request->tipo_producto;
-        $producto->idMac = $request->marca;
+        $producto->mac_idMac = $request->marca;
         $producto->descripcion = $request->descripcion;
         $producto->sigla_producto = substr($request->nombre_producto,0,-6);
         

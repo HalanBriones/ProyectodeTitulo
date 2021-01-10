@@ -17,13 +17,19 @@ class Servicio extends Model
     ];
     public $timestamps = false;
 
-    public function comercializacionServicio(){
-        return $this->belongsToMany('App\Models\ComercializacionServicio','idComercializacion_servicio','idComercializacion_servicio');
+    public function conocimientoServicio(){
+        return $this->belongsToMany('App\Models\ConocimientoServicio','conocimiento_servicio_idconocimiento_servicio','idconocimiento_servicio');
     }
 
-    public function conocimientoServicio(){
-        return $this->belongsToMany('App\Models\ConocimientoServicio','idConocimiento','idConocimiento');
+    public function comercializacionServicio(){
+        return $this->belongsToMany('App\Models\ComercializacionServicio','comercializacion_servicio_idcomercializacion_servicio','idcomercializacion_servicio');
     }
+
+    public function oportunidad_negocio(){
+        return $this->belongsToMany('App\Models\OportunidadNegocio','oportunidad_negocio_idoportunidad_negocio','idNegocio');
+    }
+
+
 
 
 }

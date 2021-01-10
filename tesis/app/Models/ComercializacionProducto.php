@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ComercializacionProducto extends Model
 {
     protected $table = 'comercializacion_producto';
-    protected $primaryKey = 'idComercializacion';
+    protected $primaryKey = 'idcomercializacion';
     protected $fillable = [
         'nombre_comercializacion'
     ];
     public $timestamps = false;
 
     public function tipo_producto(){
-        return $this->belongsToMany('App\Models\TipoProducto','idTipoProducto','idTipoProducto');
+        return $this->belongsToMany('App\Models\TipoProducto','tipo_producto_idtipo_producto','idtipo_producto');
     }
 }

@@ -15,17 +15,14 @@ class MarcaSeeder extends Seeder
     public function run()
     {
         DB::table('mac')->insert([
-            'idMarca'=> 1,
             'nombre_marca' => 'IBM'
         ]);
 
         DB::table('mac')->insert([
-            'idMarca'=> 2,
             'nombre_marca' => 'Microsoft'
         ]);
 
         DB::table('mac')->insert([
-            'idMarca'=> 3,
             'nombre_marca' => 'Lenovo'
         ]);
     }

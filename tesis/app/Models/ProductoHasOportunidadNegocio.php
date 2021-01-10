@@ -21,4 +21,8 @@ class ProductoHasOportunidadNegocio extends Model
         'comercializacion_idcomercializacion'
 
     ];
+
+    public function comercializacion_producto(){
+        return $this->belongsTo('App\Models\ComercializacionProducto','comercializacion_producto_idcomercializacion','idcomercializacion');
+    }
 }

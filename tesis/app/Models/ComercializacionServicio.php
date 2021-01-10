@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class ComercializacionServicio extends Model
 {
     protected $table = 'comercializacion_servicio';
-    protected $primaryKey = 'idcomer_servicio';
+    protected $primaryKey = 'idcomercializacion_servicio';
     protected $fillable = [
-        'idcomer_servicio',
-        'nombre_comercializacion_ser',
+        'idcomercializacion_servicio',
+        'nombre_comercializacion',
     ];
     public $timestamps = false;
+
     public function servicio(){
-        return $this->belongsToMany('App\Models\Servicio','idServicio','idServicio');
+        return $this->belongsToMany('App\Models\Servicio','servicio_idservicio','idservicio');
     }
 }

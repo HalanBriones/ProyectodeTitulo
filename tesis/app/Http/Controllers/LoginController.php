@@ -20,10 +20,9 @@ class LoginController extends Controller
     {
         $usuario = User::where('email',$request->email)->first();
         if($usuario){
-
             if(Hash::check($request->password,$usuario->password)){
                 
-                $perfil = Rol::where('idRol',$usuario->idPerfil)->first();
+                $rol = Rol::where('idRol',$usuario->rol_idRol)->first();
                 session_start(['name' => 'Login']);
                 $_SESSION['rut'] = $usuario->rut;
                 $_SESSION['nombre'] = $usuario->nombre;
@@ -31,7 +30,7 @@ class LoginController extends Controller
                 $_SESSION['email'] = $usuario->email;
                 $_SESSION['telefono'] = $usuario->email;
                 $_SESSION['idRol'] = $usuario->idPerfil;
-                $_SESSION['rol'] = $perfil->nombre_rol;
+                $_SESSION['nombre_rol'] = $rol->nombre_rol;
         
                 return  redirect('/inicio');
             }else{
