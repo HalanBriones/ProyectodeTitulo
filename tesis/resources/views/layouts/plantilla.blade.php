@@ -16,8 +16,8 @@
 
 
     {{-- cdn jquery --}}
-    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-  <meta name="theme-color" content="#7952b3"> --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  <meta name="theme-color" content="#7952b3">
       <style>
         .bd-placeholder-img {
           font-size: 1.125rem;
@@ -63,10 +63,9 @@
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
         <div class="position-sticky pt-3">
           <ul class="nav flex-column">
-
             @if ($_SESSION['nombre_rol'] == 'Administrador')
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/registro">
+            <li class="nav-item ">
+              <a class="nav-link active" id="barra1" aria-current="page" href="/registro">
                 <span data-feather="home"></span>
                 Registrar Usuarios
               </a>
@@ -125,6 +124,8 @@
     </div>
   </div>
   @include('sweetalert::alert')
+
+  <script src="{{asset('js/active-sidebar.js')}}"></script>
 
 </body>
 </html>

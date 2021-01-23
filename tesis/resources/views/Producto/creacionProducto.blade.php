@@ -47,6 +47,12 @@
                                 </select>
                               </div>
                             </div>
+                            <div class="form-group row mt-3">
+                              <label class="col-md-4 col-form-label text-md-right" for="">Part Number</label>
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" name="partnumber" id="partnumber">
+                              </div>
+                            </div>
 
                             <div class="form-group row mt-3">
                               <label class="col-md-4 col-form-label text-md-right" for="">Descripción</label>

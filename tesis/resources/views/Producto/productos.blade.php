@@ -5,12 +5,19 @@
 @section('content')
     <div class="container">
         <table class="table mt-4" method="GET" action="/usuarios">
+          <div class="row d-flex">
+            <div class="col">
+              <a href="/tipo/producto" class="btn btn-sm btn-dark" >Tipo Producto</a>
+            </div>
+          </div>
             <thead class="thead-dark">
               <tr>
+                <th scope="col">Sigla Producto</th>
                 <th scope="col">Nombre Producto</th>
                 <th scope="col">Tipo Producto</th>
                 <th scope="col">Marca</th>
-                <th scope="col">Descripción</th>
+                <th scope="col">Sku</th>
+                <th scope="col">Part Number</th>
                 <th></th>
 
               </tr>
@@ -18,10 +25,12 @@
             <tbody>
               @foreach ($productos as $producto)
               <tr>
+                <td>{{ $producto->sigla_producto}}</td>
                 <td>{{ $producto->nombre_producto }}</td>
                 <td>{{ $producto->tipo_producto->nombre_tipo_producto}}</td>
                 <td>{{ $producto->mac->nombre_marca }}</td>
-                <td>{{ $producto->descripcion }}</td>
+                <td>{{ $producto->sku}}</td>
+                <td>{{ $producto->partnumber}}</td>
                 @if ($_SESSION['nombre_rol'] == 'Administrador')
                 <td><a  class="btn btn-dark" href="{{route('producto.edit',$producto->idproducto)}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -38,7 +47,6 @@
                 </form>  
                 </td>
                 @endif
-
               </tr>
               @endforeach
 

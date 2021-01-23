@@ -4,12 +4,11 @@ function insertPro(){
     var nombre_negocio = document.getElementById("nombre_negocio").value;
     var descripcion = document.getElementById("descripcion").value;
     //producto
-    var producto = document.getElementById("producto").value; 
+    var producto = document.getElementById("producto").value;
+    var separador = " ";
+    var cadena_pro = producto.split(separador);
     var comercializacionproducto = document.getElementById("comercializacionproducto").value;
-    var separador = " "
     var cadena_comer = comercializacionproducto.split(separador)
-    var sku = document.getElementById("sku").value;
-    var partnumber = document.getElementById("partnumber").value;
     var precioPcosto = document.getElementById("precioPcosto").value;
     var margen_negocioPro = document.getElementById("margen_negocioPro").value;
     var precioPventa = document.getElementById("precioPventa").value;
@@ -21,11 +20,10 @@ function insertPro(){
         let productos = {
             nombre_negocio: nombre_negocio,
             descripcion : descripcion,
-            producto: producto,
+            producto_id: cadena_pro[0],
+            producto_nombre: cadena_pro[1],
             comercializacionproducto_nombre: cadena_comer[1],
             comercializacionproducto_id: cadena_comer[0],
-            sku:sku,
-            partnumber: partnumber,
             precioPcosto: precioPcosto,
             margen_negocioPro: margen_negocioPro,
             precioPventa: precioPventa,
@@ -40,10 +38,9 @@ function insertPro(){
         let res = "";
         arrayProducto.forEach(elemento => {
             res = res+"<tr>"+
-            "<td>"+elemento.producto+"</td>"+
+            "<td>"+elemento.producto_nombre+"</td>"+
                 "<td>"+elemento.comercializacionproducto_nombre+"</td>"+
-                "<td>"+elemento.sku+"</td>"+
-                "<td>"+elemento.partnumber+"</td>"+
+                "<td>"+elemento.precioPcosto+"</td>"+
                 "<td>"+elemento.precioPventa+"</td>"+
             "</tr>"    
         })
@@ -53,6 +50,7 @@ function insertPro(){
 
 var arrayServicio = [];
 function insertSer(){
+    event.preventDefault();
     //servicio
     var servicio = document.getElementById("servicio").value;
     var conocimiento = document.getElementById("conocimiento").value;
@@ -96,17 +94,30 @@ function insertSer(){
         "</tr>"    
     })
     document.getElementById("+ser").innerHTML = res
-
-
 }
 
-function enviar(){
+function enviar(selected){
     var data = {
         productos: arrayProducto,
-        servicios: arrayServicio
+        servicios: arrayServicio,
+        participantes:selected
     }
     $.post("/negocios",data, function (response) {
         console.log(response)
+        //confirmacion de guardado exitoso
     });
     
 }
+
+var selected = [];
+$('#btnEnviar').click(function(){  
+    $('input[type=checkbox]').each(function(){
+        if (this.checked) {
+            selected.push ($(this).val());
+        }
+    });
+    enviar(selected);
+});    
+
+
+

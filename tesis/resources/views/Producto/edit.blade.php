@@ -12,7 +12,19 @@
                     <div class="card-body">
                         <form method="POST" action="{{route('producto.updateProducto',$producto)}}">
                             @csrf
-                            <div class="form-group row">
+
+                            <div class="form-group row mt-3">
+                              <label class="col-md-4 col-form-label text-md-right" for="">Sigla</label>
+                              <div class="col-md-6">
+                                <input id="sigla_producto" type="text" disabled class="form-control @error('sigla_producto') is-invalid @enderror" name="sigla_producto" value="{{ $producto->sigla_producto }}" required autocomplete="sigla_producto" autofocus>
+                                @error('partnumber')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                              </div>
+                            </div>
+                            <div class="form-group row mt-3">
                               <label class="col-md-4 col-form-label text-md-right" for="">Nombre Producto</label>
                               <div class="col-md-6">
                                 <input id="nombre_producto" type="text" class="form-control @error('nombre_producto') is-invalid @enderror" name="nombre_producto" value="{{ $producto->nombre_producto }}" required autocomplete="nombre_producto" autofocus>
@@ -46,7 +58,28 @@
                                 </select>
                               </div>
                             </div>
-
+                            <div class="form-group row mt-3">
+                              <label class="col-md-4 col-form-label text-md-right" for="">Sku</label>
+                              <div class="col-md-6">
+                                <input id="sku" disabled type="text" class="form-control @error('sku') is-invalid @enderror" name="sku" value="{{ $producto->sku }}" required autocomplete="sku" autofocus>
+                                @error('sku')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                              </div>
+                            </div>
+                            <div class="form-group row mt-3">
+                              <label class="col-md-4 col-form-label text-md-right" for="">Part Number</label>
+                              <div class="col-md-6">
+                                <input id="partnumber" type="text" class="form-control @error('partnumber') is-invalid @enderror" name="partnumber" value="{{ $producto->partnumber }}" required autocomplete="partnumber" autofocus>
+                                @error('partnumber')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                              </div>
+                            </div>
                             <div class="form-group row mt-3">
                               <label class="col-md-4 col-form-label text-md-right" for="">Descripción</label>
                               <div class="col-md-6">

@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OportunidadNegocioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\TipoProductoController;
 use App\Http\Controllers\UserController;
 use App\Models\OportunidadNegocio;
 use App\Models\User;
@@ -52,6 +53,11 @@ Route::get('/negocio', [OportunidadNegocioController::class,'vistaNegocio'])->na
 Route::post('/negocios',[OportunidadNegocioController::class,'crear_negocio'])->name('negocio.store');
 
 //--//
+//TipoProducto//
+Route::get('/tipo/producto',[TipoProductoController::class,'vistaTipoProducto']);
+Route::post('/tipo/productoStore',[TipoProductoController::class,'store_tipo_producto'])->name('tipoProducto.store');
+Route::post('/comercializacion',[TipoProductoController::class,'store_comercializacion'])->name('comercializacion.store');
+//--//
 //Productos//
 Route::get('/registroProducto', [ProductoController::class,'vistaRegistro_Producto']);
 Route::post('/registrarProducto',[ProductoController::class,'store_producto'])->name('producto.registrar');
@@ -67,7 +73,8 @@ Route::get('/servicios',[ServicioController::class,'mostrar_servicios'])->name('
 Route::get('/editar/{idServicio}/servicios', [ServicioController::class,'edit_servicio'])->name('servicio.edit');
 Route::post('/servicio/{servicio}',[ServicioController::class, 'update_servicio'])->name('servicio.updateServicio');
 //--//
-
+//comercializaciones por tipo producto//
+Route::get('comercializaciones/{id}',[OportunidadNegocioController::class,'getComercializacion']);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

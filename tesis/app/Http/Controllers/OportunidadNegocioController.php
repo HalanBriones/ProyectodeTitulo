@@ -8,9 +8,9 @@ use App\Models\ConocimientoServicio;
 use App\Models\OportunidadNegocio;
 use App\Models\Producto;
 use App\Models\Servicio;
-use App\Models\TipoMoneda;
-use App\Models\TipoNegocio;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Location;
 
 class OportunidadNegocioController extends Controller
@@ -21,11 +21,22 @@ class OportunidadNegocioController extends Controller
         //mandar productos y servicios
         $productos = Producto::all();
         $servicios = Servicio::all();
+        $usuarios = User::all();
         $conocimientos = ConocimientoServicio::all();
         $comercializaciones = ComercializacionProducto::all();
         $comercializacionSer = ComercializacionServicio::all();
-        $monedas = TipoMoneda::all();
-        return view('Negocio.NegocioCreacion' , compact('conocimientos','comercializacionSer','comercializaciones','productos','servicios','monedas'));
+        return view('Negocio.NegocioCreacion' , compact('usuarios','conocimientos','comercializacionSer','comercializaciones','productos','servicios'));
+    }
+
+    public function getComercializacion($id){
+        $comercializaciones= DB::table('producto')
+        ->join('tipo_producto_has_comercializacion_producto','producto.tipo_producto_idtipo_producto','tipo_producto_has_comercializacion_producto.tipo_producto_idtipo_producto')
+        ->join('comercializacion_producto','comercializacion_producto.idcomercializacion_producto','tipo_producto_has_comercializacion_producto.comercializacion_producto_idcomercializacion_producto')
+        ->where('producto.idproducto',$id)
+        ->select('comercializacion_producto.idcomercializacion_producto','nombre_comercializacion')
+        ->get();
+
+        return $comercializaciones;
     }
 
     //mostrar Negocios
@@ -39,12 +50,9 @@ class OportunidadNegocioController extends Controller
 
     public function crear_negocio(Request $request){
         
-        $servicios = $request->input("servicios",null);
-        foreach($servicios as $servicio){
+        
+        
+        return 'f';
 
-            
-
-            return $servicio['comentario'];
-        }
     }
 }
