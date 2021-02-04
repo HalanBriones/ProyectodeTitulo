@@ -30,4 +30,10 @@ class Producto extends Model
     public function oportunidad_negocio_pro(){
         return $this->belongsToMany('App\Models\OportunidadNegocio','oportunidad_negocio_idoportunidad_negocio','idNegocio');
     }
+
+    public function scopeNombres($query,$nombre_producto){
+        if($nombre_producto){
+            return $query->where('nombre_producto','like',"%$nombre_producto%");
+        }
+    }
 }

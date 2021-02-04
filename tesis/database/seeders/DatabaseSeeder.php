@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
             RolSeeder::class,
             UserSeeder::class,
             MarcaSeeder::class,
-            TipoProductoSeeder::class,
             ConocimientoServicioSeeder::class,
             ComercializacionServicioSeeder::class,
-            ComercializacionProductoSeeder::class
+            EstadoSeeder::class,
+            ComercializacionProducto::class
         ]);
     }
 }

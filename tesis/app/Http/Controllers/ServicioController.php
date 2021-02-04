@@ -39,20 +39,20 @@ class ServicioController extends Controller
     public function store_servicio(Request $request){
         request()->validate([
             "nombre_servicio" => "required",
-            "descripcion" => "required"
+            "conocimiento" => "required",
+            "idChileCompra" => "required"
         ]);    
         $sigla_servicio= substr($request->nombre_servicio,0,-4);
         $servicio = new Servicio();
         $servicio->idChileCompra = $request->idChileCompra;
+        $servicio->conocimiento = $request->conocimiento;
         $servicio->nombre_servicio = $request->nombre_servicio;
         $servicio->descripcion = $request->descripcion;
-        $servicio->sigla_servicio = $sigla_servicio;
-
+        $servicio->sigla_servicio = $sigla_servicio;     
         $existe = Servicio::where('nombre_servicio',$servicio->nombre_servicio)->first();
-         if($existe){
-            return back()->with('warning', 'El Servicio ya existe');
-         }
-
+        if($existe){
+        return back()->with('warning', 'El Servicio ya existe');
+        }
         if($servicio->save()){
             //enlazar el servicio con todos los tipos de conocimiento
 
@@ -88,6 +88,12 @@ class ServicioController extends Controller
     public function mostrar_servicios(){
         $servicios = Servicio::all();
         return view('Servicio.servicios',compact('servicios'));
+    }
+
+    public function busquedaServicio(Request $request){
+        return $request;
+        $nombre_servicio = $request->nombre_servicio;
+        $idChileCompra = $request->chile_compra;
     }
 
 

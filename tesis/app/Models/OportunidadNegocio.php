@@ -19,7 +19,8 @@ class OportunidadNegocio extends Model
         'estado_idestado',
         'usuario_rut'
     ];
-    public $timestamps= false;
+    public $timestamps = false;
+
 
     //usuario crea 1 a n negocios y el negocio lo crea 1 y 1 solo usuario
     public function user(){
@@ -30,8 +31,9 @@ class OportunidadNegocio extends Model
         return $this->belongsTo('App\Models\Estado','estado_idestado','idEstado');
     }
     //1,n usuarios participan en un ON y en esa ON participan de 1,n usuarios
-    public function users(){
-        return $this->belongsToMany('App\Models\User','usuario_rut','rut');
+    public function participan(){
+        return $this->belongsToMany(User::class,'usuario_participa_oportunidad_negocio','rut','usuario_rut');
+        // return $this->belongsToMany('App\Models\User','usuario_rut','rut');
     }
 
     public function servicios(){

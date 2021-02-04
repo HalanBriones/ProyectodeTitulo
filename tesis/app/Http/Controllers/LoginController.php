@@ -31,7 +31,6 @@ class LoginController extends Controller
                 $_SESSION['telefono'] = $usuario->email;
                 $_SESSION['idRol'] = $usuario->idPerfil;
                 $_SESSION['nombre_rol'] = $rol->nombre_rol;
-        
                 return  redirect('/inicio');
             }else{
                 toast('Error al ingresar las credenciales','error');

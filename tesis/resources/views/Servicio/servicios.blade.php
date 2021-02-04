@@ -4,6 +4,22 @@
 @endphp
 @section('content')
     <div class="container">
+      <form method="GET" action="/servicios/busqueda">
+        <div class="row">
+          <div class="col-4">
+            <a href="/conocimiento" class="btn btn-dark btn-sm">Conocimiento</a>
+            <a href="/comercializacion-ser" class="btn btn-dark btn-sm">Comercialización</a>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col"><input class="form-control"type="search" name="nombre_servicio" placeholder="Servicio"></div>
+              <div class="col"><input class="form-control"type="search" name="chile_compra" placeholder="ID Chile Compra"></div>
+              <div class="col"><button class="btn btn-sm btn-dark" type="submit">Buscar</button></div>
+              
+            </div>
+          </div>
+        </div>
+      </form>
         <table class="table mt-4" method="GET" action="/usuarios">
             <thead class="thead-dark">
               <tr>

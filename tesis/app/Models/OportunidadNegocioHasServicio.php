@@ -21,7 +21,7 @@ class OportunidadNegocioHasServicio extends Model
         'comercializacon_servicio_idcomercializacon_servicio',
         'conocimiento_servicio_idconocimiento_servicio'
     ]; 
-
+    public $timestamps = false;
     public function comercializacion_servicio(){
         return $this->belongsTo('App\Models\ComercializacionServicio','comercializacion_servicio_idcomercialicacion_servicio','idcomercializacion_servicio');
     }

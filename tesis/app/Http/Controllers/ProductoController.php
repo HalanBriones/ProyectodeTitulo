@@ -7,9 +7,9 @@ use App\Models\Mac;
 use App\Models\Producto;
 use App\Models\TipoProducto;
 use Illuminate\Http\Request;
-use Alert;
 use App\Models\ComercializacionProducto;
 use App\Models\TipoProductoHasComercializacion;
+use Alert;
 
 class ProductoController extends Controller
 {
@@ -33,7 +33,6 @@ class ProductoController extends Controller
     }
 
     public function store_producto(Request $request){
-
         request()->validate([
             "nombre_producto" =>"required | max:255",
             "tipo_producto" => "required",
@@ -46,9 +45,18 @@ class ProductoController extends Controller
         $producto->descripcion = $request->descripcion;
         $producto->sigla_producto = $sigla_producto;
         $producto->mac_idMac = $request->marca;
-        $producto->tipo_producto_idtipo_producto = $request->tipo_producto;
+        //tipo producto
+        $cadena = $request->tipo_producto;
+        $res = explode(",",$cadena);
+        $producto->tipo_producto_idtipo_producto = $res[0]; 
         $producto->partnumber = $request->partnumber;
-        $producto->sku = ProductoController::generateRandomString($length = 5); 
+        $producto->sku = ProductoController::generateRandomString($length = 5);
+        if($request->version == ""){
+            $producto->modelo = $request->modelo;      
+        }
+        if($request->modelo == ""){
+            $producto->version = $request->version;
+        }
         if($producto->save()){
             return redirect('/registroProducto')->with('success','Producto Creado Correctamente');
         }else{
@@ -57,9 +65,32 @@ class ProductoController extends Controller
     }
 
     public function mostrar_productos(){
-        $productos = Producto::all();
+        $tipo_productos = TipoProducto::all();
+        $productos = Producto::paginate(8);
+        return view('Producto.productos', compact('productos','tipo_productos'));
+    }
 
-        return view('Producto.productos', compact('productos'));
+    public function busqueda(Request $request){
+
+        $tipo_productos = TipoProducto::all();
+        $nombre_marca = $request->nombre_marca;
+        $id_tipo_producto = $request->tipo_producto;
+        $nombre_producto = $request->nombre_producto;
+        if($nombre_marca =="" && $id_tipo_producto=="" && $nombre_producto==""){
+            $tipo_productos = TipoProducto::all();
+            $productos = Producto::paginate(8);
+            return view('Producto.productos', compact('productos','tipo_productos'));
+        }
+        if($nombre_marca =="" && $id_tipo_producto==""){
+            
+            $productos = Producto::where('nombre_producto','like',"%$nombre_producto%")->get();
+            return  view('Producto.productos', compact('productos','tipo_productos'));
+        }
+
+        if($nombre_producto == "" && $nombre_marca== ""){
+            $productos = Producto::where('tipo_producto_idtipo_producto',$id_tipo_producto)->get();
+            return  view('Producto.productos', compact('productos','tipo_productos'));
+        }
     }
 
     public function edit_producto($idProducto){

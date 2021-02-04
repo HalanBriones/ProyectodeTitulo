@@ -15,30 +15,26 @@ class ComercializacionProductoSeeder extends Seeder
     public function run()
     {
         DB::table('comercializacion_producto')->insert([
+            'idcomercializacion_producto' => 1,
             'nombre_comercializacion' => 'Suscripcion'
         ]);
-
         DB::table('comercializacion_producto')->insert([
-            'nombre_comercializacion' => 'Arriendo'
-        ]);
-
-        DB::table('comercializacion_producto')->insert([
-            'nombre_comercializacion' => 'Proyecto'
-        ]);
-
-        DB::table('comercializacion_producto')->insert([
+            'idcomercializacion_producto' => 2,
             'nombre_comercializacion' => 'Venta Transaccional'
         ]);
 
         DB::table('comercializacion_producto')->insert([
+            'idcomercializacion_producto' => 3,
             'nombre_comercializacion' => 'Renovacion'
         ]);
         
         DB::table('comercializacion_producto')->insert([
-            'nombre_comercializacion' => 'Leasing A'
+            'idcomercializacion_producto' => 4,
+            'nombre_comercializacion' => 'Leasing A(arriendo)'
         ]);
 
         DB::table('comercializacion_producto')->insert([
+            'idcomercializacion_producto' => 5,
             'nombre_comercializacion' => 'Leasing B'
         ]);
     }

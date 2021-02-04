@@ -4,12 +4,37 @@
 @endphp
 @section('content')
     <div class="container">
-        <table class="table mt-4" method="GET" action="/usuarios">
-          <div class="row d-flex">
-            <div class="col">
-              <a href="/tipo/producto" class="btn btn-sm btn-dark" >Tipo Producto</a>
+      <div class="row mt-3">
+        <div class="col-5">
+          <a href="/tipo/producto" class="btn  btn-dark" >Tipo Producto</a>
+          <a href="/comercializacion-pro" class="btn  btn-dark" >Comercialización</a>
+          <a href="/marca" class="btn  btn-dark" >Marca</a>
+        </div>
+        <div class="col">
+          <form class="form-inline" method="GET" action="/productos/busqueda">
+            <div class="row">
+                <div class="col">
+                  <input class="form-control" placeholder="Producto" type="search" name="nombre_producto">
+                </div>
+                <div class="col">
+                  <input class="form-control" placeholder="Marca" type="search" name="nombre_marca">
+                </div>
+                <div class="col">
+                  <select class="form-control" name="tipo_producto">
+                    <option value="">Tipo producto</option>
+                    @foreach ($tipo_productos as $tipo_pro)
+                    <option value="{{$tipo_pro->idtipo_producto}}">{{$tipo_pro->nombre_tipo_producto}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col">
+                  <button type="submit" class="btn btn-dark btn-sm">Buscar</button>
+                </div>
             </div>
-          </div>
+          </form> 
+        </div>
+      </div>
+        <table class="table mt-4" method="GET" action="/usuarios">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Sigla Producto</th>

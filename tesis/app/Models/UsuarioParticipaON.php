@@ -12,4 +12,5 @@ class UsuarioParticipaON extends Model
         'usuario_rut',
         'oportunidad_negocio_idoportunidad_negocio'
     ];
+    public $timestamps = false;
 }

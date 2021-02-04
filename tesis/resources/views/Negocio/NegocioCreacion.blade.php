@@ -10,6 +10,7 @@
         <div class="card-body">
             <form   id="formulario" method="POST" action="{{route('negocio.store')}}">
                 @csrf
+                {{ csrf_field() }} 
                 {{-- datos principales --}}
                 <div class="row">
                     {{-- izquierda --}}
@@ -26,6 +27,11 @@
                         <textarea  class="form-control" name="descripcion" id="descripcion" cols="6" rows="5"></textarea>
                     </div>
                   </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex justify-content-end">
+                        <input class="mt-4" multiple type="file" name="archivo" id="archivo" onchange="archivos()">
+                    </div>
                 </div>
                 {{--Productos--}}
                 <div class="d-flex justify-content-center mb-3 mt-3">
@@ -153,7 +159,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group mb-2">
-                                <label class="mb-1" for="">Comercialización</label>
+                                <label class="mb-1" for="">Tipo Comercialización</label>
                                 <select class="form-control" name="comercializacionservicio" id="comercializacionservicio">
                                     <option value="" selected>Seleccione Comercializacion</option>
                                     @foreach ($comercializacionSer as $comercializacionS)
@@ -240,8 +246,8 @@
                         </tbody>
                     </table>
                 </form>
+                
                 {{-- Participantes --}}
-
                 <div class="row mt-3">
                     <div class="col mt-4">
                         <div class="d-flex justify-content-center">

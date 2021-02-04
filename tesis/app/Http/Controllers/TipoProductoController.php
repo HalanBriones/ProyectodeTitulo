@@ -15,15 +15,11 @@ class TipoProductoController extends Controller
         $comercializaciones = ComercializacionProducto::all();
         return view('TipoProducto.tipoproducto',compact('comercializaciones'));
     }
-
-    public function store_comercializacion(Request $request){
-        return $request;
-    }
-
+    
     public function store_tipo_producto(Request $request){
         $find = TipoProducto::where('nombre_tipo_producto',$request->tipo_producto)->first();
-        if(isset($find)){
-            return redirect('/tipo/producto')->with('warning','El tipo producto ya existe');
+        if($find){
+            return back()->with('warning', 'El tipo producto ya existe');
         }else{
             $tipoProducto = new TipoProducto();
             $tipoProducto->nombre_tipo_producto = $request->tipo_producto;
@@ -36,7 +32,7 @@ class TipoProductoController extends Controller
 
                     $tipo_has_comer->save();
                 }
-                return redirect('productos.mostrar')->with('success','Tipo Producto Creado Correctamente');
+                return redirect('/tipo/producto')->with('success','Tipo Producto Creado Correctamente');
             }else{
                 return redirect('/tipo/producto')->with('warning','Error al crear el tipo producto');
             }

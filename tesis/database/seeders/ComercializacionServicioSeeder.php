@@ -15,11 +15,11 @@ class ComercializacionServicioSeeder extends Seeder
     public function run()
     {
         DB::table('comercializacion_servicio')->insert([
-            'nombre_comercializacion' =>'outsorcing'
+            'nombre_comercializacion' =>'Outsourcing'
         ]);
 
         DB::table('comercializacion_servicio')->insert([
-            'nombre_comercializacion' =>'bolsa valores'
+            'nombre_comercializacion' =>"Bolsa de Horas"
         ]);
     }
 }

@@ -19,9 +19,9 @@ class ProductoHasOportunidadNegocio extends Model
         'ganancia_vendedorPro',
         'utilidadPro',
         'comercializacion_idcomercializacion'
-
     ];
 
+    public $timestamps = false;
     public function comercializacion_producto(){
         return $this->belongsTo('App\Models\ComercializacionProducto','comercializacion_producto_idcomercializacion','idcomercializacion');
     }

@@ -30,12 +30,23 @@
                                 <select class="form-control" name="tipo_producto" id="tipo_producto">
                                   <option value="" selected>Seleccione tipo producto</option>
                                   @foreach ($tipo_productos as $tipo_producto)
-                                     <option value="{{$tipo_producto->idtipo_producto}}">{{$tipo_producto->nombre_tipo_producto}}</option>   
+                                     <option value="{{$tipo_producto->idtipo_producto}},{{$tipo_producto->nombre_tipo_producto}}">{{$tipo_producto->nombre_tipo_producto}}</option>   
                                   @endforeach
                                 </select>
                               </div>
                             </div>
-
+                            <div id="div-modelo" class="form-group row mt-3" style="display: none">
+                              <label class="col-md-4 col-form-label text-md-right" for="">Modelo</label>
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" name="modelo" id="modelo">
+                              </div>
+                            </div>
+                            <div id="div-version" class="form-group row mt-3" style="display: none">
+                              <label class="col-md-4 col-form-label text-md-right" for="">Versión</label>
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" name="version" id="version">
+                              </div>
+                            </div>
                             <div class="form-group row mt-3">
                               <label class="col-md-4 col-form-label text-md-right" for="">Marca Producto</label>
                               <div class="col-md-6">
@@ -76,8 +87,5 @@
     </div>
     @include('sweetalert::alert')
     </main>
-    <script src="{{ asset('js/validacion_email.js') }}"></script>
-    <script src="{{ asset('js/validar_password.js') }}"></script>
-
-
+    <script src="{{ asset('js/tipo_producto.js') }}"></script>
 @endsection

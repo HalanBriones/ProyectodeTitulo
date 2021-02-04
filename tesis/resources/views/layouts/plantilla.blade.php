@@ -100,7 +100,7 @@
             @endif
             @if ($_SESSION['nombre_rol'] == 'Administrador')
             <li class="nav-item">
-              <a class="nav-link" href="/negocio">
+              <a class="nav-link" href="/verNegocios">
                 <span data-feather="layers"></span>
                 Negocios
               </a>
