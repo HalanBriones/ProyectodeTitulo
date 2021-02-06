@@ -10,6 +10,7 @@ use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\TipoProductoController;
 use App\Http\Controllers\UserController;
 use App\Models\OportunidadNegocio;
+use App\Models\TipoProducto;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -75,6 +76,9 @@ Route::post('/comercializacion-ser',[ComercializacionController::class,'store_co
 //TipoProducto//
 Route::get('/tipo/producto',[TipoProductoController::class,'vistaTipoProducto']);
 Route::post('/tipo/productoStore',[TipoProductoController::class,'store_tipo_producto'])->name('tipoProducto.store');
+Route::get('/tipo-productos',[TipoProductoController::class,'mostrar_tipoproductos']);
+Route::get('/editar/{idtipo_producto}',[TipoProductoController::class,'edit_tipoproducto'])->name('tipoProducto.edit');
+Route::post('update/{tipoproducto}', [TipoProductoController::class,'update'])->name('tipoProducto.update');
 //--//
 //Marca//
 Route::get('/marca',[MarcaController::class,'vistaMarca']);

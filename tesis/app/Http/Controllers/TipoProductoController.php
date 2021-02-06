@@ -11,6 +11,16 @@ use Alert;
 
 class TipoProductoController extends Controller
 {
+    public function mostrar_tipoproductos(){
+        $tipoProductos = TipoProducto::all();
+        $i = 1;
+        return view('TipoProducto.vertipoProductos',compact('tipoProductos','i'));
+    }
+
+    public function edit_tipoproducto($idtipo_producto){
+        $tipoproducto = TipoProducto::where('idtipo_producto',$idtipo_producto)->first();
+        return view('TipoProducto.editTP',compact('tipoproducto'));
+    }
     public function vistaTipoProducto(){
         $comercializaciones = ComercializacionProducto::all();
         return view('TipoProducto.tipoproducto',compact('comercializaciones'));
@@ -38,6 +48,16 @@ class TipoProductoController extends Controller
             }
         }
     }
+
+    public function update(Request $request,TipoProducto $tipoproducto){
+        $tipoproducto->nombre_tipo_producto = $request->nombre_tp;
+        
+        if($tipoproducto->save()){
+            return redirect('/tipo-productos')->with('success','Tipo Producto actualizado Correctamente');
+        }else{
+            return back()->with('error','Error al actualizar el tipo producto');
+        }
+    }   
 
 
 }
