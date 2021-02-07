@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ComercializacionProducto extends Model
 {
     protected $table = 'comercializacion_producto';
-    protected $primaryKey = 'idcomercializacion';
+    protected $primaryKey = 'idcomercializacion_producto';
     protected $fillable = [
         'nombre_comercializacion'
     ];

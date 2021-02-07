@@ -58,6 +58,4 @@ class TipoProductoController extends Controller
             return back()->with('error','Error al actualizar el tipo producto');
         }
     }   
-
-
 }

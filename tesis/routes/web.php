@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\TipoProductoController;
 use App\Http\Controllers\UserController;
+use App\Models\ComercializacionProducto;
 use App\Models\OportunidadNegocio;
 use App\Models\TipoProducto;
 use App\Models\User;
@@ -65,13 +66,25 @@ Route::get('/verParAsoc/{idNegocio}',[OportunidadNegocioController::class,'verPa
 //--//
 //Conocimiento//
 Route::get('/conocimiento',[ ConocimientoController::class,'vistaConocimiento']);
-Route::post('/conocimientos',[ConocimientoController::class,'store_conocimiento'])->name('conocimiento.store');
+Route::post('/conocimiento-store',[ConocimientoController::class,'store_conocimiento'])->name('conocimiento.store');
+Route::get('/conocimientos',[ConocimientoController::class,'conocimientos']);//todos los conocimientos
+Route::get('/conocimiento-edit/{idconocimiento}', [ConocimientoController::class,'vista_edit'])->name('conocimiento.edit');
+Route::post('/conocimiento/{conocimiento}', [ConocimientoController::class,'update_conocimiento'])->name('conocimiento.update');
 //--//
-//Comercializacion
+//ComercializacionPro
 Route::get('/comercializacion-pro',[ComercializacionController::class,'vistaComerPro']);
-Route::get('/comercializacion-ser',[ComercializacionController::class,'vistaComerSer']);
 Route::post('/comercializacion',[ComercializacionController::class,'store_comercializacion'])->name('comercializacion.store');
+Route::get('/comercializaciones',[ComercializacionController::class,'comercializacionesPro']);//todos las coemrcializaciones
+Route::get('/edit/{idcoemrcializacion}', [ComercializacionController::class,'vista_edit'])->name('comerPro.edit');//vista edit
+Route::post('/store/edit/{comercializacion}',[ComercializacionController::class,'store_update'])->name('comerPro.update');
+
+//--//
+//ComercializacionSer
+Route::get('/comercializacion-ser',[ComercializacionController::class,'vistaComerSer']);
 Route::post('/comercializacion-ser',[ComercializacionController::class,'store_comercializacionSer'])->name('comercializacionSer.store');
+Route::get('/comercializaciones-ser', [ComercializacionController::class,'comercializacionesSer']);//todas las comercializaciones
+Route::get('/editComerSer/{idcomercializacion}',[ComercializacionController::class,'vista_edit_Ser'])->name('comerSer.edit');
+Route::post('/updateComerSer/{comercializacion}',[ComercializacionController::class,'store_updateSer'])->name('comerSer.update');
 //--//
 //TipoProducto//
 Route::get('/tipo/producto',[TipoProductoController::class,'vistaTipoProducto']);
@@ -83,6 +96,9 @@ Route::post('update/{tipoproducto}', [TipoProductoController::class,'update'])->
 //Marca//
 Route::get('/marca',[MarcaController::class,'vistaMarca']);
 Route::post('/marcas',[MarcaController::class,'store_marca'])->name('marca.store');
+Route::get('/marcas/view', [MarcaController::class,'marcas']);
+Route::get('/editmarca/{idMac}', [MarcaController::class,'vistaEdit'])->name('marca.edit');//vista edit
+Route::post('/updatemarca/{marca}', [MarcaController::class,'updatemarca'])->name('marca.update');
 //--//
 //Productos//
 Route::get('/registroProducto', [ProductoController::class,'vistaRegistro_Producto']);

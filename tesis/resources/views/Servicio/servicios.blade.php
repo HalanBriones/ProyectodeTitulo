@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-4">
             <a href="/conocimiento" class="btn btn-dark btn-sm">Conocimiento</a>
-            <a href="/comercializacion-ser" class="btn btn-dark btn-sm">Comercialización</a>
+            <a href="/comercializaciones-ser" class="btn btn-dark btn-sm">Comercialización</a>
           </div>
           <div class="col">
             <div class="row">

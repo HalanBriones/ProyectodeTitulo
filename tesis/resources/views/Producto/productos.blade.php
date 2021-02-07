@@ -6,9 +6,9 @@
     <div class="container">
       <div class="row mt-3">
         <div class="col-5">
-          <a href="/tipo/producto" class="btn  btn-dark" >Tipo Producto</a>
-          <a href="/comercializacion-pro" class="btn  btn-dark" >Comercialización</a>
-          <a href="/marca" class="btn  btn-dark" >Marca</a>
+          <a href="/tipo-productos" class="btn  btn-dark" >Tipo Producto</a>
+          <a href="/comercializaciones" class="btn  btn-dark" >Comercialización</a>
+          <a href="/marcas/view" class="btn  btn-dark" >Marca</a>
         </div>
         <div class="col">
           <form class="form-inline" method="GET" action="/productos/busqueda">
