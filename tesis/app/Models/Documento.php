@@ -15,6 +15,8 @@ class Documento extends Model
         'oportunidad_negocio_idoportunidad_negocio'
     ];
 
+    public $timestamps = false;
+
     public function oportunidad_negocio(){
         return $this->belongsTo('App\Models\OportunidadNegocio','oportunidad_negocio_idoportunidad_negocio','idNeogocio',);
     }

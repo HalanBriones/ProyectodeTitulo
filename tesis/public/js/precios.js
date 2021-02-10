@@ -83,7 +83,7 @@ function preciosProducto(){
     //valores con mas de un producto
     var precioPventa_total = (parseFloat(precioPcosto)*(parseInt(margenNegocioPro)/100)+parseFloat(precioPcosto))*cantidad_productos;
     var utilidadPro_total = (precioPventa_total - (parseFloat(precioPcosto)*cantidad_productos));
-    var gananciaTotal_vendedor = (utilidadPro_total * (parseInt(margenVendedor)/100))*cantidad_productos
+    var gananciaTotal_vendedor = (utilidadPro_total * (parseInt(margenVendedor)/100))
 
     document.getElementById("precioPventa").value = precioPventa.toFixed(2);
     document.getElementById("utilidadPro").value = utilidad.toFixed(2);
@@ -143,19 +143,17 @@ function preciosProducto(){
   }
 }
 
-//validacion decimales
-// const costo = document.getElementById('costoxhora');
-// const isValid = /^(\d+\.{6})$|^(\d+\.{1}\d{2})$/;
-// costo.addEventListener('change', (event) => {
-//   let cantidad = document.getElementById('costoxhora').value;
-//   if (!isValid.test(cantidad)) {
-//     console.log('Validación erronea: ', cantidad);
-//     let span = document.getElementById("span");
-//     span.innerHTML = '<p></p>'
-//   } else {
-//     console.log('Validación superada: ', cantidad);
-//   }
-// });
+function formatCurrency (locales, currency, fractionDigits, number) {
+  var formatted = new Intl.NumberFormat(locales, {
+    style: 'currency',
+    currency: currency,
+    minimumFractionDigits: fractionDigits
+  }).format(number);
+  return formatted;
+}
+
+f
+
 
 const input = document.querySelector("#costoxhora")
 input.onkeydown = (e)=>{
@@ -194,7 +192,7 @@ function preciosServicio(){
       var costo_totalSer_clp = Math.round(costo_total*parseFloat(valor_uf));
       var costo_total_mes_clp = Math.round(costo_total_mes*parseFloat(valor_uf));
 
-      document.getElementById("costo_total").value= costo_total.toFixed(2);
+      document.getElementById("costo_total").value= new Intl.NumberFormat('es-ES').format(costo_total.toFixed(2));
       document.getElementById("valor_cliente_hora").value = valor_cliente_hora.toFixed(2);
       document.getElementById("precioSventa").value= precioSventa.toFixed(2);
       document.getElementById("utilidadSer").value = utilidadSer.toFixed(2);

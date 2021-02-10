@@ -12,7 +12,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Teléfono</th>
-                <th>Perfil</th>
+                <th>Rol</th>
                 <th></th>
 
               </tr>

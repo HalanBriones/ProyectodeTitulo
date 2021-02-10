@@ -15,11 +15,10 @@ use App\Models\Servicio;
 use App\Models\User;
 use App\Models\UsuarioParticipaON;
 use Exception;
+use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
-use phpDocumentor\Reflection\Location;
-use PhpParser\Node\Stmt\Catch_;
+use Illuminate\Support\Facades\Storage;
 
 class OportunidadNegocioController extends Controller
 {
@@ -186,7 +185,6 @@ class OportunidadNegocioController extends Controller
     }
 
     public function verSerAsociado($idNegocio){
-        // $ser_has_op = OportunidadNegocioHasServicio::where('oportunidad_negocio_idNegocio',$idNegocio)->get();
         $ser_has_op = DB::table('oportunidad_negocio_has_servicio')
         ->join('servicio','idservicio','=','servicio_idservicio')
         ->join('comercializacion_servicio','idcomercializacion_servicio','=','comercializacion_servicio_idcomercializacion_servicio')
@@ -202,5 +200,64 @@ class OportunidadNegocioController extends Controller
         ->where('usuario_participa_oportunidad_negocio.oportunidad_negocio_idoportunidad_negocio','=',$idNegocio)
         ->get();
         return view('Negocio.PartAsoc',compact('user_participa'));
-    }   
+    }
+    //archivos
+
+    public function archivos(Request $request){
+        if($request->documento == ""){
+            return redirect('/verNegocios')->with('success','Creación del negocio finalizada');
+        }else{
+            $documento = $request->file('documento');
+            for ($i=0; $i < count($documento); $i++) { 
+                $archivo = new Documento();
+                $archivo->nombre_doc = $documento[$i]->getClientOriginalName();
+                $archivo->url = $documento[$i]->storeAs('uploads',$documento[$i]->getClientOriginalName());
+                $archivo->fecha_subida = date('Y-m-d');
+                $archivo->oportunidad_negocio_idoportunidad_negocio = $request->idnegocio;
+                try{
+                    $archivo->save();
+                }catch(Exception $e){
+                    return $e->getMessage();
+                }
+            }
+            //cambiar fase del negocio
+            $estado = Estado::where('nombre_estado','=','Fase 3:Subida de archivos y finalización creación')->first();
+            $negocio = OportunidadNegocio::where('idNegocio',$request->idnegocio)->first();
+            $negocio->estado_idestado = $estado->idEstado;
+            //fin
+            if( $negocio->save()){
+             return redirect('/verNegocios')->with('success','Subida de documento y creación del negocio realizado con exito');
+            }else{
+                return back()->with('warning','Error al subir el documento');    
+            } 
+        }
+    }
+
+    public function verDocAsociado($idNegocio){
+        $documentos =Documento::where('oportunidad_negocio_idoportunidad_negocio','=',$idNegocio)->get();
+        return view('Negocio.DocAsoc',compact('documentos'));
+    }
+
+    public function verArchivo(Documento $documento){
+        return Storage::download($documento->url);
+    }
+
+    //AÑADIR PRO SER PAR Y DOCS EN UN NEGOCIO YA CREADO
+    public function añadirPro_view(){
+        $productos = Producto::all();
+        $comercializaciones = ComercializacionProducto::all();
+        return view('Negocio.AñadirPro',compact('productos','comercializaciones'));
+    }
+
+    public function añadirSer_view(){
+        $servicios = Servicio::all();
+        $conocimientos = ConocimientoServicio::all();
+        $comercializacionSer = ComercializacionServicio::all();
+        return view('Negocio.AñadirSer',compact('servicios','comercializacionSer','conocimientos'));
+    }
+
+    public function añadirPar_view(){
+        $usuarios = User::all();
+        return view('Negocio.AñadirPar',compact('usuarios'));
+    }
 }

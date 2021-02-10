@@ -23,7 +23,7 @@ class EstadoSeeder extends Seeder
         ]);
 
         DB::table('estado')->insert([
-            "nombre_estado" => 'Fase 3:Subida de archivos'
+            "nombre_estado" => 'Fase 3:Subida de archivos y finalización creación'
         ]);
     }
 }

@@ -15,6 +15,7 @@ use App\Models\TipoProducto;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +64,18 @@ Route::get('/verNegocios',[OportunidadNegocioController::class,'verNegocios']); 
 Route::get('/verProAsoc/{idNegocio}',[OportunidadNegocioController::class,'verProAsociado'])->name('negocio.proAsoc'); //ver productos Asociados
 Route::get('/verSerAsoc/{idNegocio}',[OportunidadNegocioController::class,'verSerAsociado'])->name('negocio.serAsoc'); //ver servicios Asociados
 Route::get('/verParAsoc/{idNegocio}',[OportunidadNegocioController::class,'verParAsociado'])->name('negocio.partAsoc'); //ver participantes Asociados
-//--//
+//añadir Productos
+Route::get('/añadirPro',[OportunidadNegocioController::class,'añadirPro_view']);
+//añadir Servicios
+Route::get('/añadirSer',[OportunidadNegocioController::class,'añadirSer_view']);
+//añadir Participantes
+Route::get('/añadirPar',[OportunidadNegocioController::class,'añadirPar_view']);
+//archivos//
+Route::get('/verDocAsoc/{idNegocio}',[OportunidadNegocioController::class,'verDocAsociado'])->name('negocio.docAsoc'); //Documentos Asociados
+Route::post('/up',[OportunidadNegocioController::class,'archivos'])->name('archivo.subir');
+Route::get('/down/{documento}',[OportunidadNegocioController::class,'verArchivo']);
+
+//--Fin Negocio//
 //Conocimiento//
 Route::get('/conocimiento',[ ConocimientoController::class,'vistaConocimiento']);
 Route::post('/conocimiento-store',[ConocimientoController::class,'store_conocimiento'])->name('conocimiento.store');

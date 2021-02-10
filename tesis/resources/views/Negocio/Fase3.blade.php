@@ -9,20 +9,17 @@
             <div><p>Fase 3</p></div>
         </div>
         <div class="card-body">
-            <form action="" method="POST">
-                @csrf
+            <form action="{{route('archivo.subir')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
+
                 <div class="d-flex justify-content-center mb-5">
-                    <h3>Subida de archivos</h3>
+                    <h4>Subida de archivos</h4>
                 </div>
-                
-                {{-- datos principales --}}
-                <div class="row">
-                    {{-- izquierda --}}
-                    <div class="col ">
+                <input hidden name="idnegocio" id="idnegocio"  type="text" value="{{$_SESSION['idNegocio']}}">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-5 d-flex inline">
                         <div class="form-group mb-2">
-                            <label class="mb-1" for="nombre_negocio">Archivos</label>
-                            <input   type="file" class="form-control" placeholder="Nombre Negocio" name="nombre_negocio" id="nombre_negocio" required>
+                            <input   type="file" class="form-control" name="documento[]" multiple id="documento">
                         </div>
                     </div>
                 </div>
