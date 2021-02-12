@@ -20,7 +20,7 @@
                 </div>
                  {{--Servicios--}}
                  <div class="d-flex justify-content-center mb-3 mt-3">
-                    <h3>Agregar Servicios a Oportunidad de Negocio</h3>
+                    <h3>Añadir Servicios a Oportunidad de Negocio</h3>
                 </div>
                 <div class="row">
                     {{-- Valor uf actual --}}
@@ -266,7 +266,7 @@
                 </form>  
                 <div class="row mt-5 ">
                     <div class="d-flex justify-content-center">
-                        <button  id="btnEnviar" class="btn btn-dark" type="submit">Siguiente</button>
+                        <button  id="btnAñadir" class="btn btn-dark" type="submit">Siguiente</button>
                     </div>
                 </div>
             </form>

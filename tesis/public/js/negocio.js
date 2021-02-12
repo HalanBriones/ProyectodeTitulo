@@ -1,4 +1,25 @@
 var arrayProducto = [];
+
+function borrar(i){
+    console.log(i)
+    event.preventDefault()
+    arrayProducto = arrayProducto.splice(i-1,1)
+
+    let res = "";
+    var j = 0;
+    arrayProducto.forEach(elemento => {
+        j=j+1;
+        res = res+"<tr>"+
+        "<td>"+elemento.producto_nombre+"</td>"+
+            "<td>"+elemento.comercializacionproducto_nombre+"</td>"+
+            "<td>"+elemento.precioPcosto+"</td>"+
+            "<td>"+elemento.precioPventa+"</td>"+
+            "<td><button class='btn-sm btn-dark' onclick='borrar("+i+")'>x</button></td>"+
+        "</tr>"    
+    })
+    document.getElementById("+pro").innerHTML = res
+}
+
 function insertPro(){
     event.preventDefault();
     //producto
@@ -35,19 +56,41 @@ function insertPro(){
     }
     arrayProducto.push(productos)
     let res = "";
+    var i = 0;
     arrayProducto.forEach(elemento => {
+        i=i+1;
         res = res+"<tr>"+
         "<td>"+elemento.producto_nombre+"</td>"+
             "<td>"+elemento.comercializacionproducto_nombre+"</td>"+
             "<td>"+elemento.precioPcosto+"</td>"+
             "<td>"+elemento.precioPventa+"</td>"+
-            "<td>x</td>"+
+            "<td><button class='btn-sm btn-dark' onclick='borrar("+i+")'>x</button></td>"+
         "</tr>"    
     })
     document.getElementById("+pro").innerHTML = res
 }
 
 var arrayServicio = [];
+function borrarSer(l){
+    console.log(l)
+    event.preventDefault()
+    arrayServicio = arrayServicio.splice(l-1,1)
+    console.log(arrayServicio)
+    let res = "";
+    var k = 0;
+    arrayServicio.forEach(elemento => {
+        k=k+1;
+        res = res+"<tr>"+
+            "<td>"+elemento.servicio+"</td>"+
+            "<td>"+elemento.comercializacionservicio_nombre+"</td>"+
+            "<td>"+elemento.conocimiento_nombre+"</td>"+
+            "<td>"+elemento.precioSventa+"</td>"+
+            "<td><button class='btn-sm btn-dark' onclick='borrarSer("+l+")'>x</button></td>"+
+        "</tr>"      
+    })
+    document.getElementById("+ser").innerHTML = res
+}
+
 function insertSer(){
     event.preventDefault();
     //servicio
@@ -66,7 +109,7 @@ function insertSer(){
     var utilidadSer = document.getElementById("utilidadSer").value;
     var margen_vendedorSer = document.getElementById("margen_vendedorSer").value;
     var comentario = document.getElementById("comentario").value;
-    var meses = document.getElementById("meses").value;
+    var meses = document.getElementById("n_meses").value;
     var costo_total_mes = document.getElementById("costo_total_mes").value;
     var valor_cliente_hora = document.getElementById("valor_cliente_hora").value;
     var valor_venta_mes = document.getElementById("valor_venta_mes").value;
@@ -97,15 +140,17 @@ function insertSer(){
         costo_total_mes_clp:costo_total_mes_clp,
         valor_cliente_hora: valor_cliente_hora
     }
+    var l = 0;
     let res="";
     arrayServicio.push(servicios)// me envia los datos a la pantalla y se pierden 
     arrayServicio.forEach(elemento => {
+        l = l+1;
         res = res+"<tr>"+
             "<td>"+elemento.servicio+"</td>"+
             "<td>"+elemento.comercializacionservicio_nombre+"</td>"+
             "<td>"+elemento.conocimiento_nombre+"</td>"+
             "<td>"+elemento.precioSventa+"</td>"+
-            "<td><button class='btn btn-dark btn-sm'>X</button></td>"+
+            "<td><button class='btn-sm btn-dark' onclick='borrarSer("+l+")'>x</button></td>"+
         "</tr>"    
     })
     document.getElementById("+ser").innerHTML = res
@@ -136,14 +181,54 @@ function enviar(selected){
     $.post("/negocios",data, function (response) {
         console.log(response)
         if(response == 1){
-            //error al guardar los datos
-            alert("Fase 2 erronea: Error al guardar los datos")
+            //error al guardar los datos en la fase 2
+            $(location).attr('href',"/negocio-fase2")
         }else{
-            alert("Fase 2 completada : Datos ingresados correctamente ")
+            //fase 2 completada
             $(location).attr('href',"/negocio-fase3")
         }
      }).fail(function(error) { console.log(error.responseJSON) });
 }
+
+function añadir(){
+    var idNegocio = document.getElementById("idnegocio").value;
+    var nombre_negocio = document.getElementById("nombre_negocio").value;
+    var descripcion_negocio = document.getElementById("descripcion_negocio").value;
+    var estado_negocio = document.getElementById("estado_negocio").value;
+    var rut_creador = document.getElementById("rut_creador").value;
+    
+    var negocio = [
+        idNegocio,
+        nombre_negocio,
+        descripcion_negocio,
+        estado_negocio,
+        rut_creador
+    ];
+    
+    var data = {
+        productos: arrayProducto,
+        servicios: arrayServicio,
+        participantes:selected,
+        negocio: negocio
+    }
+
+    if(data['servicios']==""){
+        console.log('servicio vacio');
+        $.post("/añadirP",data, function (response) {
+         console.log(response)
+         $(location).attr('href',"/verNegocios")
+        }).fail(function(error) { console.log(error.responseJSON) });
+    }
+
+    if(data['productos']==""){
+        console.log('producto vacio');
+        $.post("/añadirS",data, function (response) {
+            console.log(response)
+            $(location).attr('href',"/verNegocios")
+           }).fail(function(error) { console.log(error.responseJSON) });
+    }
+}
+
 
 var selected = [];
 $('#btnEnviar').click(function(){  
@@ -155,7 +240,6 @@ $('#btnEnviar').click(function(){
     enviar(selected);
 });  
 
-
-
-
-
+$('#btnAñadir').click(function(){
+    añadir();
+})

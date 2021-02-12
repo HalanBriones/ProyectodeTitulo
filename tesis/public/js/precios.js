@@ -1,3 +1,4 @@
+
 function control(){
   var preciomes = document.getElementById("preciomes");
   var meses = document.getElementById("meses");
@@ -63,9 +64,13 @@ function control(){
     }  
   });
 }
+function formatNumber (n) {
+	n = String(n).replace(/\D/g, "");
+  return n === '' ? n : Number(n).toLocaleString();
+}
 
-
-
+const options2 = { style: 'currency', currency: 'USD' };
+const numberFormat2 = new Intl.NumberFormat('en-US', options2);
 //-----------------------//
 function preciosProducto(){
   var res = document.getElementById("comercializacionproducto").value;
@@ -77,7 +82,7 @@ function preciosProducto(){
     var margenNegocioPro = document.getElementById("margen_negocioPro").value;
     var margenVendedor = document.getElementById("margen_vendedorPro").value;
     //calculo
-    var precioPventa = (parseFloat(precioPcosto)*(parseInt(margenNegocioPro)/100)+parseFloat(precioPcosto));
+    var precioPventa =  (parseFloat(precioPcosto)*(parseInt(margenNegocioPro)/100)+parseFloat(precioPcosto));
     var utilidad = precioPventa - (parseFloat(precioPcosto));
     var ganancia = utilidad * (parseInt(margenVendedor)/100)
     //valores con mas de un producto
@@ -142,18 +147,6 @@ function preciosProducto(){
     document.getElementById("gananciaTotal_vendedor").value = gananciaTotal_vendedor.toFixed(2);
   }
 }
-
-function formatCurrency (locales, currency, fractionDigits, number) {
-  var formatted = new Intl.NumberFormat(locales, {
-    style: 'currency',
-    currency: currency,
-    minimumFractionDigits: fractionDigits
-  }).format(number);
-  return formatted;
-}
-
-f
-
 
 const input = document.querySelector("#costoxhora")
 input.onkeydown = (e)=>{

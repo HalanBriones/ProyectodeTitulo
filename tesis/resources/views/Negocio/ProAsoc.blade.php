@@ -32,13 +32,14 @@
     @if ($_SESSION['nombre_rol'] == 'Administrador'|| $_SESSION['nombre_rol'] == 'Comercial' )
     <div class="d-flex justify-content-center">
       <div class="">
-          <a href="/registroProducto" class="btn btn-dark btn-sm active center" role="button" aria-pressed="true">Crear Oportunidad Negocio</a>
+          <a href="/añadirPro" class="btn btn-dark btn-sm active center" role="button" aria-pressed="true">Añadir</a>
       </div>
     </div>
+    @endif
     @include('sweetalert::alert')
 
     <script src="{{asset('js/eliminar_producto.js')}}"></script>
       
-    @endif
+
     
 @endsection

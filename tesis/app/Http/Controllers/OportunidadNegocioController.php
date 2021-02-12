@@ -146,16 +146,92 @@ class OportunidadNegocioController extends Controller
             $estado = Estado::where("nombre_estado","Fase 2:Inserción Productos, Servicios y Participantes")->first();
             $negocio->estado_idestado = $estado->idEstado;
             if($negocio->save()){
+                toast('Productos y/o Servicios agregados exitosamente','success');
                 return 0;
             }else{
+                toast('Error al agregar producto y/o servicios','success');
                 return 1;    
             }
         }else{
          //error en las inserciones
+         toast('Error al agregar producto y/o servicios','success');
             return 1;
         }
     }
-
+    //guardar los productos añadidos
+    public function añadir_store(Request $request){
+        $negocio = $request['negocio']; //
+        $productos = $request['productos'];
+        $contador = 0;
+        if($productos != ""){
+            foreach($productos as $producto){
+                $pro_has_op = new ProductoHasOportunidadNegocio();
+                $pro_has_op->producto_idproducto = $producto["producto_id"];
+                $pro_has_op->oportunidad_negocio_idNegocio = $negocio[0];
+                $pro_has_op->costo_producto = $producto["precioPcosto"];
+                $pro_has_op->precio_ventaPro = $producto["precioPventa"];
+                $pro_has_op->configuracion = $producto["configuracion"];
+                $pro_has_op->margen_NegocioPro = $producto["margen_negocioPro"];
+                $pro_has_op->margen_vendedorPro = $producto["margen_vendedorPro"];
+                $pro_has_op->ganancia_vendedorPro = $producto["ganancia_vendedor"];
+                $pro_has_op->utilidadPro = $producto["utilidadPro"];
+                $pro_has_op->numero_meses = $producto["numero_meses"];
+                $pro_has_op->precio_mes = $producto["precioxmes"];
+                $pro_has_op->comercializacion_producto_idcomercializacion_producto = $producto["comercializacionproducto_id"];
+                $pro_has_op->cantidad_productos = $producto['cantidad_productos'];
+                $pro_has_op->save();
+                $contador++;
+            }
+            $cont_pro = count($productos);
+        }
+        if($contador == $cont_pro){
+            toast('Productos Añadidos exitosamente','success');
+            return 0;
+        }else{
+            toast('Error al añadir los productos','warning');
+            return 0;
+        }
+    }
+        //guardar los servicios añadidos
+        public function añadirSer_store(Request $request){
+            $negocio = $request['negocio']; //
+            $servicios = $request['servicios'];
+            $contador = 0;
+            if($servicios != ""){
+                foreach($servicios as $servicio){
+                    $op_has_ser = new OportunidadNegocioHasServicio();
+                    $op_has_ser->servicio_idservicio = $servicio["servicio_id"];
+                    $op_has_ser->oportunidad_negocio_idNegocio = $negocio[0];
+                    $op_has_ser->conocimiento_servicio_idconocimiento_servicio = $servicio["conocimiento_id"];
+                    $op_has_ser->comercializacion_servicio_idcomercializacion_servicio = $servicio["comercializacionservicio_id"];
+                    $op_has_ser->costo_hora = $servicio["costoxhora"];
+                    $op_has_ser->cantidad_horas = $servicio["cantidad_hora"];
+                    $op_has_ser->costo_totalSer = $servicio["costo_total"];
+                    $op_has_ser->margen_negocioSer = $servicio["margen_negocioSer"];
+                    $op_has_ser->valor_total_cliente = $servicio["precioSventa"];
+                    $op_has_ser->utilidadSer = $servicio["utilidadSer"];
+                    $op_has_ser->margen_vendedorSer = $servicio["margen_vendedorSer"];
+                    $op_has_ser->comentarios = $servicio["comentario"];
+                    $op_has_ser->meses = $servicio["meses"];
+                    $op_has_ser->costo_total_mes = $servicio["costo_total_mes"];
+                    $op_has_ser->valor_cliente_hora = $servicio["valor_cliente_hora"];
+                    $op_has_ser->valor_venta_mes = $servicio["valor_venta_mes"];
+                    $op_has_ser->ganancia_vendedorSer_clp = $servicio["ganancia_vendedorSer_clp"];
+                    $op_has_ser->costo_totalSer_clp = $servicio["costo_totalSer_clp"];
+                    $op_has_ser->costo_total_mes_clp = $servicio["costo_total_mes_clp"];
+                    $op_has_ser->save();
+                    $contador++;
+                }
+                $cont_ser = count($servicios);
+            }
+            if($contador == $cont_ser){
+                toast('Servicios Añadidos exitosamente','success');
+                return 0;
+            }else{
+                toast('Error al añadir los servicios','warning');
+                return 0;
+            }
+        }
     public function store_negocio_f3(){
         return 'archivos';
     }
@@ -199,7 +275,7 @@ class OportunidadNegocioController extends Controller
         ->join('rol','rol.idRol','=','users.rol_idRol')
         ->where('usuario_participa_oportunidad_negocio.oportunidad_negocio_idoportunidad_negocio','=',$idNegocio)
         ->get();
-        return view('Negocio.PartAsoc',compact('user_participa'));
+        return view('Negocio.PartAsoc',compact('user_participa','idNegocio'));
     }
     //archivos
 
@@ -235,7 +311,7 @@ class OportunidadNegocioController extends Controller
 
     public function verDocAsociado($idNegocio){
         $documentos =Documento::where('oportunidad_negocio_idoportunidad_negocio','=',$idNegocio)->get();
-        return view('Negocio.DocAsoc',compact('documentos'));
+        return view('Negocio.DocAsoc',compact('documentos','idNegocio'));
     }
 
     public function verArchivo(Documento $documento){
@@ -256,8 +332,63 @@ class OportunidadNegocioController extends Controller
         return view('Negocio.AñadirSer',compact('servicios','comercializacionSer','conocimientos'));
     }
 
-    public function añadirPar_view(){
-        $usuarios = User::all();
-        return view('Negocio.AñadirPar',compact('usuarios'));
+    public function añadirPar_view( $idNegocio){
+        $users = User::all();
+        $participantes = DB::table('usuario_participa_oportunidad_negocio')
+        ->where('oportunidad_negocio_idoportunidad_negocio','=',$idNegocio)->get();
+        $usuarios = array();
+
+        foreach ($participantes as $participante) {
+            foreach($users as $user){
+                if($participante->usuario_rut != $user->rut){
+                    $bandera = 0;
+                    foreach($usuarios as $usuario){
+                        if($usuario->rut == $user->rut){
+                            $bandera = 1;
+                        }
+                    }
+                    if($bandera == 0){
+                        array_push($usuarios, $user);
+                    }
+                } 
+            }
+        }
+        return $usuarios;
+        $creador = DB::table('oportunidad_negocio')->where('idNegocio',$idNegocio)->first();
+        $rut = $creador->usuario_rut;
+        return view('Negocio.AñadirPar',compact('idNegocio','users','rut'));
+    }
+    public function añadirPar_store(Request $request){
+        //primero ver los participantes del negocio
+        $users = DB::table('users')
+        ->join('usuario_participa_oportunidad_negocio','usuario_participa_oportunidad_negocio.usuario_rut','!=','users.rut')
+        ->where('oportunidad_negocio.idNegocio','=',$request->idnegocio)
+        ->get();
+        return $users;
+        //luego ver los participantes que se quieren añadir
+ 
+    }    
+    public function añadirDoc_view($idNegocio){
+        return view('Negocio.AñadirDoc',compact('idNegocio'));
+    }
+    public function añadirDoc_store(Request $request){
+        $documento = $request->file('documento');
+        for ($i=0; $i < count($documento); $i++) { 
+            $archivo = new Documento();
+            $archivo->nombre_doc = $documento[$i]->getClientOriginalName();
+            $archivo->url = $documento[$i]->storeAs('uploads',$documento[$i]->getClientOriginalName());
+            $archivo->fecha_subida = date('Y-m-d');
+            $archivo->oportunidad_negocio_idoportunidad_negocio = $request->idnegocio;
+            try{
+                $archivo->save();
+            }catch(Exception $e){
+                return $e->getMessage();
+            }
+        }
+        if($i == count($documento)){
+            return redirect('/verNegocios')->with('success','Documentos añadidos exitosamente');
+        }else{
+            return redirect('/verNegocios')->with('warning','Error al añadir los documentos');
+        }
     }
 }

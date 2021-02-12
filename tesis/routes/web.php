@@ -66,10 +66,16 @@ Route::get('/verSerAsoc/{idNegocio}',[OportunidadNegocioController::class,'verSe
 Route::get('/verParAsoc/{idNegocio}',[OportunidadNegocioController::class,'verParAsociado'])->name('negocio.partAsoc'); //ver participantes Asociados
 //añadir Productos
 Route::get('/añadirPro',[OportunidadNegocioController::class,'añadirPro_view']);
+Route::post('/añadirP',[OportunidadNegocioController::class,'añadir_store']);
 //añadir Servicios
 Route::get('/añadirSer',[OportunidadNegocioController::class,'añadirSer_view']);
+Route::post('/añadirS',[OportunidadNegocioController::class,'añadirSer_store']);
 //añadir Participantes
-Route::get('/añadirPar',[OportunidadNegocioController::class,'añadirPar_view']);
+Route::get('/añadirPar/{idNegocio}',[OportunidadNegocioController::class,'añadirPar_view'])->name('añadir.par');
+Route::post('/añadirPa',[OportunidadNegocioController::class,'añadirPar_store'])->name('añadirPar.store');
+//añadir Documentos
+Route::get('/añadirDoc/{idNegocio}',[OportunidadNegocioController::class,'añadirDoc_view'])->name('añadir.doc');
+Route::post('/añadirD',[OportunidadNegocioController::class,'añadirDoc_store'])->name('añadir.storeDoc');
 //archivos//
 Route::get('/verDocAsoc/{idNegocio}',[OportunidadNegocioController::class,'verDocAsociado'])->name('negocio.docAsoc'); //Documentos Asociados
 Route::post('/up',[OportunidadNegocioController::class,'archivos'])->name('archivo.subir');
@@ -102,7 +108,7 @@ Route::post('/updateComerSer/{comercializacion}',[ComercializacionController::cl
 Route::get('/tipo/producto',[TipoProductoController::class,'vistaTipoProducto']);
 Route::post('/tipo/productoStore',[TipoProductoController::class,'store_tipo_producto'])->name('tipoProducto.store');
 Route::get('/tipo-productos',[TipoProductoController::class,'mostrar_tipoproductos']);
-Route::get('/editar/{idtipo_producto}',[TipoProductoController::class,'edit_tipoproducto'])->name('tipoProducto.edit');
+Route::get('/editar/{idtipo_producto}/tipoProducto',[TipoProductoController::class,'edit_tipoproducto'])->name('tipoProducto.edit');
 Route::post('update/{tipoproducto}', [TipoProductoController::class,'update'])->name('tipoProducto.update');
 //--//
 //Marca//

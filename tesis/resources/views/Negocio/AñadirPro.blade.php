@@ -20,7 +20,7 @@
                 </div>
                 {{--Productos--}}
                 <div class="d-flex justify-content-center mb-3 mt-3">
-                    <h3>Agregar Productos a Oportunidad de Negocio</h3>
+                    <h3>Añadir Productos a Oportunidad de Negocio</h3>
                 </div>
                 <div class="row">
                     <div class="col-5">
@@ -200,7 +200,7 @@
                 </form>
                 <div class="row mt-5 ">
                     <div class="d-flex justify-content-center">
-                        <button  id="btnEnviar" class="btn btn-dark" type="submit">Siguiente</button>
+                        <button  id="btnAñadir" class="btn btn-dark" type="submit">Agregar</button>
                     </div>
                 </div>
             </form>

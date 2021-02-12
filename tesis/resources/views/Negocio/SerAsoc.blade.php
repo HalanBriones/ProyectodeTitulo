@@ -30,6 +30,11 @@
               @endforeach
             </tbody>
           </table>
+          <div class="d-flex justify-content-center">
+            <div class="">
+                <a href="/añadirSer" class="btn btn-dark btn-sm active center" role="button" aria-pressed="true">Añadir</a>
+            </div>
+          </div>
     </div>
     @include('sweetalert::alert')
     <script src="{{asset('js/eliminar_producto.js')}}"></script>

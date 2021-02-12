@@ -35,6 +35,13 @@
             </tbody>
           </table>
     </div>
+    @if ($_SESSION['nombre_rol'] == 'Administrador'|| $_SESSION['nombre_rol'] == 'Comercial' )
+    <div class="d-flex justify-content-center">
+      <div class="">
+          <a href="{{route('añadir.doc',['idNegocio' => $idNegocio])}}" class="btn btn-dark btn-sm active center" role="button" aria-pressed="true">Añadir</a>
+      </div>
+    </div>
+    @endif
     @include('sweetalert::alert')
     <script src="{{asset('js/eliminar_producto.js')}}"></script>
     
