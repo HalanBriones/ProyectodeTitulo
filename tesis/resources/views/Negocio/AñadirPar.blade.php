@@ -20,7 +20,7 @@
                             <h4>Participantes del Negocio</h4>
                         </div>    
                         <div  class="form-check mt-3">
-                            @foreach ($users as $usuario)
+                            @foreach ($usuarios as $usuario)
                                 @if ($usuario->rut != $rut)
                                 <input  type="checkbox" value="{{$usuario->rut}}" class="ml-2 form-check-input" name="participante[]">{{$usuario->nombre}} {{$usuario->apellido}}<br>
                                 @endif

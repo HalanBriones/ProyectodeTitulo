@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ComercializacionProducto;
 use App\Models\ComercializacionServicio;
+use App\Models\CompaniaCotiza;
 use App\Models\ConocimientoServicio;
 use App\Models\Documento;
 use App\Models\Estado;
@@ -41,23 +42,36 @@ class OportunidadNegocioController extends Controller
     }
 
     public function store_negocio_f1(Request $request){
-        //guardar nombre negocio descripcion estado y usuario asociado a la creación
-        date_default_timezone_set('America/Santiago');
-        $estado = Estado::where("nombre_estado","Fase 1:Creación Negocio")->first();//estado inicial 
-        $op = new OportunidadNegocio();
-        $op->nombre_negocio = $request->nombre_negocio;
-        $op->descripcion = $request->descripcion;
-        $op->estado_idestado = $estado->idEstado;
-        session_start(["name" =>"Login"]);
-        $op->usuario_rut = $_SESSION['rut'];
-        if($op->save()){
-            $_SESSION['idNegocio'] = $op->idNegocio;
-            $_SESSION['nombre_negocio'] = $op->nombre_negocio;
-            $_SESSION['descripcion_op'] = $op->descripcion;
-            $_SESSION['estado_op'] = $op->estado_idestado;
-            $_SESSION['rut_op'] = $op->usuario_rut;
-            toast('Fase 1 compeltada exitosamente','success');
-            return redirect()->route('negociof2.crear');
+        //almacenar los datos de la compañia que cotiza
+        $compañia = new CompaniaCotiza();
+        $compañia->compañia = $request->compañia;
+        $compañia->correo = $request->correo_compañia;
+        $compañia->domicilio = $request->direccion_compañia;
+        $compañia->telefono = $request->telefono_compañia;
+
+        if($compañia->save()){
+            //guardar nombre negocio descripcion estado y usuario asociado a la creación
+            date_default_timezone_set('America/Santiago');
+            $estado = Estado::where("nombre_estado","Fase 1:Creación Negocio")->first();//estado inicial 
+            $op = new OportunidadNegocio();
+            $op->nombre_negocio = $request->nombre_negocio;
+            $op->descripcion = $request->descripcion;
+            $op->estado_idestado = $estado->idEstado;
+            session_start(["name" =>"Login"]);
+            $op->usuario_rut = $_SESSION['rut'];
+            $op->idcompañia_cotiza = $compañia->idcompañia_cotiza;
+            if($op->save()){
+                $_SESSION['idNegocio'] = $op->idNegocio;
+                $_SESSION['nombre_negocio'] = $op->nombre_negocio;
+                $_SESSION['descripcion_op'] = $op->descripcion;
+                $_SESSION['estado_op'] = $op->estado_idestado;
+                $_SESSION['rut_op'] = $op->usuario_rut;
+                toast('Fase 1 compeltada exitosamente','success');
+                return redirect()->route('negociof2.crear');
+            }else{
+                toast('Error en la creación del negocio','warning');
+                return back();
+            }
         }else{
             toast('Error en la creación del negocio','warning');
             return back();
@@ -338,34 +352,44 @@ class OportunidadNegocioController extends Controller
         ->where('oportunidad_negocio_idoportunidad_negocio','=',$idNegocio)->get();
         $usuarios = array();
 
-        foreach ($participantes as $participante) {
-            foreach($users as $user){
-                if($participante->usuario_rut != $user->rut){
-                    $bandera = 0;
-                    foreach($usuarios as $usuario){
-                        if($usuario->rut == $user->rut){
-                            $bandera = 1;
-                        }
-                    }
-                    if($bandera == 0){
-                        array_push($usuarios, $user);
-                    }
+        foreach ($users as $user) {
+            $existe = 0;
+            foreach($participantes as $participante){
+                if($participante->usuario_rut == $user->rut){
+                    $existe = 1;
                 } 
             }
+            if($existe == 0){
+                array_push($usuarios, $user);
+            }
         }
-        return $usuarios;
         $creador = DB::table('oportunidad_negocio')->where('idNegocio',$idNegocio)->first();
         $rut = $creador->usuario_rut;
-        return view('Negocio.AñadirPar',compact('idNegocio','users','rut'));
+        return view('Negocio.AñadirPar',compact('idNegocio','usuarios','rut'));
     }
+
+
     public function añadirPar_store(Request $request){
-        //primero ver los participantes del negocio
-        $users = DB::table('users')
-        ->join('usuario_participa_oportunidad_negocio','usuario_participa_oportunidad_negocio.usuario_rut','!=','users.rut')
-        ->where('oportunidad_negocio.idNegocio','=',$request->idnegocio)
-        ->get();
-        return $users;
-        //luego ver los participantes que se quieren añadir
+        $cont =0;
+        foreach ($request->participante as $par) {
+            $nuevo = new UsuarioParticipaON();
+            $nuevo->usuario_rut = $par;
+            $nuevo->oportunidad_negocio_idoportunidad_negocio = $request->idnegocio;
+
+            try{
+                $nuevo->save();
+                $cont++;
+            }catch(Exception $e){
+                toast('Error al añadir participantes','warning',);
+                return view('Negocio.NegociosView');
+            }
+        }
+                $negocios = OportunidadNegocio::all();
+        if($cont == count($request->participante)){
+            $negocios = OportunidadNegocio::all();
+            toast('Participantes añadidos exitosamente','success');
+            return view('Negocio.NegociosView',compact('negocios'));
+        }
  
     }    
     public function añadirDoc_view($idNegocio){

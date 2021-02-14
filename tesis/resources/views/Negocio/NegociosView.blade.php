@@ -24,24 +24,24 @@
                 <td>{{$negocio->nombre_negocio}}</td>
                 <td>{{$negocio->fecha_creacion}}</td>
                 <td>{{$negocio->estado->nombre_estado}}</td>
-                <td><a style="text-decoration: none" class="btn btn-ligth" href="{{route('negocio.proAsoc',['idNegocio' => $negocio->idNegocio])}}"><svg class="m-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                <td><a style="text-decoration: none" class="btn btn-ligth" href="{{route('negocio.proAsoc',['idNegocio' => $negocio->idNegocio])}}"><svg class="m-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                   <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                   <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                 </svg>Ver</a></td>
-                <td><a style="text-decoration: none" class="btn btn-ligth" href="{{route('negocio.serAsoc',['idNegocio' => $negocio->idNegocio])}}"><svg class="m-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                <td><a style="text-decoration: none" class="btn btn-ligth" href="{{route('negocio.serAsoc',['idNegocio' => $negocio->idNegocio])}}"><svg class="m-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                   <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                   <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                 </svg>Ver</a></td>
-                <td><a style="text-decoration: none" class="btn btn-ligth" href="{{route('negocio.partAsoc',['idNegocio' => $negocio->idNegocio])}}"><svg class="m-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                <td><a style="text-decoration: none" class="btn btn-ligth" href="{{route('negocio.partAsoc',['idNegocio' => $negocio->idNegocio])}}"><svg class="m-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                   <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                   <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                 </svg>Ver</a></td>
-                <td><a style="text-decoration: none" class="btn btn-ligth" href="{{route('negocio.docAsoc',['idNegocio' => $negocio->idNegocio])}}"><svg class="m-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                <td><a style="text-decoration: none" class="btn btn-ligth" href="{{route('negocio.docAsoc',['idNegocio' => $negocio->idNegocio])}}"><svg class="m-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                   <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                   <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                 </svg>Ver</a></td>
                 {{-- cotización--}}
-                <td><a class="btn btn-light" href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                <td><a class="btn btn-light" href="{{route('vista.cotizacion',['idNegocio' => $negocio->idNegocio])}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
                   <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
                   <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
                 </svg>Crear</a></td>

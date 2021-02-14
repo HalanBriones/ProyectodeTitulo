@@ -27,127 +27,60 @@
 <meta name="theme-color" content="#563d7c">
     <!-- Custom styles for this template -->
 <link href="form-validation.css" rel="stylesheet">
-<style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+<!-- Custom styles for this template -->
+<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
 </head>
 <body class="">
     @include('layouts.header')
-
-  <div class="container">
-
-    <div class="mt-20">
-        <form action="Post">
-           <fieldset class="mt-5 mb-5">
-               <legend class="mb-4">Datos Personales</legend>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
-                            <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nombre">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="correo" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="correo">
-                            </div>
-                        </div>
+    <div class="container">
+        <form action="">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Productos
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                     </div>
-                    <div class="col">
-                        <div class="form-group row">
-                            <label for="apellido" class="col-sm-2 col-form-label">Apellido</label>
-                            <div class="col-sm-10">
-                            <input type="text" class="form-control" id="apellido" >
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="telefono" class="col-sm-2">Teléfono</label>
-                            <div class="input-group col-sm-10">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupPrepend">+569</span>
-                            </div>
-                            <input type="number" class="form-control" id="telefono" aria-describedby="inputGroupPrepend" required>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-            </fieldset>
-            <fieldset class="mt-5 mb-4">
-
-                <div class="row">
-                    <div class="col">
-                        <legend class="mb-5">Productos</legend>
-                        <div class="form-group row">
-                            <label for="apellido" class="col-sm-2 col-form-label">Tipo de Productos</label>
-                            <div class="col-sm-10">
-                              <select name="producto" id="producto" class="form-control">
-                                  <option value="01">caca</option>
-                              </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="apellido" class="col-sm-2 col-form-label">Productos</label>
-                            <div class="col-sm-10">
-                              <select name="producto" id="producto" class="form-control">
-                                  <option value="01">caca</option>
-                              </select>
-                            </div>
-                        </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Accordion Item #2
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                     </div>
-                    <div class="col">
-                        <legend class="mb-5">Servicios</legend>
-                        <div class="form-group row">
-                            <label for="apellido" class="col-sm-2 col-form-label">Servicios</label>
-                            <div class="col-sm-10">
-                              <select name="servicios" id="servicios" class="form-control">
-                                  <option value="01">pichi</option>
-                              </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="apellido" class="col-sm-2 col-form-label">Nivel Especialista</label>
-                            <div class="col-sm-10">
-                              <select name="servicios" id="servicios" class="form-control">
-                                  <option value="01">pichi</option>
-                              </select>
-                            </div>
-                        </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Accordion Item #3
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                     </div>
+                  </div>
                 </div>
-            </fieldset>
-            <div class=" row align-items-center">
-                <div class="col text-center">
-                    <input type="button" class="center btn btn-dark mt-4 mb-4" value="Solicitar Contacto">
-                    <input type="submit" class="center btn btn-dark mt-4 mb-4" value="Enviar Solicitud">
-                </div>
-            </div>
+              </div>
         </form>
-    </div>
     @include('sweetalert::alert')
-</div>
-</div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-        <script src="form-validation.js"></script></body>
+    <script src="form-validation.js"></script>
+</body>
 </html>
 
 

@@ -28,6 +28,40 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-2">
+                            <label class="mb-1" for="compañia">Compañia</label>
+                            <input   type="text" class="form-control" placeholder="Nombre del Cliente" name="compañia" id="compañia" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-2">
+                            <label class="mb-1" for="compañia">Dirección</label>
+                            <input   type="text" class="form-control" placeholder="Dirección del Cliente o Compañia" name="direccion_compañia" id="direccion_compañia" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-2">
+                            <label class="mb-1" for="compañia">Correo</label>
+                            <input   type="email" class="form-control" placeholder="Correo del Cliente o Compañia" name="correo_compañia" id="correo_compañia" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="sr-only mb-1" for="telefono_compañia">Teléfono</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                <div class="input-group-text">+569</div>
+                                </div>
+                                <input type="number" placeholder="Teléfono del cliente" class="form-control" name="telefono_compañia" id="telefono_compañia">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="d-flex justify-content-center mt-5">
                     <button class="btn btn-dark" type="submit">Siguiente</button>
                 </div>

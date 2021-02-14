@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
             ConocimientoServicioSeeder::class,
             ComercializacionServicioSeeder::class,
             EstadoSeeder::class,
-            ComercializacionProducto::class
+            ComercializacionProductoSeeder::class,
+            TipoProductoSeeder::class,
+            TipoProductohasComercializacionSeeder::class,
         ]);
     }
 }

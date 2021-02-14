@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComercializacionController;
 use App\Http\Controllers\ConocimientoController;
+use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\OportunidadNegocioController;
@@ -11,10 +12,12 @@ use App\Http\Controllers\TipoProductoController;
 use App\Http\Controllers\UserController;
 use App\Models\ComercializacionProducto;
 use App\Models\OportunidadNegocio;
+use App\Models\Producto;
 use App\Models\TipoProducto;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 /*
@@ -30,7 +33,11 @@ use Illuminate\Support\Facades\Storage;
 
 Auth::routes();
 Route::get('/', function () {
-     return view('FormCliente');
+     $productos = DB::table('producto')
+     ->join('tipo_producto','idtipo_producto','=','tipo_producto_idtipo_producto')
+     ->join('mac','idMac','=','mac_idMac')->get();
+
+     return view('FormCliente',compact('productos'));
 })->name('cliente');
 
 Route::get('/inicio', function () {
@@ -80,8 +87,11 @@ Route::post('/añadirD',[OportunidadNegocioController::class,'añadirDoc_store']
 Route::get('/verDocAsoc/{idNegocio}',[OportunidadNegocioController::class,'verDocAsociado'])->name('negocio.docAsoc'); //Documentos Asociados
 Route::post('/up',[OportunidadNegocioController::class,'archivos'])->name('archivo.subir');
 Route::get('/down/{documento}',[OportunidadNegocioController::class,'verArchivo']);
-
 //--Fin Negocio//
+//COTIZACION//
+Route::get('/datos/{idNegocio}',[CotizacionController::class,'cotizacion'])->name('vista.cotizacion');
+Route::get('/cotizacion/{idNegocio}',[CotizacionController::class,'crear_cotización']);
+//--//
 //Conocimiento//
 Route::get('/conocimiento',[ ConocimientoController::class,'vistaConocimiento']);
 Route::post('/conocimiento-store',[ConocimientoController::class,'store_conocimiento'])->name('conocimiento.store');
