@@ -17,7 +17,8 @@
 
     {{-- cdn jquery --}}
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-  <meta name="theme-color" content="#7952b3">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <meta name="theme-color" content="#7952b3">
       <style>
         .bd-placeholder-img {
           font-size: 1.125rem;
@@ -92,7 +93,7 @@
             </li>
             @if ($_SESSION['nombre_rol'] == 'Administrador')
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="/solicitudes">
                 <span data-feather="bar-chart-2"></span>
                 Solicitudes
               </a>
@@ -124,6 +125,7 @@
     </div>
   </div>
   @include('sweetalert::alert')
+  @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
   <script src="{{asset('js/active-sidebar.js')}}"></script>
 

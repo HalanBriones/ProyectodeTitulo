@@ -114,5 +114,17 @@ class ProductoController extends Controller
         }
     }
 
+    public function delete(Request $request){
+
+        $idproducto = $request['idproducto'];
+        
+
+        $producto = Producto::find($idproducto);
+
+        if($producto->delete()){
+            return 0;
+        }
+    }
+
 
 }

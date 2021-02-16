@@ -11,11 +11,14 @@ use Illuminate\Support\Facades\DB;
 class ComercializacionController extends Controller
 {
     public function comercializacionesPro(){
-        $comerPro = DB::table('comercializacion_producto')
-        ->join('tipo_producto_has_comercializacion_producto','comercializacion_producto_idcomercializacion_producto','=','idcomercializacion_producto')
-        ->join('tipo_producto','idtipo_producto','=','tipo_producto_idtipo_producto')->get();
+
+        $comerPro = ComercializacionProducto::with('tipo_producto')->get();
         return view('ComercializacionPro.comercializacionesPro',compact('comerPro'));
     }
+
+    
+    // ->join('tipo_producto_has_comercializacion_producto','comercializacion_producto_idcomercializacion_producto','=','idcomercializacion_producto')
+    // ->join('tipo_producto','idtipo_producto','=','tipo_producto_idtipo_producto')
     
     public function vista_edit($idcomercializacion){
         $comer = ComercializacionProducto::where('idcomercializacion_producto',$idcomercializacion)->first();
@@ -50,7 +53,15 @@ class ComercializacionController extends Controller
         }
     }
 
-    // SERVICIO
+    public function delete_comerPro(Request $request){
+        $idcomercializacion = $request['idcomercializacion'];
+        $comercializacion = ComercializacionProducto::where('idcomercializacion_producto',$idcomercializacion)->first();
+        if($comercializacion->delete()){
+            return 0;
+        }
+    }
+
+    // SERVICIO-------------------------------------------------//
 
     public function comercializacionesSer(){
         $comerSer = ComercializacionServicio::all();
@@ -89,5 +100,12 @@ class ComercializacionController extends Controller
             return redirect('/comercializacion-ser')->with('warning','Error en la creación de comercializacion');
         }
         
+    }
+    public function delete_comerSer(Request $request){
+        $idcomercializacion = $request['idcomercializacion'];
+        $comercializacion = ComercializacionServicio::where('idcomercializacion_servicio',$idcomercializacion)->first();
+        if($comercializacion->delete()){
+            return 0;
+        }
     }
 }

@@ -3,11 +3,13 @@
 use App\Http\Controllers\ComercializacionController;
 use App\Http\Controllers\ConocimientoController;
 use App\Http\Controllers\CotizacionController;
+use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\OportunidadNegocioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\TipoProductoController;
 use App\Http\Controllers\UserController;
 use App\Models\ComercializacionProducto;
@@ -32,14 +34,13 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Auth::routes();
-Route::get('/', function () {
-     $productos = DB::table('producto')
-     ->join('tipo_producto','idtipo_producto','=','tipo_producto_idtipo_producto')
-     ->join('mac','idMac','=','mac_idMac')->get();
-
-     return view('FormCliente',compact('productos'));
-})->name('cliente');
-
+//Solicitudes
+Route::get('/', [SolicitudController::class,'vista'])->name('cliente');
+Route::post('/solicitud',[SolicitudController::class,'store_solicitud'])->name('solicitud.store');
+Route::get('/solicitudes', [SolicitudController::class,'solicitudes']);
+Route::get('/solicitud/pro/{idSolicitud}',[SolicitudController::class,'productos'])->name('solicitudPro.view');
+Route::get('/solicitud/ser/{idSolicitud}',[SolicitudController::class,'servicios'])->name('solicitudSer.view');
+//--//
 Route::get('/inicio', function () {
      return view('welcome');
 });
@@ -61,6 +62,7 @@ Route::get('/usuarios/{rut}/editarRol',[UserController::class,'editRol'])->name(
 Route::put('/usuarios/{user}',[UserController::class, 'updateRol'])->name('usuarios.update');
 Route::get('usuario/{rut}/editPerfil',[UserController::class,'editPerfil'])->name('usuarios.editPerfil');
 Route::post('/usuarios/{user}',[UserController::class, 'updatePerfil'])->name('usuarios.updatePerfil');
+Route::post('/delete/usuario', [UserController::class,'delete_user'])->name('usuarios.delete');
 //Negocio//
 Route::get('/negocio-fase1', [OportunidadNegocioController::class,'vista_negocio_f1'])->name('negociof1.crear');//vista fase1
 Route::post('/store_f1', [OportunidadNegocioController::class,'store_negocio_f1'])->name('negociof1.store'); //store negocio
@@ -92,12 +94,21 @@ Route::get('/down/{documento}',[OportunidadNegocioController::class,'verArchivo'
 Route::get('/datos/{idNegocio}',[CotizacionController::class,'cotizacion'])->name('vista.cotizacion');
 Route::get('/cotizacion/{idNegocio}',[CotizacionController::class,'crear_cotización']);
 //--//
+//ESTADOS//
+Route::get('/estado/store',[EstadoController::class,'store_view']);
+Route::post('/estado', [EstadoController::class,'store_estado'])->name('estado.store');
+Route::get('/estados',[EstadoController::class,'estados']); //todos los estados
+Route::get('/estado/{idEstado}', [EstadoController::class,'edit_view'])->name('estado.edit');
+Route::post('/estado/update/{estado}', [EstadoController::class,'estado_update'])->name('estado.update');
+Route::post('/delete/estado', [EstadoController::class,'delete_estado'])->name('estado.delete');
+//--//
 //Conocimiento//
 Route::get('/conocimiento',[ ConocimientoController::class,'vistaConocimiento']);
 Route::post('/conocimiento-store',[ConocimientoController::class,'store_conocimiento'])->name('conocimiento.store');
 Route::get('/conocimientos',[ConocimientoController::class,'conocimientos']);//todos los conocimientos
 Route::get('/conocimiento-edit/{idconocimiento}', [ConocimientoController::class,'vista_edit'])->name('conocimiento.edit');
 Route::post('/conocimiento/{conocimiento}', [ConocimientoController::class,'update_conocimiento'])->name('conocimiento.update');
+Route::post('/delete/conocimiento', [ConocimientoController::class,'delete_conocimiento'])->name('conocimiento.delete');
 //--//
 //ComercializacionPro
 Route::get('/comercializacion-pro',[ComercializacionController::class,'vistaComerPro']);
@@ -105,6 +116,7 @@ Route::post('/comercializacion',[ComercializacionController::class,'store_comerc
 Route::get('/comercializaciones',[ComercializacionController::class,'comercializacionesPro']);//todos las coemrcializaciones
 Route::get('/edit/{idcoemrcializacion}', [ComercializacionController::class,'vista_edit'])->name('comerPro.edit');//vista edit
 Route::post('/store/edit/{comercializacion}',[ComercializacionController::class,'store_update'])->name('comerPro.update');
+Route::post('/delete/comerPro', [ComercializacionController::class,'delete_comerPro'])->name('comerPro.delete');
 
 //--//
 //ComercializacionSer
@@ -113,6 +125,7 @@ Route::post('/comercializacion-ser',[ComercializacionController::class,'store_co
 Route::get('/comercializaciones-ser', [ComercializacionController::class,'comercializacionesSer']);//todas las comercializaciones
 Route::get('/editComerSer/{idcomercializacion}',[ComercializacionController::class,'vista_edit_Ser'])->name('comerSer.edit');
 Route::post('/updateComerSer/{comercializacion}',[ComercializacionController::class,'store_updateSer'])->name('comerSer.update');
+Route::post('/delete/comerSer', [ComercializacionController::class,'delete_comerSer'])->name('comerSer.delete');
 //--//
 //TipoProducto//
 Route::get('/tipo/producto',[TipoProductoController::class,'vistaTipoProducto']);
@@ -120,6 +133,7 @@ Route::post('/tipo/productoStore',[TipoProductoController::class,'store_tipo_pro
 Route::get('/tipo-productos',[TipoProductoController::class,'mostrar_tipoproductos']);
 Route::get('/editar/{idtipo_producto}/tipoProducto',[TipoProductoController::class,'edit_tipoproducto'])->name('tipoProducto.edit');
 Route::post('update/{tipoproducto}', [TipoProductoController::class,'update'])->name('tipoProducto.update');
+Route::post('/delete/tipo/producto', [TipoProductoController::class,'delete_tipoproducto'])->name('tipoProducto.delete');
 //--//
 //Marca//
 Route::get('/marca',[MarcaController::class,'vistaMarca']);
@@ -127,6 +141,7 @@ Route::post('/marcas',[MarcaController::class,'store_marca'])->name('marca.store
 Route::get('/marcas/view', [MarcaController::class,'marcas']);
 Route::get('/editmarca/{idMac}', [MarcaController::class,'vistaEdit'])->name('marca.edit');//vista edit
 Route::post('/updatemarca/{marca}', [MarcaController::class,'updatemarca'])->name('marca.update');
+Route::post('/delete/marca', [MarcaController::class,'delete_marca'])->name('marca.delete');
 //--//
 //Productos//
 Route::get('/registroProducto', [ProductoController::class,'vistaRegistro_Producto']);
@@ -134,7 +149,7 @@ Route::post('/registrarProducto',[ProductoController::class,'store_producto'])->
 Route::get('/productos',[ProductoController::class,'mostrar_productos'])->name('productos.mostrar');
 Route::get('editar/{idproducto}',[ProductoController::class,'edit_producto'])->name('producto.edit'); //vista editar producto
 Route::post('/productos/{producto}',[ProductoController::class, 'update_producto'])->name('producto.updateProducto');
-Route::delete('producto/{producto}', [ProductoController::class,'delete'])->name('producto.delete');
+Route::post('/producto', [ProductoController::class,'delete'])->name('producto.delete');
 Route::get('/productos/busqueda', [ProductoController::class,'busqueda']);
 //--//
 //Servicios//
@@ -144,6 +159,7 @@ Route::get('/servicios',[ServicioController::class,'mostrar_servicios'])->name('
 Route::get('/editar/{idServicio}/servicios', [ServicioController::class,'edit_servicio'])->name('servicio.edit');
 Route::post('/servicio/{servicio}',[ServicioController::class, 'update_servicio'])->name('servicio.updateServicio');
 Route::get('/servicios/busqueda', [ServicioController::class,'busquedaServicio']);
+Route::post('/delete/servicio', [ServicioController::class,'delete_servicio'])->name('servicio.delete');
 //--//
 //comercializaciones por tipo producto//
 Route::get('comercializaciones/{id}',[OportunidadNegocioController::class,'getComercializacion']);

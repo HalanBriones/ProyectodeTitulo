@@ -96,5 +96,13 @@ class ServicioController extends Controller
         $idChileCompra = $request->chile_compra;
     }
 
+    public function delete_servicio(Request $request){
+        $idservicio = $request['idservicio'];
+        $servicio = Servicio::find($idservicio);
+
+        if($servicio->delete()){
+            return 0;
+        }
+    }
 
 }

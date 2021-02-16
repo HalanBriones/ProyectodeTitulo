@@ -4,14 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Servicio extends Model
 {
+    use SoftDeletes ;
+    protected $date = ['deleted_at'];
     protected $table = 'servicio';
     protected $primaryKey = 'idservicio';
     protected $fillable = [
         'idservicio',
         'idChileCompra',
+        'deleted_at',
         'nombre_servicio',
         'descripcion'
     ];

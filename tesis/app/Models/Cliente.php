@@ -15,4 +15,5 @@ class Cliente extends Model
         'email',
         'telefono'
     ];
+    public $timestamps = false;
 }

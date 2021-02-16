@@ -38,7 +38,7 @@ class MarcaController extends Controller
 
         $find = Mac::where('nombre_marca',$request->marca)->first();
         if($find){
-            return back()->with('warning', 'La comercialización ya existe');
+            return back()->with('warning', 'La Marca ya existe');
         }
         $marca = new Mac();
         $marca->nombre_marca= $request->marca;
@@ -48,5 +48,14 @@ class MarcaController extends Controller
             return redirect('/marca')->with('warning','Error en la creación de una marca');
         }
         
+    }
+
+    public function delete_marca(Request $request){
+        $idMac = $request['idmarca'];
+        $marca =  Mac::find($idMac);
+
+        if($marca->delete()){
+            return 0;
+        }
     }
 }

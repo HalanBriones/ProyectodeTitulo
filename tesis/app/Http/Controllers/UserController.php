@@ -20,10 +20,6 @@ class UserController extends Controller
         return view('Usuario.registro');
     }
 
-    public function vistaUsuarios(){
-        return view('Usuario.mostrarUsers');
-    }
-
     public function index(){
         $usuarios = User::with('rol')->get();
         return view('Usuario.mostrarUsers',compact('usuarios'));
@@ -106,6 +102,13 @@ class UserController extends Controller
 
     }
 
+    public function delete_user(Request $request){
+        $rut = $request['rut'];
+        $usuario = User::find($rut);
 
+        if($usuario->delete()){
+            return 0;
+        }
+    }
 
 }

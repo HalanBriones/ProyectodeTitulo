@@ -43,4 +43,15 @@ class ConocimientoController extends Controller
             return redirect('/conocimientos')->with('warning','Error en la creación del conocimiento');
         }
     }
+
+    public function delete_conocimiento(Request $request){
+        $idconocimiento = $request['idconocimiento'];
+        
+        $conocimiento = ConocimientoServicio::find($idconocimiento);
+
+        if($conocimiento->delete()){
+            return 0;
+        }
+
+    }
 }

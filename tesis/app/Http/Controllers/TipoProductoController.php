@@ -57,5 +57,14 @@ class TipoProductoController extends Controller
         }else{
             return back()->with('error','Error al actualizar el tipo producto');
         }
-    }   
+    }
+
+    public function delete_tipoproducto(Request $request){
+        $idtipo_producto = $request['idtipo_producto'];
+        $tipoProducto = TipoProducto::find($idtipo_producto);
+
+        if($tipoProducto->delete()){
+            return 0;
+        }
+    }
 }

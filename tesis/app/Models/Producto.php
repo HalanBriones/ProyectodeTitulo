@@ -4,15 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Producto extends Model
 {
+    use SoftDeletes;
     protected $table = 'producto';
     protected $primaryKey = 'idproducto';
+    protected $dates = ['deleted_at'];
     protected $fillable = [
         'idproducto',
         'nombre_producto',
         'sigla_producto',
+        'deleted_at',
         'descripcion',
         'tipo_producto_idtipo_producto',
         'mac_idMac'
