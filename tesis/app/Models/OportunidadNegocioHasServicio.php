@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class OportunidadNegocioHasServicio extends Model
 {
     protected $table = 'oportunidad_negocio_has_servicio';
+    protected $primaryKey = 'id_ser_has_op';
     protected $fillable = [
         'costo_hora',
         'cantidad_horas',

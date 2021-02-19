@@ -133,6 +133,7 @@ class OportunidadNegocioController extends Controller
                 $op_has_ser->costo_total_mes = $servicio["costo_total_mes"];
                 $op_has_ser->valor_cliente_hora = $servicio["valor_cliente_hora"];
                 $op_has_ser->valor_venta_mes = $servicio["valor_venta_mes"];
+                $op_has_ser->ganancia_vendedorSer = $servicio["ganancia_vendedorSer"];
                 $op_has_ser->ganancia_vendedorSer_clp = $servicio["ganancia_vendedorSer_clp"];
                 $op_has_ser->costo_totalSer_clp = $servicio["costo_totalSer_clp"];
                 $op_has_ser->costo_total_mes_clp = $servicio["costo_total_mes_clp"];
@@ -230,6 +231,7 @@ class OportunidadNegocioController extends Controller
                     $op_has_ser->costo_total_mes = $servicio["costo_total_mes"];
                     $op_has_ser->valor_cliente_hora = $servicio["valor_cliente_hora"];
                     $op_has_ser->valor_venta_mes = $servicio["valor_venta_mes"];
+                    $op_has_ser->ganancia_vendedorSer = $servicio["ganancia_vendedorSer"];
                     $op_has_ser->ganancia_vendedorSer_clp = $servicio["ganancia_vendedorSer_clp"];
                     $op_has_ser->costo_totalSer_clp = $servicio["costo_totalSer_clp"];
                     $op_has_ser->costo_total_mes_clp = $servicio["costo_total_mes_clp"];
@@ -271,7 +273,7 @@ class OportunidadNegocioController extends Controller
         ->join('producto','idproducto','=','producto_idproducto')
         ->join('comercializacion_producto','idcomercializacion_producto','=','comercializacion_producto_idcomercializacion_producto')
         ->where('oportunidad_negocio_idNegocio',$idNegocio)->get();
-        return view('Negocio.ProAsoc',compact('pro_has_op'));
+        return view('Negocio.ProAsoc',compact('pro_has_op','idNegocio'));
     }
 
     public function verSerAsociado($idNegocio){
@@ -280,7 +282,7 @@ class OportunidadNegocioController extends Controller
         ->join('comercializacion_servicio','idcomercializacion_servicio','=','comercializacion_servicio_idcomercializacion_servicio')
         ->join('conocimiento_servicio','idconocimiento_servicio','=','conocimiento_servicio_idconocimiento_servicio')
         ->where('oportunidad_negocio_idNegocio',$idNegocio)->get();
-        return view('Negocio.SerAsoc',compact('ser_has_op'));
+        return view('Negocio.SerAsoc',compact('ser_has_op','idNegocio'));
     }
 
     public function verParAsociado($idNegocio){
@@ -331,19 +333,85 @@ class OportunidadNegocioController extends Controller
     public function verArchivo(Documento $documento){
         return Storage::download($documento->url);
     }
+//Editar Producto//
 
-    //AÑADIR PRO SER PAR Y DOCS EN UN NEGOCIO YA CREADO
-    public function añadirPro_view(){
-        $productos = Producto::all();
-        $comercializaciones = ComercializacionProducto::all();
-        return view('Negocio.AñadirPro',compact('productos','comercializaciones'));
+    public function edit_pro($id_pro_has_op){
+        $pro_has_op = ProductoHasOportunidadNegocio::where('id_pro_has_op',$id_pro_has_op)->first();
+        $comercializacion = ComercializacionProducto::where('idcomercializacion_producto',$pro_has_op->comercializacion_producto_idcomercializacion_producto)->first();
+        $producto = Producto::where('idproducto',$pro_has_op->producto_idproducto)->first();
+        return view('Negocio.editPro',compact('pro_has_op','producto','comercializacion'));
     }
 
-    public function añadirSer_view(){
+    public function editar_producto(ProductoHasOportunidadNegocio $pro_has_op,Request $request){
+
+        $pro_has_op->costo_producto = $request->precioPcosto;
+        $pro_has_op->precio_ventaPro = $request->precioPventa;
+        $pro_has_op->cantidad_productos = $request->cantidad_productos;
+        $pro_has_op->margen_negocioPro = $request->margen_negocioPro;
+        $pro_has_op->margen_vendedorPro = $request->margen_vendedorPro;
+        $pro_has_op->ganancia_vendedorPro = $request->ganancia;
+        $pro_has_op->utilidadPro = $request->utilidadPro;
+        $pro_has_op->numero_meses = $request->meses;
+        $pro_has_op->precio_mes = $request->preciomes;
+        if($pro_has_op->save()){
+            toast('Valores editados correctamente','success');
+            return redirect('/verNegocios');
+        }else{
+            toast('No se pudo editar los valores');
+            return redirect('/verNegocios');
+        }
+    }
+    
+    public function edit_Ser($id_ser_has_op){
+        $ser_has_op = OportunidadNegocioHasServicio::where('id_ser_has_op',$id_ser_has_op)->first();
+        $comercializacion = ComercializacionServicio::where('idcomercializacion_servicio',$ser_has_op->comercializacion_servicio_idcomercializacion_servicio)->first();
+        $servicio = Servicio::where('idservicio',$ser_has_op->servicio_idservicio)->first();
+        $conocimiento = ConocimientoServicio::where('idconocimiento_servicio',$ser_has_op->conocimiento_servicio_idconocimiento_servicio)->first();
+        return view('Negocio.editSer',compact('ser_has_op','servicio','comercializacion','conocimiento'));
+    }
+
+    public function editar_servicio(OportunidadNegocioHasServicio $ser_has_op,Request $request){
+
+        $ser_has_op->costo_hora = $request->costoxhora ;
+        $ser_has_op->cantidad_horas =$request->cantidad_hora;
+        $ser_has_op->margen_NegocioSer = $request->margen_negocioSer;
+        $ser_has_op->valor_total_cliente = $request->precioSventa ;
+        $ser_has_op->valor_total_cliente_clp = $request->valor_total_cliente_clp ;
+        $ser_has_op->costo_totalSer =  $request->costo_total;
+        $ser_has_op->margen_vendedorSer = $request->margen_vendedorSer;
+        $ser_has_op->valor_venta_mes = $request->valor_venta_mes ;
+        $ser_has_op->meses = $request->n_meses;
+        $ser_has_op->costo_total_mes = $request->costo_total_mes ;
+        $ser_has_op->valor_cliente_hora = $request-> valor_cliente_hora;
+        $ser_has_op->ganancia_vendedorSer = $request->ganancia_vendedorSer ;
+        $ser_has_op->ganancia_vendedorSer_clp = $request->gananciaSer ;
+        $ser_has_op->costo_totalSer_clp = $request->costo_totalSer_clp;
+        $ser_has_op->costo_total_mes_clp = $request->costo_total_mes_clp ;
+        $ser_has_op->utilidadSer = $request->utilidadSer;
+
+
+        if($ser_has_op->save()){
+            toast('Valores de servicio editados correctamente','success');
+            return redirect('/verNegocios');
+        }else{
+            toast('Error al editar los valores','warning');
+            return redirect('/verNegocios');
+        }
+    }
+
+//AÑADIR PRO SER PAR Y DOCS EN UN NEGOCIO YA CREADO
+    public function añadirPro_view($idNegocio){
+        $idNegocio = $idNegocio;
+        $productos = Producto::all();
+        $comercializaciones = ComercializacionProducto::all();
+        return view('Negocio.AñadirPro',compact('productos','comercializaciones','idNegocio'));
+    }
+
+    public function añadirSer_view($idNegocio){
         $servicios = Servicio::all();
         $conocimientos = ConocimientoServicio::all();
         $comercializacionSer = ComercializacionServicio::all();
-        return view('Negocio.AñadirSer',compact('servicios','comercializacionSer','conocimientos'));
+        return view('Negocio.AñadirSer',compact('servicios','comercializacionSer','conocimientos','idNegocio'));
     }
 
     public function añadirPar_view( $idNegocio){
@@ -370,6 +438,9 @@ class OportunidadNegocioController extends Controller
 
 
     public function añadirPar_store(Request $request){
+        
+        
+        return $request;
         $cont =0;
         foreach ($request->participante as $par) {
             $nuevo = new UsuarioParticipaON();

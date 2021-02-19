@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductoHasOportunidadNegocio extends Model
 {
     protected $table = 'producto_has_oportunidad_negocio';
+    protected $primaryKey = 'id_pro_has_op';
     protected $fillable = [
         'costo_producto',
         'precio_ventaPro',

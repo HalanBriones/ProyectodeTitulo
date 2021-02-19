@@ -23,6 +23,8 @@
                             @foreach ($usuarios as $usuario)
                                 @if ($usuario->rut != $rut)
                                 <input  type="checkbox" value="{{$usuario->rut}}" class="ml-2 form-check-input" name="participante[]">{{$usuario->nombre}} {{$usuario->apellido}}<br>
+                                @else
+                                <input disabled checked  type="checkbox" value="{{$usuario->rut}}" class="ml-2 form-check-input" name="participante[]">{{$usuario->nombre}} {{$usuario->apellido}}<br>
                                 @endif
                             @endforeach
                         </div>
@@ -38,7 +40,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="{{'js/negocio.js'}}"></script>
-    <script src="{{'js/precios.js'}}"></script>
-    <script src="{{'js/comercializacion.js'}}"></script>
+    <script src="{{asset('js/negocio.js')}}"></script>
+    <script src="{{asset('js/precios.js')}}"></script>
+    <script src="{{asset('js/comercializacion.js')}}"></script>
 @endsection

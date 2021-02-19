@@ -8,16 +8,29 @@
         <div class="col">
           <h3>Comercialización Productos</h3>
         </div>
-        <div class="col">
-          <a href="/tipo-productos" class="btn btn-sm btn-dark" >Tipo Productos</a>
-          <a href="/marcas/view" class="btn btn-sm btn-dark" >Marca</a>
-        </div>
+        <div class="col-7">
+          <form method="GET" action="/busqueda/comerPro">
+            @csrf
+          <div class="row">
+            <div class="col">
+              <a href="/tipo-productos" class="btn btn-sm btn-dark" >Tipo Productos</a>
+            </div>
+            <div class="col">
+              <a href="/marcas/view" class="btn btn-sm btn-dark" >Marca</a>
+            </div>
+              <div class="col">
+                <input class="form-control" placeholder="Nombre" type="search" name="nombre_comer">
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-dark btn-sm">Buscar</button>
+              </div>
+          </div>
       </div>
         <table class="table mt-4" method="GET" action="/usuarios">
             <thead class="thead-dark">
               <tr>
+                <th>N°</th>
                 <th scope="col">Nombre Comercialización Producto</th>
-                <th scope="col">Tipo de producto Asociado</th>
                 <th></th>
  
 
@@ -26,6 +39,7 @@
             <tbody>
               @foreach ($comerPro as $comer)
               <tr>
+                <td>{{$i}}</td>
                   <td class="scope">{{$comer->nombre_comercializacion}}</td>
                   {{-- <td class="scope">{{$comer->tipo_producto}}</td> --}}
                 @if ($_SESSION['nombre_rol'] == 'Administrador')
@@ -41,6 +55,7 @@
                 </td>
                 @endif
               </tr>
+              {{$i++}}
               @endforeach
             </tbody>
           </table>

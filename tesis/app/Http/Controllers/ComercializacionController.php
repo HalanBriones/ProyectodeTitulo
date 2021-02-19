@@ -13,7 +13,8 @@ class ComercializacionController extends Controller
     public function comercializacionesPro(){
 
         $comerPro = ComercializacionProducto::with('tipo_producto')->get();
-        return view('ComercializacionPro.comercializacionesPro',compact('comerPro'));
+        $i = 1;
+        return view('ComercializacionPro.comercializacionesPro',compact('comerPro','i'));
     }
 
     
@@ -61,6 +62,14 @@ class ComercializacionController extends Controller
         }
     }
 
+    public function busqueda_comerPro(Request $request)
+    {
+        $i = 1;
+        $comerPro = ComercializacionProducto::where('nombre_comercializacion','like',"%$request->nombre_comer%")->get();
+        return view('ComercializacionPro.comercializacionesPro',compact('comerPro','i'));
+    }
+
+
     // SERVICIO-------------------------------------------------//
 
     public function comercializacionesSer(){
@@ -107,5 +116,11 @@ class ComercializacionController extends Controller
         if($comercializacion->delete()){
             return 0;
         }
+    }
+    public function busqueda_comerSer(Request $request)
+    {
+        $i = 1;
+        $comerSer = ComercializacionServicio::where('nombre_comercializacion','like',"%$request->nombre_comer%")->get();
+        return view('ComercializacionSer.comercializacionesSer',compact('comerSer','i'));
     }
 }

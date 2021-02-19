@@ -8,9 +8,24 @@
         <div class="col">
           <h3>Marcas</h3>
         </div>
-        <div class="col-5">
-          <a href="/tipo-productos" class="btn btn-sm  btn-dark" >Tipo Producto</a>
-          <a href="/comercializaciones" class="btn btn-sm btn-dark" >Comercialización</a>
+        <div class="col-7">
+          <form method="GET" action="/busqueda/marca">
+            @csrf
+          <div class="row">
+            <div class="col">
+              <a href="/tipo-productos" class="btn btn-sm  btn-dark" >Tipo Producto</a>
+            </div>
+            <div class="col">
+              <a href="/comercializaciones" class="btn btn-sm btn-dark" >Comercialización</a>
+            </div>
+              <div class="col">
+                <input class="form-control" placeholder="Nombre" type="search" name="nombre_marca">
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-dark btn-sm">Buscar</button>
+              </div>
+          </div>
+        </form>
         </div>
       </div>
         <table class="table mt-4" method="GET">

@@ -1,21 +1,21 @@
 var arrayProducto = [];
-
 function borrar(i){
     console.log(i)
     event.preventDefault()
-    arrayProducto = arrayProducto.splice(i-1,1)
-
+    console.log('array antes', arrayProducto)
+    arrayProducto.splice(i,1)
+    console.log('array despues', arrayProducto)
     let res = "";
     var j = 0;
     arrayProducto.forEach(elemento => {
-        j=j+1;
         res = res+"<tr>"+
         "<td>"+elemento.producto_nombre+"</td>"+
             "<td>"+elemento.comercializacionproducto_nombre+"</td>"+
             "<td>"+elemento.precioPcosto+"</td>"+
             "<td>"+elemento.precioPventa+"</td>"+
-            "<td><button class='btn-sm btn-dark' onclick='borrar("+i+")'>x</button></td>"+
-        "</tr>"    
+            "<td><button class='btn-sm btn-dark' onclick='borrar("+j+")'>x</button></td>"+
+        "</tr>" 
+        j=j+1;   
     })
     document.getElementById("+pro").innerHTML = res
 }
@@ -58,7 +58,6 @@ function insertPro(){
     let res = "";
     var i = 0;
     arrayProducto.forEach(elemento => {
-        i=i+1;
         res = res+"<tr>"+
         "<td>"+elemento.producto_nombre+"</td>"+
             "<td>"+elemento.comercializacionproducto_nombre+"</td>"+
@@ -66,6 +65,7 @@ function insertPro(){
             "<td>"+elemento.precioPventa+"</td>"+
             "<td><button class='btn-sm btn-dark' onclick='borrar("+i+")'>x</button></td>"+
         "</tr>"    
+        i=i+1;
     })
     document.getElementById("+pro").innerHTML = res
 }
@@ -74,19 +74,19 @@ var arrayServicio = [];
 function borrarSer(l){
     console.log(l)
     event.preventDefault()
-    arrayServicio = arrayServicio.splice(l-1,1)
+    arrayServicio.splice(l-1,1)
     console.log(arrayServicio)
     let res = "";
     var k = 0;
     arrayServicio.forEach(elemento => {
-        k=k+1;
         res = res+"<tr>"+
             "<td>"+elemento.servicio+"</td>"+
             "<td>"+elemento.comercializacionservicio_nombre+"</td>"+
             "<td>"+elemento.conocimiento_nombre+"</td>"+
             "<td>"+elemento.precioSventa+"</td>"+
-            "<td><button class='btn-sm btn-dark' onclick='borrarSer("+l+")'>x</button></td>"+
-        "</tr>"      
+            "<td><button class='btn-sm btn-dark' onclick='borrarSer("+k+")'>x</button></td>"+
+        "</tr>"
+        k=k+1;
     })
     document.getElementById("+ser").innerHTML = res
 }
@@ -113,6 +113,7 @@ function insertSer(){
     var costo_total_mes = document.getElementById("costo_total_mes").value;
     var valor_cliente_hora = document.getElementById("valor_cliente_hora").value;
     var valor_venta_mes = document.getElementById("valor_venta_mes").value;
+    var ganancia_vendedor = document.getElementById("gananciaSer").value;
     var ganancia_vendedorSer_clp = document.getElementById("ganancia_vendedorSer_clp").value;
     var costo_totalSer_clp = document.getElementById("costo_totalSer_clp").value;
     var costo_total_mes_clp = document.getElementById("costo_total_mes_clp").value;
@@ -134,6 +135,7 @@ function insertSer(){
         comentario: comentario,
         meses: meses,
         valor_venta_mes:valor_venta_mes,
+        ganancia_vendedorSer: ganancia_vendedor,
         ganancia_vendedorSer_clp:ganancia_vendedorSer_clp,
         costo_totalSer_clp:costo_totalSer_clp,
         costo_total_mes:costo_total_mes,
@@ -192,17 +194,9 @@ function enviar(selected){
 
 function añadir(){
     var idNegocio = document.getElementById("idnegocio").value;
-    var nombre_negocio = document.getElementById("nombre_negocio").value;
-    var descripcion_negocio = document.getElementById("descripcion_negocio").value;
-    var estado_negocio = document.getElementById("estado_negocio").value;
-    var rut_creador = document.getElementById("rut_creador").value;
     
     var negocio = [
-        idNegocio,
-        nombre_negocio,
-        descripcion_negocio,
-        estado_negocio,
-        rut_creador
+        idNegocio
     ];
     
     var data = {

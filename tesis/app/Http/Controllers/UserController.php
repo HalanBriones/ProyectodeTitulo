@@ -21,10 +21,41 @@ class UserController extends Controller
     }
 
     public function index(){
+        $roles = Rol::all();
         $usuarios = User::with('rol')->get();
-        return view('Usuario.mostrarUsers',compact('usuarios'));
+        return view('Usuario.mostrarUsers',compact('usuarios','roles'));
     }
 
+    public function busqueda_usuario(Request $request){
+
+
+        $nombre = $request->nombre_usuario;
+        $idrol = $request->rol;
+
+        if($nombre == "" && $idrol ==""){
+            $roles = Rol::all();
+            $usuarios = User::with('rol')->get();
+            return view('Usuario.mostrarUsers',compact('usuarios','roles'));
+        }
+        if($nombre =="" && $idrol !=""){
+            $usuarios = User::where('rol_idRol',$idrol)->with('rol')->get();
+            $roles = Rol::all();
+            return view('Usuario.mostrarUsers',compact('usuarios','roles'));
+        }
+
+        if($nombre !="" && $idrol ==""){
+            $usuarios = User::where('nombre','like',"%$nombre%")->with('rol')->get();
+            $roles = Rol::all();
+            return view('Usuario.mostrarUsers',compact('usuarios','roles'));
+        }
+
+        if($nombre !="" && $idrol !=""){
+            $usuarios = User::where('nombre','like',"%$nombre%")->where('rol_idRol',$idrol)->with('rol')->get();
+            $roles = Rol::all();
+            return view('Usuario.mostrarUsers',compact('usuarios','roles'));
+        }
+
+    }
 
     public function registrar(Request $request){
         request()->validate([

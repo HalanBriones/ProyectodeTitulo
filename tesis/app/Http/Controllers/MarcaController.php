@@ -58,4 +58,18 @@ class MarcaController extends Controller
             return 0;
         }
     }
+
+    public function busqueda_marca(Request $request){
+        $nombre_marca = $request->nombre_marca;
+        if($nombre_marca != ""){
+            $i=1;
+            $marcas = Mac::where('nombre_marca','like',"%$nombre_marca%")->get();
+            return view('Marca.marcas',compact('marcas','i'));
+        }else{
+            $i=1;
+            $marcas = Mac::all();
+            return view('Marca.marcas',compact('marcas','i'));
+        }
+
+    }
 }

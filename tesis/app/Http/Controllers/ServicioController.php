@@ -91,9 +91,23 @@ class ServicioController extends Controller
     }
 
     public function busquedaServicio(Request $request){
-        return $request;
         $nombre_servicio = $request->nombre_servicio;
         $idChileCompra = $request->chile_compra;
+
+        if($nombre_servicio != "" && $idChileCompra == ""){
+            $servicios = Servicio::where('nombre_servicio','like',"%$nombre_servicio%")->get();
+            return view('Servicio.servicios',compact('servicios'));
+        }
+
+        if($nombre_servicio == "" && $idChileCompra != ""){
+            $servicios = Servicio::where('idChileCompra','like',"%$idChileCompra%")->get();
+            return view('Servicio.servicios',compact('servicios'));
+        }
+
+        if($nombre_servicio =="" && $idChileCompra ==""){
+            $servicios = Servicio::all();
+            return view('Servicio.servicios',compact('servicios'));
+        }
     }
 
     public function delete_servicio(Request $request){

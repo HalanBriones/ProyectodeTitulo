@@ -5,6 +5,30 @@
     session_start(['name' => 'Login']);
 @endphp
     <div class="container">
+      <div class="row">
+        <div class="col"><h3>Usuarios</h3></div>
+        <div class="col">
+          <form class="form-inline" method="GET" action="/nombre/busqueda">
+            <div class="row">
+                <div class="col">
+                  <input class="form-control" placeholder="Nombre" type="search" name="nombre_usuario">
+                </div>
+                <div class="col">
+                  <select class="form-control" name="rol">
+                    <option value=""> Rol</option>
+                    @foreach ($roles as $rol)
+                    <option value="{{$rol->idRol}}">{{$rol->nombre_rol}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col">
+                  <button type="submit" class="btn btn-dark btn-sm">Buscar</button>
+                </div>
+            </div>
+          </form> 
+        </div>
+        </div>
+      </div>
         <table class="table mt-4" method="GET" action="/usuarios">
             <thead class="thead-dark">
               <tr>

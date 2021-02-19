@@ -64,7 +64,7 @@
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
         <div class="position-sticky pt-3">
           <ul class="nav flex-column">
-            @if ($_SESSION['nombre_rol'] == 'Administrador')
+            @if ($_SESSION['nombre_rol'] == 'Administrador' || $_SESSION['nombre_rol'] == 'Comercial')
             <li class="nav-item ">
               <a class="nav-link active" id="barra1" aria-current="page" href="/registro">
                 <span data-feather="home"></span>
@@ -91,7 +91,7 @@
                 Servicios
               </a>
             </li>
-            @if ($_SESSION['nombre_rol'] == 'Administrador')
+            @if ($_SESSION['nombre_rol'] == 'Administrador' || $_SESSION['nombre_rol'] == 'Comercial')
             <li class="nav-item">
               <a class="nav-link" href="/solicitudes">
                 <span data-feather="bar-chart-2"></span>
@@ -99,7 +99,7 @@
               </a>
             </li>
             @endif
-            @if ($_SESSION['nombre_rol'] == 'Administrador')
+            @if ($_SESSION['nombre_rol'] != 'Usuario')
             <li class="nav-item">
               <a class="nav-link" href="/verNegocios">
                 <span data-feather="layers"></span>

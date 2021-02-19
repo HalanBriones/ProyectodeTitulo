@@ -5,43 +5,36 @@
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <div><p>Creacion Negocio</p></div>
-            <div><p>Fase 2</p></div>
+            <div><p>Editar Producto</p></div>
         </div>
         <div class="card-body">
-            <form   id="formulario" method="POST" action="{{route('negocio.store')}}">
+            <form   id="formulario" method="POST" action="{{route('ProAsociado.edit',$pro_has_op)}}">
                 @csrf
-                <div>
-                    <input name="idnegocio" id="idnegocio"  type="hidden" value="{{$idNegocio}}">
-                </div>
                 {{--Productos--}}
                 <div class="d-flex justify-content-center mb-3 mt-3">
-                    <h3>Añadir Productos a Oportunidad de Negocio</h3>
+                    <h3>Editar Producto</h3>
                 </div>
                 <div class="row">
                     <div class="col-5">
                         <div class="form-group mb-2">
                             <label class="mb-1" for="">Producto</label>
-                            <select class="form-control" name="producto" id="producto">
-                                <option value="" selected>Seleccione Producto</option>
-                                @foreach ($productos as $producto)
-                                    <option value="{{$producto->idproducto}},{{$producto->nombre_producto}}">{{$producto->nombre_producto}}</option>
-                                @endforeach
+                            <select disabled class="form-control"  name="producto" id="producto">
+                                <option name="option"  id="option" value="{{$producto->idproducto}}" hidden selected>{{$producto->nombre_producto}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-group mb-2">
                             <label class="mb-1" for="">Tipo Comercialización</label>
-                            <select class="form-control" onclick="control()"  name="comercializacionproducto" id="comercializacionproducto">
-                                <option name="option"  id="option" hidden selected>Seleccione Comercializacion</option>
+                            <select disabled class="form-control">
+                                <option name="comercializacion" id="comercializacion" value="{{$comercializacion->idcomercializacion_producto}},{{$comercializacion->nombre_comercializacion}}" selected >{{$comercializacion->nombre_comercializacion}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="form-group mb-2">
                             <label class="mb-1" for="cantidad_productos">Cantidad productos</label>
-                            <input class="form-control" value="1" type="number" onkeyup="preciosProducto()" name="cantidad_productos" id="cantidad_productos" >
+                            <input class="form-control" value="1" type="number" onchange="productos()" name="cantidad_productos" id="cantidad_productos" value="{{$pro_has_op->cantidad_productos}}">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -52,7 +45,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input type="number" class="form-control" onkeyup="preciosProducto()" name="precioPcosto" id="precioPcosto" placeholder="0.00">
+                                    <input type="number" class="form-control" onchange="productos()" name="precioPcosto" id="precioPcosto" placeholder="0.00" value="{{$pro_has_op->costo_producto}}">
                                   </div>
                             </div>
                         </div>
@@ -63,7 +56,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">%</div>
                                     </div>
-                                    <input type="number" class="form-control" onkeyup="preciosProducto()" name="margen_negocioPro" id="margen_negocioPro" placeholder="0">
+                                    <input type="number" class="form-control" onchange="productos()" name="margen_negocioPro" id="margen_negocioPro" placeholder="0" value="{{$pro_has_op->margen_negocioPro}}">
                                   </div>
                             </div>
                         </div>
@@ -74,14 +67,14 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">%</div>
                                     </div>
-                                    <input type="number" class="form-control" onkeyup="preciosProducto()" name="margen_vendedorPro" id="margen_vendedorPro" placeholder="0">
+                                    <input type="number" class="form-control" onchange="productos()" name="margen_vendedorPro" id="margen_vendedorPro" placeholder="0" value="{{$pro_has_op->margen_vendedorPro}}">
                                   </div>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="mb-1" for="meses">Cantidad meses</label>
-                                <input  class="form-control" onkeyup="preciosProducto()" type="number"  name="meses" id="meses">
+                                <input  class="form-control" onchange="productos()" type="number"  name="meses" id="meses" value="{{$pro_has_op->numero_meses}}">
                             </div>
                         </div>
                         <div class="col-2">
@@ -91,7 +84,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input disabled type="number" class="form-control" name="preciomes" id="preciomes" placeholder="0.00">
+                                    <input  type="number" onchange="productos()" class="form-control" name="preciomes" id="preciomes" placeholder="0.00" value="">
                                   </div>
                             </div>
                         </div>
@@ -104,7 +97,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input disabled type="number" class="form-control" name="precioPventa" id="precioPventa"e placeholder="0.00">
+                                    <input step="any"  type="number" class="form-control" name="precioPventa" id="precioPventa" placeholder="0.00" value="{{$pro_has_op->precio_ventaPro}}">
                                   </div>
                             </div>
                         </div>
@@ -115,7 +108,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input disabled type="number" class="form-control" name="utilidadPro" id="utilidadPro" placeholder="0.00">
+                                    <input type="number" step="any" class="form-control" name="utilidadPro" id="utilidadPro" placeholder="0.00" value="{{$pro_has_op->utilidadPro}}">
                                   </div>
                             </div>
                         </div>
@@ -126,7 +119,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input disabled type="number" class="form-control" name="ganancia" id="ganancia" placeholder="0.00">
+                                    <input  type="number" step="any" class="form-control" name="ganancia" id="ganancia" placeholder="0.00" value="{{$pro_has_op->ganancia_vendedorPro}}">
                                   </div>
                             </div>
                         </div>
@@ -139,7 +132,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input disabled class="form-control" type="number" name="precioPventa_total" id="precioPventa_total">
+                                    <input  class="form-control" step="any" type="number" name="precioPventa_total" id="precioPventa_total">
                                   </div>
                             </div>
                         </div>
@@ -150,7 +143,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input disabled class="form-control" type="number" name="utilidadPro_total" id="utilidadPro_total">
+                                    <input  step="any" class="form-control" type="number" name="utilidadPro_total" id="utilidadPro_total">
                                   </div>
                             </div>
                         </div>
@@ -161,11 +154,12 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input disabled class="form-control" type="number" name="gananciaTotal_vendedor" id="gananciaTotal_vendedor">
+                                    <input step="any" class="form-control" type="number" name="gananciaTotal_vendedor" id="gananciaTotal_vendedor">
                                   </div>
                             </div>
                         </div>
                     </div>
+                    @if ($_SESSION['nombre_rol'] == 'Tecnico')
                     <div class="row mt-2">
                         <div class="col-4">
                             <div class="form-group">
@@ -174,36 +168,16 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
-                <div class="row">
-                    <div class="d-flex justify-content-end mb-4">
-                        <button onclick="insertPro(event)" class="btn btn-dark">+</button>
-                    </div>
-                </div>
-                <form >
-                    @csrf
-                    <table class="table mt-5 mb-5">
-                        <thead>
-                            <th>Producto</th>
-                            <th>Comercializacion</th>
-                            <th>Costo USD</th>
-                            <th>Precio Venta USD</th>
-                        </thead>
-                        <tbody  id="+pro">
-
-                        </tbody>
-                    </table>
-                </form>
-                <div class="row mt-5 ">
-                    <div class="d-flex justify-content-center">
-                        <button  id="btnAñadir" class="btn btn-dark" type="submit">Agregar</button>
+                <div class="row mt-4">
+                    <div class="col d-flex justify-content-center">
+                        <button class="btn btn-dark" type="submit">Editar</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+    <script src="{{asset('js/preciosEdit.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="{{asset('js/negocio.js')}}"></script>
-    <script src="{{asset('js/precios.js')}}"></script>
-    <script src="{{asset('js/comercializacion.js')}}"></script>
 @endsection

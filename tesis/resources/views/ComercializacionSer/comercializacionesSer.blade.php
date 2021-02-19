@@ -4,14 +4,24 @@
 @endphp
 @section('content')
     <div class="container">
-      <div class="row mt-3 d-flex justify-content-between">
+      <form method="GET" action="/comerSer/busqueda">
+        @csrf
+      <div class="row mt-3 d-flex">
         <div class="col">
           <h3>Comercialización Servicios</h3>
         </div>
         <div class="col">
-          <a href="/conocimientos" class="btn btn-sm btn-dark" >Conocimiento</a>
+          <div class="row">
+            <div class="col d-flex justify-content-start">
+              <a href="/conocimientos" class="btn btn-sm btn-dark" >Conocimiento</a>
+            </div>
+            <div class="col"><input class="form-control"type="search" name="nombre_comer" placeholder="Comercialización"></div>
+            <div class="col"><button class="btn btn-sm btn-dark" type="submit">Buscar</button></div>
+            
+          </div>
         </div>
       </div>
+      </form>
         <table class="table mt-4" method="GET" action="/usuarios">
             <thead class="thead-dark">
               <tr>

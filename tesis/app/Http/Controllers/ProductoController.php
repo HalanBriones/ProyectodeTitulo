@@ -81,14 +81,20 @@ class ProductoController extends Controller
             $productos = Producto::paginate(8);
             return view('Producto.productos', compact('productos','tipo_productos'));
         }
-        if($nombre_marca =="" && $id_tipo_producto==""){
+        if($nombre_marca =="" && $id_tipo_producto=="" && $nombre_producto!=""){
             
             $productos = Producto::where('nombre_producto','like',"%$nombre_producto%")->get();
             return  view('Producto.productos', compact('productos','tipo_productos'));
         }
 
-        if($nombre_producto == "" && $nombre_marca== ""){
+        if($nombre_producto == "" && $nombre_marca== "" && $id_tipo_producto!=""){
             $productos = Producto::where('tipo_producto_idtipo_producto',$id_tipo_producto)->get();
+            return  view('Producto.productos', compact('productos','tipo_productos'));
+        }
+        // where('nombre_marca','like',"%$nombre_marca%")
+        if($nombre_marca !="" && $id_tipo_producto=="" && $nombre_producto==""){
+            $marca = Mac::where('nombre_marca','like',"%$nombre_marca%")->first();
+            $productos = Producto::where('mac_idMac',$marca->idMac)->get();
             return  view('Producto.productos', compact('productos','tipo_productos'));
         }
     }

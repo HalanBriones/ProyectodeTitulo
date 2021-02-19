@@ -85,7 +85,7 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="mb-1" for="meses">Cantidad meses</label>
-                                <input  class="form-control" onkeyup="preciosProducto()" type="number"  name="meses" id="meses">
+                                <input value=1 class="form-control" onkeyup="preciosProducto()" type="number"  name="meses" id="meses">
                             </div>
                         </div>
                         <div class="col-2">
@@ -455,7 +455,10 @@
                             @foreach ($usuarios as $usuario)
                                 @if ($usuario->rut != $_SESSION['rut'])
                                 <input  type="checkbox" value="{{$usuario->rut}}" class="ml-2 form-check-input" name="participante[]">{{$usuario->nombre}} {{$usuario->apellido}}<br>
+                                @else
+                                <input disabled checked  type="checkbox" value="{{$usuario->rut}}" class="ml-2 form-check-input" name="participante[]">{{$usuario->nombre}} {{$usuario->apellido}}<br>
                                 @endif
+                                    
                             @endforeach
                         </div>
                     </div>
