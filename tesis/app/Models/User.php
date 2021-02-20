@@ -33,7 +33,7 @@ class User extends Authenticatable
     }
 
     public function oportunidades_negocios(){
-        return $this->belongsToMany('App\Models\OportunidadNegocio','oportunidad_negocio_idoportunidad_negocio','idNegocio',);
+        return $this->belongsToMany(OportunidadNegocio::class,'usuario_participa_oportunidad_negocio','oportunidad_negocio_idoportunidad_negocio','usuario_rut',);
     }
     /**
      * The attributes that should be hidden for arrays.

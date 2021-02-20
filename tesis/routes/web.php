@@ -77,12 +77,15 @@ Route::get('/verParAsoc/{idNegocio}',[OportunidadNegocioController::class,'verPa
 //añadir Productos
 Route::get('/añadirPro/{idNegocio}',[OportunidadNegocioController::class,'añadirPro_view'])->name('añadirPro');
 Route::post('/añadirP',[OportunidadNegocioController::class,'añadir_store']);
+Route::post('/eliminar/producto', [OportunidadNegocioController::class,'eliminarPro'])->name('Pro.delete');
 //añadir Servicios
 Route::get('/añadirSer/{idNegocio}',[OportunidadNegocioController::class,'añadirSer_view'])->name('añadirSer');
 Route::post('/añadirS',[OportunidadNegocioController::class,'añadirSer_store']);
+Route::post('/eliminar/servicio', [OportunidadNegocioController::class,'eliminarSer'])->name('Ser.delete');
 //añadir Participantes
 Route::get('/añadirPar/{idNegocio}',[OportunidadNegocioController::class,'añadirPar_view'])->name('añadir.par');
 Route::post('/añadirPa',[OportunidadNegocioController::class,'añadirPar_store'])->name('añadirPar.store');
+Route::post('/eliminar/participante', [OportunidadNegocioController::class,'eliminarPar'])->name('Par.delete');
 //añadir Documentos
 Route::get('/añadirDoc/{idNegocio}',[OportunidadNegocioController::class,'añadirDoc_view'])->name('añadir.doc');
 Route::post('/añadirD',[OportunidadNegocioController::class,'añadirDoc_store'])->name('añadir.storeDoc');
@@ -93,10 +96,17 @@ Route::get('/down/{documento}',[OportunidadNegocioController::class,'verArchivo'
 //--Fin Negocio//
 
 //--------EDIT NEGOCIO----------//
+Route::get('/view/producto/{id_pro_has_op}', [OportunidadNegocioController::class,'viewPro'])->name('viewPro');//producto
 Route::get('/edit/producto/{id_pro_has_op}',[OportunidadNegocioController::class,'edit_Pro'])->name('pro.edit');//ver editar producto
-Route::post('/editar/producto/asociado/{pro_has_op}', [OportunidadNegocioController::class,'editar_producto'])->name('ProAsociado.edit');
-Route::get('/edit/servicio/{id_ser_has_op}',[OportunidadNegocioController::class,'edit_Ser'])->name('ser.edit');//ver editar producto
-Route::post('/editar/servicio/asociado/{ser_has_op}', [OportunidadNegocioController::class,'editar_servicio'])->name('SerAsociado.edit');
+Route::post('/editar/producto/asociado/{pro_has_op}', [OportunidadNegocioController::class,'editar_producto'])->name('ProAsociado.edit');//producto
+Route::get('/configuracion/{id_pro_has_op}', [OportunidadNegocioController::class,'configuracion'])->name('configuracion');
+Route::post('/configuracion/{pro_has_op}', [OportunidadNegocioController::class,'save_configuracion'])->name('configuracion.save');
+
+Route::get('/edit/servicio/{id_ser_has_op}',[OportunidadNegocioController::class,'edit_Ser'])->name('ser.edit');//ver editar servicio
+Route::post('/editar/servicio/asociado/{ser_has_op}', [OportunidadNegocioController::class,'editar_servicio'])->name('SerAsociado.edit');//servicio
+Route::get('/view/servicio/{id_ser_has_op}', [OportunidadNegocioController::class,'viewSer'])->name('viewSer');//producto
+Route::get('/comentar/{id_ser_has_op}',  [OportunidadNegocioController::class,'comentario'])->name('comentario');
+Route::post('/comentar/{ser_has_op}', [OportunidadNegocioController::class,'save_comentario'])->name('comentario.save');
 //---------------//
 //COTIZACION//
 Route::get('/datos/{idNegocio}',[CotizacionController::class,'cotizacion'])->name('vista.cotizacion');

@@ -342,8 +342,15 @@ class OportunidadNegocioController extends Controller
         return view('Negocio.editPro',compact('pro_has_op','producto','comercializacion'));
     }
 
-    public function editar_producto(ProductoHasOportunidadNegocio $pro_has_op,Request $request){
+    public function viewPro($id_pro_has_op){
+        $pro_has_op = ProductoHasOportunidadNegocio::where('id_pro_has_op',$id_pro_has_op)->first();
+        $participantes = UsuarioParticipaON::where('oportunidad_negocio_idoportunidad_negocio',$pro_has_op->oportunidad_negocio_idNegocio)->select('usuario_rut')->get();
+        $comercializacion = ComercializacionProducto::where('idcomercializacion_producto',$pro_has_op->comercializacion_producto_idcomercializacion_producto)->first();
+        $producto = Producto::where('idproducto',$pro_has_op->producto_idproducto)->first();
+        return view('Negocio.viewPro',compact('pro_has_op','producto','comercializacion','participantes'));
+    }
 
+    public function editar_producto(ProductoHasOportunidadNegocio $pro_has_op,Request $request){
         $pro_has_op->costo_producto = $request->precioPcosto;
         $pro_has_op->precio_ventaPro = $request->precioPventa;
         $pro_has_op->cantidad_productos = $request->cantidad_productos;
@@ -361,6 +368,60 @@ class OportunidadNegocioController extends Controller
             return redirect('/verNegocios');
         }
     }
+
+    public function eliminarPar(Request $request){
+
+        $parti = $request['rut'];
+        $idNegocio = $request['idNegocio'];
+
+        $negocio = OportunidadNegocio::where('idNegocio',$idNegocio)->first();
+        if($negocio->usuario_rut == $parti){
+            return -1;
+        }else{
+            $participantes = UsuarioParticipaON::where('oportunidad_negocio_idoportunidad_negocio',$idNegocio)->get();
+            foreach ($participantes as $par) {
+                if($par->usuario_rut == $parti){
+                    if($par->delete()){
+                        return 0;
+                    }
+                }
+            }
+        }
+    }
+
+    public function eliminarPro(Request $request){
+        $pro_has_op = ProductoHasOportunidadNegocio::find($request->id_pro_has_op);
+        if($pro_has_op->delete()){
+            return 0;
+        }
+    }
+
+    public function eliminarSer(Request $request){
+        $ser_has_op = OportunidadNegocioHasServicio::find($request->id_ser_has_op);
+        if($ser_has_op->delete()){
+            return 0;
+        }
+    }
+
+    public function configuracion($id_pro_has_op){
+        $pro_has_op = ProductoHasOportunidadNegocio::where('id_pro_has_op',$id_pro_has_op)->first();
+        $comercializacion = ComercializacionProducto::where('idcomercializacion_producto',$pro_has_op->comercializacion_producto_idcomercializacion_producto)->first();
+        $producto = Producto::where('idproducto',$pro_has_op->producto_idproducto)->first();
+        return view('Negocio.configuracion',compact('pro_has_op','producto','comercializacion'));
+    }
+
+    public function save_configuracion(ProductoHasOportunidadNegocio $pro_has_op,Request $request){
+
+        $pro_has_op->configuracion = $request->configuracion;
+
+        if($pro_has_op->save()){
+            toast('Configuracion añadida exitosamente','success');
+            return redirect('/verNegocios');
+        }else{
+            toast('Error al añadir la configuracion','warning');
+            return redirect('/verNegocios');
+        }
+    }
     
     public function edit_Ser($id_ser_has_op){
         $ser_has_op = OportunidadNegocioHasServicio::where('id_ser_has_op',$id_ser_has_op)->first();
@@ -368,6 +429,27 @@ class OportunidadNegocioController extends Controller
         $servicio = Servicio::where('idservicio',$ser_has_op->servicio_idservicio)->first();
         $conocimiento = ConocimientoServicio::where('idconocimiento_servicio',$ser_has_op->conocimiento_servicio_idconocimiento_servicio)->first();
         return view('Negocio.editSer',compact('ser_has_op','servicio','comercializacion','conocimiento'));
+    }
+
+    public function comentario($id_ser_has_op){
+        $ser_has_op = OportunidadNegocioHasServicio::where('id_ser_has_op',$id_ser_has_op)->first();
+        $comercializacion = ComercializacionServicio::where('idcomercializacion_servicio',$ser_has_op->comercializacion_servicio_idcomercializacion_servicio)->first();
+        $servicio = Servicio::where('idservicio',$ser_has_op->servicio_idservicio)->first();
+        $conocimiento = ConocimientoServicio::where('idconocimiento_servicio',$ser_has_op->conocimiento_servicio_idconocimiento_servicio)->first();
+        return view('Negocio.comentario',compact('ser_has_op','servicio','comercializacion','conocimiento'));
+    }
+
+    public function save_comentario(OportunidadNegocioHasServicio $ser_has_op,Request $request){
+
+        $ser_has_op->comentarios = $request->comentario;
+
+        if($ser_has_op->save()){
+            toast('Comentario añadido exitosamente','success');
+            return redirect('/verNegocios');
+        }else{
+            toast('Error al añadir el comentario','warning');
+            return redirect('/verNegocios');
+        }
     }
 
     public function editar_servicio(OportunidadNegocioHasServicio $ser_has_op,Request $request){
@@ -383,8 +465,8 @@ class OportunidadNegocioController extends Controller
         $ser_has_op->meses = $request->n_meses;
         $ser_has_op->costo_total_mes = $request->costo_total_mes ;
         $ser_has_op->valor_cliente_hora = $request-> valor_cliente_hora;
-        $ser_has_op->ganancia_vendedorSer = $request->ganancia_vendedorSer ;
-        $ser_has_op->ganancia_vendedorSer_clp = $request->gananciaSer ;
+        $ser_has_op->ganancia_vendedorSer = $request->gananciaSer;
+        $ser_has_op->ganancia_vendedorSer_clp = $request->ganancia_vendedorSer_clp ;
         $ser_has_op->costo_totalSer_clp = $request->costo_totalSer_clp;
         $ser_has_op->costo_total_mes_clp = $request->costo_total_mes_clp ;
         $ser_has_op->utilidadSer = $request->utilidadSer;
@@ -397,6 +479,15 @@ class OportunidadNegocioController extends Controller
             toast('Error al editar los valores','warning');
             return redirect('/verNegocios');
         }
+    }
+
+    public function viewSer($id_ser_has_op){
+        $ser_has_op = OportunidadNegocioHasServicio::where('id_ser_has_op',$id_ser_has_op)->first();
+        $comercializacion = ComercializacionServicio::where('idcomercializacion_servicio',$ser_has_op->comercializacion_servicio_idcomercializacion_servicio)->first();
+        $participantes = UsuarioParticipaON::where('oportunidad_negocio_idoportunidad_negocio',$ser_has_op->oportunidad_negocio_idNegocio)->select('usuario_rut')->get();
+        $servicio = Servicio::where('idservicio',$ser_has_op->servicio_idservicio)->first();
+        $conocimiento = ConocimientoServicio::where('idconocimiento_servicio',$ser_has_op->conocimiento_servicio_idconocimiento_servicio)->first();
+        return view('Negocio.viewSer',compact('ser_has_op','servicio','comercializacion','conocimiento','participantes'));
     }
 
 //AÑADIR PRO SER PAR Y DOCS EN UN NEGOCIO YA CREADO
@@ -438,9 +529,6 @@ class OportunidadNegocioController extends Controller
 
 
     public function añadirPar_store(Request $request){
-        
-        
-        return $request;
         $cont =0;
         foreach ($request->participante as $par) {
             $nuevo = new UsuarioParticipaON();

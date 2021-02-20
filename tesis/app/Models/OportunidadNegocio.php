@@ -32,8 +32,7 @@ class OportunidadNegocio extends Model
     }
     //1,n usuarios participan en un ON y en esa ON participan de 1,n usuarios
     public function participan(){
-        return $this->belongsToMany(User::class,'usuario_participa_oportunidad_negocio','rut','usuario_rut');
-        // return $this->belongsToMany('App\Models\User','usuario_rut','rut');
+        return $this->belongsToMany(User::class,'usuario_participa_oportunidad_negocio','oportunidad_negocio_idoportunidad_negocio','usuario_rut');
     }
 
     public function servicios(){

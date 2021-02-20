@@ -323,3 +323,121 @@ function delete_user(rut) {
       }
     }) 
 }
+
+function deleteParticipante(rut,idNegocio){
+  event.preventDefault();
+  console.log(rut)
+  console.log(idNegocio)
+  var participante = {
+    rut : rut,
+    idNegocio: idNegocio
+  }
+  console.log(participante)
+  Swal.fire({
+      title: '¿Esta seguro?',
+      text: 'Eliminaras este Participante',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, Eliminar',
+      cancelButtonText: 'No, no eliminar'
+    }).then((result) => {
+      if (result.value) {
+          $.post("/eliminar/participante",participante, function (response) {
+              console.log(response)
+              if(response == 0){
+                $(location).attr('href',"/verParAsoc/"+participante['idNegocio']+"")
+                  Swal.fire(
+                    'Eliminado',
+                    'El Usuario a sido eliminado',
+                    'success'
+                  )
+              }
+              if(response == -1){
+                Swal.fire(
+                  'No se pudo eliminar',
+                  'El Participante es el creador de la Oportunidad de Negocio',
+                  'error'
+                )
+              }
+           }).fail(function(error) { console.log(error.responseJSON) });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelado',
+          'El Usuario no se a eliminado',
+          'error'
+        )
+      }
+    })
+}
+
+function deleteProducto(id_pro_has_op,idNegocio){
+  event.preventDefault();
+  var producto = {
+    id_pro_has_op : id_pro_has_op,
+  }
+  console.log(producto)
+  Swal.fire({
+      title: '¿Esta seguro?',
+      text: 'Eliminaras este Producto',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, Eliminar',
+      cancelButtonText: 'No, no eliminar'
+    }).then((result) => {
+      if (result.value) {
+          $.post("/eliminar/producto",producto, function (response) {
+              console.log(response)
+              if(response == 0){
+                $(location).attr('href',"/verProAsoc/"+idNegocio+"")
+                  Swal.fire(
+                    'Eliminado',
+                    'El Producto a sido eliminado',
+                    'success'
+                  )
+              }
+           }).fail(function(error) { console.log(error.responseJSON) });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelado',
+          'El Producto no se a eliminado',
+          'error'
+        )
+      }
+    })
+}
+
+function deleteServicio(id_ser_has_op,idNegocio){
+  event.preventDefault();
+  var servicio = {
+    id_ser_has_op : id_ser_has_op,
+  }
+  console.log(servicio)
+  Swal.fire({
+      title: '¿Esta seguro?',
+      text: 'Eliminaras este Servicio',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, Eliminar',
+      cancelButtonText: 'No, no eliminar'
+    }).then((result) => {
+      if (result.value) {
+          $.post("/eliminar/servicio",servicio, function (response) {
+              console.log(response)
+              if(response == 0){
+                $(location).attr('href',"/verSerAsoc/"+idNegocio+"")
+                  Swal.fire(
+                    'Eliminado',
+                    'El Servicio a sido eliminado',
+                    'success'
+                  )
+              }
+           }).fail(function(error) { console.log(error.responseJSON) });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelado',
+          'El Servicio no se a eliminado',
+          'error'
+        )
+      }
+    })
+}

@@ -66,11 +66,14 @@
               @endforeach
             </tbody>
           </table>
-          <div class="row">
-            <div class="col d-flex justify-content-center">
-              <a href="/negocio-fase1" class="btn btn-dark">Crear Negocio</a>
+          @if ($_SESSION['nombre_rol'] == "Administrador" || $_SESSION['nombre_rol'] == "Comercial")
+            <div class="row">
+              <div class="col d-flex justify-content-center">
+                <a href="/negocio-fase1" class="btn btn-dark">Crear Negocio</a>
+              </div>
             </div>
-          </div>
+          @endif
+
     </div>
     @include('sweetalert::alert')
     <script src="{{asset('js/eliminar_producto.js')}}"></script> 

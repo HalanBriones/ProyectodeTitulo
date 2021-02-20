@@ -8,12 +8,14 @@
             <div><p>Editar Producto</p></div>
         </div>
         <div class="card-body">
-            <form   id="formulario" method="POST" action="{{route('ProAsociado.edit',$pro_has_op)}}">
+            <form   id="formulario" method="POST" action="{{route('configuracion.save',$pro_has_op)}}">
                 @csrf
                 {{--Productos--}}
                 <div class="d-flex justify-content-center mb-3 mt-3">
                     <h3>Editar Producto</h3>
                 </div>
+                <input name="rol" type="hidden" value="{{$_SESSION['nombre_rol']}}">
+                @if ($_SESSION['nombre_rol'] == 'Administrador' || $_SESSION['nombre_rol'] == 'Comercial')
                 <div class="row">
                     <div class="col-5">
                         <div class="form-group mb-2">
@@ -34,7 +36,7 @@
                     <div class="col-2">
                         <div class="form-group mb-2">
                             <label class="mb-1" for="cantidad_productos">Cantidad productos</label>
-                            <input class="form-control" value="1" type="number" onchange="productos()" name="cantidad_productos" id="cantidad_productos" value="{{$pro_has_op->cantidad_productos}}">
+                            <input disabled class="form-control" value="1" type="number" onchange="productos()" name="cantidad_productos" id="cantidad_productos" value="{{$pro_has_op->cantidad_productos}}">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -45,7 +47,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input type="number" class="form-control" onchange="productos()" name="precioPcosto" id="precioPcosto" placeholder="0.00" value="{{$pro_has_op->costo_producto}}">
+                                    <input disabled type="number" class="form-control" onchange="productos()" name="precioPcosto" id="precioPcosto" placeholder="0.00" value="{{$pro_has_op->costo_producto}}">
                                   </div>
                             </div>
                         </div>
@@ -56,7 +58,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">%</div>
                                     </div>
-                                    <input type="number" class="form-control" onchange="productos()" name="margen_negocioPro" id="margen_negocioPro" placeholder="0" value="{{$pro_has_op->margen_negocioPro}}">
+                                    <input disabled type="number" class="form-control" onchange="productos()" name="margen_negocioPro" id="margen_negocioPro" placeholder="0" value="{{$pro_has_op->margen_negocioPro}}">
                                   </div>
                             </div>
                         </div>
@@ -67,14 +69,14 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">%</div>
                                     </div>
-                                    <input type="number" class="form-control" onchange="productos()" name="margen_vendedorPro" id="margen_vendedorPro" placeholder="0" value="{{$pro_has_op->margen_vendedorPro}}">
+                                    <input disabled type="number" class="form-control" onchange="productos()" name="margen_vendedorPro" id="margen_vendedorPro" placeholder="0" value="{{$pro_has_op->margen_vendedorPro}}">
                                   </div>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="mb-1" for="meses">Cantidad meses</label>
-                                <input  class="form-control" onchange="productos()" type="number"  name="meses" id="meses" value="{{$pro_has_op->numero_meses}}">
+                                <input disabled class="form-control" onchange="productos()" type="number"  name="meses" id="meses" value="{{$pro_has_op->numero_meses}}">
                             </div>
                         </div>
                         <div class="col-2">
@@ -84,7 +86,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input  type="number" onchange="productos()" class="form-control" name="preciomes" id="preciomes" placeholder="0.00" value="">
+                                    <input disabled type="number" onchange="productos()" class="form-control" name="preciomes" id="preciomes" placeholder="0.00" value="">
                                   </div>
                             </div>
                         </div>
@@ -97,7 +99,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any"  type="number" class="form-control" name="precioPventa" id="precioPventa" placeholder="0.00" value="{{$pro_has_op->precio_ventaPro}}">
+                                    <input disabled step="any"  type="number" class="form-control" name="precioPventa" id="precioPventa" placeholder="0.00" value="{{$pro_has_op->precio_ventaPro}}">
                                   </div>
                             </div>
                         </div>
@@ -108,7 +110,7 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input type="number" step="any" class="form-control" name="utilidadPro" id="utilidadPro" placeholder="0.00" value="{{$pro_has_op->utilidadPro}}">
+                                    <input disabled type="number" step="any" class="form-control" name="utilidadPro" id="utilidadPro" placeholder="0.00" value="{{$pro_has_op->utilidadPro}}">
                                   </div>
                             </div>
                         </div>
@@ -119,47 +121,22 @@
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input  type="number" step="any" class="form-control" name="ganancia" id="ganancia" placeholder="0.00" value="{{$pro_has_op->ganancia_vendedorPro}}">
+                                    <input disabled type="number" step="any" class="form-control" name="ganancia" id="ganancia" placeholder="0.00" value="{{$pro_has_op->ganancia_vendedorPro}}">
                                   </div>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-2">
-                        <div class="col">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="precioPventa">Precio  Venta Total Producto USD</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <div class="input-group-text">$</div>
-                                    </div>
-                                    <input  class="form-control" step="any" type="number" name="precioPventa_total" id="precioPventa_total">
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label class="sr-only mb-1" for="utilidadPro">Utilidad Total USD</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <div class="input-group-text">$</div>
-                                    </div>
-                                    <input  step="any" class="form-control" type="number" name="utilidadPro_total" id="utilidadPro_total">
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label class="sr-only mb-1" for="ganancia">Ganancia Total Vendedor USD</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <div class="input-group-text">$</div>
-                                    </div>
-                                    <input step="any" class="form-control" type="number" name="gananciaTotal_vendedor" id="gananciaTotal_vendedor">
-                                  </div>
+                                <label class="mb-1" for="">Configuración</label>
+                                <textarea class="form-control" name="configuracion" id="configuracion" cols="6" rows="8">{{$pro_has_op->configuracion}}</textarea>
                             </div>
                         </div>
                     </div>
+
                 </div>
+                @endif
                 <div class="row mt-4">
                     <div class="col d-flex justify-content-center">
                         <button class="btn btn-dark" type="submit">Editar</button>

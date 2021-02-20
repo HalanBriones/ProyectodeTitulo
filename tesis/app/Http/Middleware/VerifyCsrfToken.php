@@ -23,6 +23,9 @@ class VerifyCsrfToken extends Middleware
         "/delete/marca",
         "/delete/servicio",
         "/delete/tipo/producto",
-        "/delete/usuario"
+        "/delete/usuario",
+        "/eliminar/participante",
+        "/eliminar/producto",
+        "/eliminar/servicio"
     ];
 }
