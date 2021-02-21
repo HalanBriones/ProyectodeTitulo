@@ -2,7 +2,9 @@
 
 @section('content')
 @php
+  if (!isset($_SESSION)) {
     session_start(['name' => 'Login']);
+  }
 @endphp
     <div class="container">
       <div class="row">

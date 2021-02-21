@@ -1,6 +1,8 @@
 @extends('layouts.plantilla')
 @php
-    session_start(['name' =>'Login']);
+    if (!isset($_SESSION)) {
+    session_start(['name' => 'Login']);
+  }
 @endphp
 @section('content')
 <main>

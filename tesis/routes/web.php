@@ -34,6 +34,11 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Auth::routes();
+//login
+Route::get('/login', [LoginController::class,'vista'])->name('login');
+Route::post('/logear',[LoginController::class,'login'])->name('logear');
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+//---//
 //Solicitudes
 Route::get('/', [SolicitudController::class,'vista'])->name('cliente');
 Route::post('/solicitud',[SolicitudController::class,'store_solicitud'])->name('solicitud.store');
@@ -44,13 +49,6 @@ Route::get('/solicitud/ser/{idSolicitud}',[SolicitudController::class,'servicios
 Route::get('/inicio', function () {
      return view('welcome');
 });
-// vistas
-//----//
-//login
-Route::get('/login', [LoginController::class,'vista'])->name('login');
-Route::post('/logear',[LoginController::class,'login'])->name('logear');
-Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-//---//
 //Usuario
 Route::get('/mostrar', [UserController::class,'index'])->middleware('login'); //envia los usuarios a la vista para mostrar usuarios
 Route::get('/registro',[UserController::class,'vistaRegistro'])->name('usuario.registro')->middleware('login'); //mostrar vista de registro
@@ -109,6 +107,7 @@ Route::post('/comentar/{ser_has_op}', [OportunidadNegocioController::class,'save
 //COTIZACION//
 Route::get('/datos/{idNegocio}',[CotizacionController::class,'cotizacion'])->name('vista.cotizacion')->middleware('login');
 Route::get('/cotizacion/{idNegocio}',[CotizacionController::class,'crear_cotización'])->middleware('login');
+Route::get('/enviar/{idNegocio}', [CotizacionController::class,'enviarCotizacion'])->name('enviar');
 //--//
 //ESTADOS//
 Route::get('/estado/store',[EstadoController::class,'store_view'])->middleware('login');

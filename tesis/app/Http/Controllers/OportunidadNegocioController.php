@@ -36,7 +36,7 @@ class OportunidadNegocioController extends Controller
         $comercializacionSer = ComercializacionServicio::all();
         return view('Negocio.Fase2',compact('productos','servicios','usuarios','conocimientos','comercializaciones','comercializacionSer'));
     }
-
+    //vista Fase 3
     public function vista_negocio_f3(){
         return view('Negocio.Fase3');
     }
@@ -86,11 +86,8 @@ class OportunidadNegocioController extends Controller
         $negocio = $request['negocio']; //array con los datos del negocio
         $productos = $request['productos'];//array con los productos
         $servicios = $request['servicios']; //array con los servicios
-        // $servicios = json_decode($servicios);
         $participantes = $request['participantes'];//array con los participantes
-        // $participantes = json_decode($participantes);
-        //validar si es que vienen productos servicios participantes
-        //almacenando productos; 
+
         $contador = 0;
         if($productos != ""){
             foreach($productos as $producto){
@@ -164,7 +161,7 @@ class OportunidadNegocioController extends Controller
                 toast('Productos y/o Servicios agregados exitosamente','success');
                 return 0;
             }else{
-                toast('Error al agregar producto y/o servicios','success');
+                toast('Error al agregar producto y/o servicios','warning');
                 return 1;    
             }
         }else{
@@ -200,8 +197,23 @@ class OportunidadNegocioController extends Controller
             $cont_pro = count($productos);
         }
         if($contador == $cont_pro){
-            toast('Productos Añadidos exitosamente','success');
-            return 0;
+            
+            //validar que no hayan productos asociados a la oportunidad de negocio
+            $valor = ProductoHasOportunidadNegocio::where('oportunidad_negocio_idNegocio',$negocio[0])->get();
+            if(count($valor)==0){
+                $negocio = OportunidadNegocio::where("idNegocio",$negocio[0])->first();
+                $estado = Estado::where("nombre_estado","Fase 2:Inserción Productos, Servicios y Participantes")->first();
+                $negocio->estado_idestado = $estado->idEstado;
+                if($negocio->save()){
+                    toast('Productos añadidos exitosamente','success');
+                    return 0;
+                }else{
+                    toast('Error al añadir los productos','warning');
+                    return 0;    
+                }
+            }else{
+                return 0;
+            }
         }else{
             toast('Error al añadir los productos','warning');
             return 0;

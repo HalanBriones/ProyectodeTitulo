@@ -16,7 +16,7 @@ class SolicitudController extends Controller
         $productos = DB::table('producto')
         ->join('tipo_producto','idtipo_producto','=','tipo_producto_idtipo_producto')
         ->join('mac','idMac','=','mac_idMac')->get();
-   
+
         return view('FormCliente',compact('productos','servicios'));
     }
 
@@ -59,8 +59,11 @@ class SolicitudController extends Controller
             if($solicitud->save()){
                 $productos = $request->productos;
                 $servicios = $request->servicios;
-                if(count($productos)>0){
-                    $cont_pro = 0;
+                $servicios = array_slice($servicios,1);
+                $productos = array_slice($productos,1);
+                $cont_pro = 0;
+                if(count($productos) > 0){
+
                     foreach ($productos as $pro) {
                         $soliPro = new ProductoHasSolicitud();
                         $soliPro->producto_idproducto = $pro;
@@ -69,8 +72,8 @@ class SolicitudController extends Controller
                         $cont_pro++;
                     }
                 }
-                if(count($servicios)>0){
-                    $cont_ser = 0;
+                $cont_ser = 0;
+                if(count($servicios) > 0){
                     foreach ($servicios as $ser) {
                         $soliSer = new ServicioHasSolicitud();
                         $soliSer->servicio_idservicio = $ser;
@@ -99,7 +102,7 @@ class SolicitudController extends Controller
             return back();
         }
 
- 
+
 
     }
 }

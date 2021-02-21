@@ -95,6 +95,7 @@
                         </tr>
                       </thead>
                       <tbody class="">
+                        <tr hidden><td><input checked type="checkbox" name="productos[]" value="0"></td></tr>
                           @foreach ($productos as $pro)
                           <tr>
                             <td>{{$pro->nombre_producto}}</td>
@@ -131,6 +132,7 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <tr hidden><td><input checked type="checkbox" name="servicios[]" value="0"></td></tr>
                           @foreach ($servicios as $ser)
                           <tr>
                             <td>{{$ser->nombre_servicio}}</td>
