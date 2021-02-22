@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Cotizacion;
 use App\Models\CompaniaCotiza;
 use App\Models\OportunidadNegocio;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -50,15 +51,39 @@ class CotizacionController extends Controller
         ->join('compañia_cotiza','compañia_cotiza.idcompañia_cotiza','=','oportunidad_negocio.idcompañia_cotiza')
         ->where('idNegocio',$idNegocio)->get();
         $date = date('Y-m-d');
-        $pdf = PDF::loadView('PDF.datos',compact('servicios','productos','compañia','date'))->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf = PDF::loadView('PDF.datos',compact('servicios','productos','compañia','date'))->setOptions(['defaultFont' => 'sans-serif'])->save(storage_path('app/public/') . 'archivo.pdf');
 
         $negocio = OportunidadNegocio::find($idNegocio);
         $compañia = CompaniaCotiza::where('idcompañia_cotiza',$negocio->idcompañia_cotiza)->first();
-
+        $data = [];
         try{
-
+            Mail::send('Cotizacion.CorreoCotizacion', $data, function ($message) use ($compañia) {
+                $message->from('halanbm98@gmail.com', 'ITECHI');
+                $message->to($compañia->correo);
+                $message->subject('Cotización');
+                $message->attach(storage_path('app/public/') . 'archivo.pdf');
+            });
+            toast("Cotización enviada con exito","success");
+            return back();
         }catch(Exception $e){
-            return $e->getMessage();
+            $e->getMessage();
         }
     }
 }
+                // $data = [];
+                // $mensaje = ["mensaje" =>"Empresas ITECHI le hace envío de la cotización requerida","mensaje2" => "cualquier duda existente comunicarse con algun gerente comercial"];
+            //     try{
+            //          Mail::send(['name' => $compañia->compañia], $data,function ($message) use ($compañia,$mensaje) {
+            //              $message->from('halanbm98@gmail.com', 'ITECHI');
+            //              $message->attach(storage_path('app/public/') . 'archivo.pdf');
+            //              $message->to($compañia->correo)->subject('Cotización');
+            //          });
+
+            //         // Mail::to($compañia->correo)->send(new Cotizacion()->attach(storage_path('app/public/') . 'archivo.pdf'));
+            //         toast("Cotización enviada con exito","success");
+            //         return back();
+            //     }catch(Exception $e){
+            //         return $e->getMessage();
+            //     }
+            // }
+

@@ -212,6 +212,7 @@ class OportunidadNegocioController extends Controller
                     return 0;    
                 }
             }else{
+                toast('Productos añadidos exitosamente','success');
                 return 0;
             }
         }else{
@@ -253,8 +254,24 @@ class OportunidadNegocioController extends Controller
                 $cont_ser = count($servicios);
             }
             if($contador == $cont_ser){
-                toast('Servicios Añadidos exitosamente','success');
-                return 0;
+
+                //validar que no hayan productos asociados a la oportunidad de negocio
+                $valor = OportunidadNegocioHasServicio::where('oportunidad_negocio_idNegocio',$negocio[0])->get();
+                if(count($valor)==0){
+                    $negocio = OportunidadNegocio::where("idNegocio",$negocio[0])->first();
+                    $estado = Estado::where("nombre_estado","Fase 2:Inserción Productos, Servicios y Participantes")->first();
+                    $negocio->estado_idestado = $estado->idEstado;
+                    if($negocio->save()){
+                        toast('Servicios añadidos exitosamente','success');
+                        return 0;
+                    }else{
+                        toast('Error al añadir los servicios','warning');
+                        return 0;    
+                    }
+                }else{
+                    toast('Servicios Añadidos exitosamente','success');
+                    return 0;
+                }
             }else{
                 toast('Error al añadir los servicios','warning');
                 return 0;
@@ -504,7 +521,6 @@ class OportunidadNegocioController extends Controller
 
 //AÑADIR PRO SER PAR Y DOCS EN UN NEGOCIO YA CREADO
     public function añadirPro_view($idNegocio){
-        $idNegocio = $idNegocio;
         $productos = Producto::all();
         $comercializaciones = ComercializacionProducto::all();
         return view('Negocio.AñadirPro',compact('productos','comercializaciones','idNegocio'));

@@ -48,7 +48,7 @@
             <div class="col-sm-4">
                 <div class="form-group mb-2">
                     <label class="mb-1" for="apellido_cliente">Apellido</label>
-                    <input   type="text" class="form-control" placeholder="Dirección del Cliente o Compañia" name="apellido_cliente" id="apellido_cliente" required>
+                    <input   type="text" class="form-control" placeholder="Apellido" name="apellido_cliente" id="apellido_cliente" required>
                 </div>
             </div>
           </div>
