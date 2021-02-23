@@ -15,15 +15,24 @@ class EstadoSeeder extends Seeder
     public function run()
     {
         DB::table('estado')->insert([
-            "nombre_estado" => 'Fase 1:Creación Negocio'
+            "nombre_estado" => 'Gestionando negocio'
         ]);
 
         DB::table('estado')->insert([
-            "nombre_estado" => 'Fase 2:Inserción Productos, Servicios y Participantes'
+            "nombre_estado" => 'Envio de cotizacón'
         ]);
 
         DB::table('estado')->insert([
-            "nombre_estado" => 'Fase 3:Subida de archivos y finalización creación'
+            "nombre_estado" => 'Negocio Postergado'
         ]);
+
+        DB::table('estado')->insert([
+            "nombre_estado" => 'Negocio Aceptado'
+        ]);
+
+        DB::table('estado')->insert([
+            "nombre_estado" => 'Negocio Rechazado'
+        ]);
+
     }
 }

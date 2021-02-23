@@ -63,37 +63,36 @@
     <div class="row">
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
         <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
+          <ul id="contenedor" class="nav nav-sidebar flex-column">
             @if ($_SESSION['nombre_rol'] == 'Administrador' || $_SESSION['nombre_rol'] == 'Comercial')
-            <li class="nav-item ">
-              <a class="nav-link active" id="barra1" aria-current="page" href="/registro">
+            <li class="nav-item">
+              <a class="nav-link " id="barra1" aria-current="page" href="/registro">
                 <span data-feather="home"></span>
                 Registrar Usuarios
               </a>
             </li>
             @endif
-
             <li class="nav-item">
-              <a class="nav-link" href="/mostrar">
+              <a class="nav-link" id="barra2" href="/mostrar">
                 <span data-feather="file"></span>
                 Usuarios
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/productos">
+             <a class="nav-link" id="barra3" href="/productos">
                 <span data-feather="shopping-cart"></span>
                 Productos
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/servicios">
+              <a class="nav-link" id="barra4" href="/servicios">
                 <span data-feather="users"></span>
-                Servicios
+               Servicios
               </a>
             </li>
             @if ($_SESSION['nombre_rol'] == 'Administrador' || $_SESSION['nombre_rol'] == 'Comercial')
             <li class="nav-item">
-              <a class="nav-link" href="/solicitudes">
+              <a class="nav-link" id="barra5" href="/solicitudes">
                 <span data-feather="bar-chart-2"></span>
                 Solicitudes
               </a>
@@ -101,7 +100,7 @@
             @endif
             @if ($_SESSION['nombre_rol'] != 'Usuario')
             <li class="nav-item">
-              <a class="nav-link" href="/verNegocios">
+              <a class="nav-link" id="barra6" href="/verNegocios">
                 <span data-feather="layers"></span>
                 Negocios
               </a>

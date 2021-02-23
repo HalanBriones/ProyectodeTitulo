@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row mt-3 d-flex justify-content-between">
         <div class="col">
-          <h3>Conocimiento Servicios</h3>
+          <h3>Conocimiento de los Servicios</h3>
         </div>
         <div class="col">
           <a href="/comercializaciones-ser" class="btn btn-sm btn-dark" >Comercialización</a>
@@ -18,7 +18,7 @@
             <thead class="thead-dark">
               <tr>
                 <th>N°</th>
-                <th scope="col">Nombre Conocimiento Servicio</th>
+                <th scope="col">Nivel de Conocimiento en Servicio</th>
                 <th></th>
               </tr>
             </thead>

@@ -75,7 +75,7 @@
             
         <div class="row">
           {{-- acordeon izquierda --}}
-          <div class="col ">
+          <div class="col-6 d-flex justify-content-center">
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
@@ -112,7 +112,7 @@
             </div>
           </div>
           {{-- acordeon derecha --}}
-          <div class="col">
+          <div class="col-6 d-flex justify-content-center">
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
