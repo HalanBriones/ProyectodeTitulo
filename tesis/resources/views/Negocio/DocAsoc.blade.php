@@ -6,8 +6,8 @@
 @endphp
 @section('content')
     <div class="container">
-        <table class="table table-striped mt-4">
-            <thead class="thead-dark">
+        <table class="table mt-4">
+            <thead class="thead-light">
               @if (count($documentos)>0)
                 <tr>  
                   <th scope="col">Nombre documento</th>

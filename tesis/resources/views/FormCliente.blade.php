@@ -83,7 +83,7 @@
                     Productos
                   </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse modal-content " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <table class="table row d-flex justify-content-center">
                       <thead class="">
@@ -120,7 +120,7 @@
                     Servicios
                   </button>
                 </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div id="collapseTwo" class="accordion-collapse collapse modal-content" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <table class="table row d-flex justify-content-center">
                       <thead class="">
@@ -149,7 +149,7 @@
             </div>
           </div>
         </div>
-        <div class="mt-4 row d-flex justify-content-center">
+        <div class="mt-5 row d-flex justify-content-center">
           <button class="btn btn-dark" type="submit">Enviar</button>
         </div>
       </form>

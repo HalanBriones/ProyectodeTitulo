@@ -6,8 +6,8 @@
 @endphp
 @section('content')
     <div class="container">
-        <table class="table table-striped mt-4">
-            <thead class="thead-dark">
+        <table class="table mt-4">
+            <thead class="thead-light">
               <tr>
                 <input type="hidden" value="{{$idNegocio}}">
                 <th scope="col">Nombre Producto</th>

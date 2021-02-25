@@ -6,9 +6,9 @@
 @endphp
 @section('content')
     <div class="container">
-        <table class="table table-striped mt-4">
+        <table class="table mt-4">
           <input type="hidden" value="{{$idNegocio}}">
-            <thead class="thead-dark">
+            <thead class="thead-light">
               @if (count($user_participa)>0)
                 <tr>
                   <th scope="col">Nombre</th>
