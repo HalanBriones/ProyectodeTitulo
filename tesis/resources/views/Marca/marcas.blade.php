@@ -31,12 +31,12 @@
         </div>
       </div>
         <table class="table mt-4" method="GET">
-            <thead class="thead-dark">
+            <thead class="thead-light">
               <tr>
                 <th scope="col">N°</th>
-                <th scope="col">Nombre Marca</th>
-                <th></th>
-
+                <th scope="col">Nombre de la Marca</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
               </tr>
             </thead>
             <tbody>

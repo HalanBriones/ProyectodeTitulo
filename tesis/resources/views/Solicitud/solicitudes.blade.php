@@ -10,7 +10,7 @@
           <h3 class="text-center" >Solicitudes</h3>
       </div>
         <table class="table mt-4" method="GET" action="/usuarios">
-            <thead class="thead-dark">
+            <thead class="thead-light">
               <tr>
                 <th>Nombre Cliente</th>
                 <th>Apellido</th>

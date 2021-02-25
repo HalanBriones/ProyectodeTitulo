@@ -7,21 +7,21 @@
 @section('content')
     <div class="container">
       <div class="row mt-3">
-        <div class="col-5">
-          <a href="/tipo-productos" class="btn  btn-dark" >Tipo Producto</a>
-          <a href="/comercializaciones" class="btn  btn-dark" >Comercialización</a>
-          <a href="/marcas/view" class="btn  btn-dark" >Marca</a>
+        <div class="col-4">
+          <a href="/tipo-productos" class="btn btn-sm  btn-dark" >Tipo Producto</a>
+          <a href="/comercializaciones" class="btn btn-sm btn-dark" >Comercialización</a>
+          <a href="/marcas/view" class="btn btn-sm btn-dark" >Marca</a>
         </div>
-        <div class="col">
-          <form class="form-inline" method="GET" action="/productos/busqueda">
+        <div class="col-sm">
+          <form class="form" method="GET" action="/productos/busqueda">
             <div class="row">
-                <div class="col">
+                <div class="col-sm-3">
                   <input class="form-control" placeholder="Producto" type="search" name="nombre_producto">
                 </div>
-                <div class="col">
+                <div class="col-sm-3">
                   <input class="form-control" placeholder="Marca" type="search" name="nombre_marca">
                 </div>
-                <div class="col">
+                <div class="col-sm-3">
                   <select class="form-control" name="tipo_producto">
                     <option value="">Tipo producto</option>
                     @foreach ($tipo_productos as $tipo_pro)
@@ -29,7 +29,7 @@
                     @endforeach
                   </select>
                 </div>
-                <div class="col">
+                <div class="col-sm-2">
                   <button type="submit" class="btn btn-dark btn-sm">Buscar</button>
                 </div>
             </div>
@@ -37,7 +37,7 @@
         </div>
       </div>
         <table class="table mt-4" method="GET" action="/usuarios">
-            <thead class="thead-dark">
+            <thead class="thead-light">
               <tr>
                 <th scope="col">Sigla Producto</th>
                 <th scope="col">Nombre Producto</th>
@@ -46,7 +46,7 @@
                 <th scope="col">Sku</th>
                 <th scope="col">Part Number</th>
                 <th></th>
-
+                <th></th>
               </tr>
             </thead>
             <tbody>

@@ -41,14 +41,16 @@ class ServicioController extends Controller
             "nombre_servicio" => "required",
             "conocimiento" => "required",
             "idChileCompra" => "required"
-        ]);    
-        $sigla_servicio= substr($request->nombre_servicio,0,-4);
+        ]);
+        $prueba = strlen($request->nombre_servicio);
+        $largo = round(($prueba-($prueba*0.7)));    
+        $sigla_servicio= substr($request->nombre_servicio,0,$largo);
         $servicio = new Servicio();
         $servicio->idChileCompra = $request->idChileCompra;
         $servicio->conocimiento = $request->conocimiento;
         $servicio->nombre_servicio = $request->nombre_servicio;
         $servicio->descripcion = $request->descripcion;
-        $servicio->sigla_servicio = $sigla_servicio;     
+        $servicio->sigla_servicio = $sigla_servicio;    
         $existe = Servicio::where('nombre_servicio',$servicio->nombre_servicio)->first();
         if($existe){
         return back()->with('warning', 'El Servicio ya existe');

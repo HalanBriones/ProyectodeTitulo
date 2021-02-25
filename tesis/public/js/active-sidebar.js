@@ -1,40 +1,70 @@
-// $(".nav-sidebar").on("click", ".nav-link", function(e) {
-//     e.preventDefault()
-//     $(".nav-link").removeClass("active");
-//     $(this).addClass("active");
-//   });
 
 var link = window.location
-var usuario1 = document.getElementById("barra1");
-var usuario2 = document.getElementById("barra2");
-var usuario3 = document.getElementById("barra3");
-var usuario4 = document.getElementById("barra4");
-var usuario5 = document.getElementById("barra5");
-var usuario6 = document.getElementById("barra6");
+var User = document.getElementById("User");
+var Pro = document.getElementById("Pro");
+var Ser = document.getElementById("Ser");
+var Op = document.getElementById("Op")
+
+var verUser = document.getElementById("verUser");
+var registerUser = document.getElementById("registerUser");
+var verPro = document.getElementById("verPro");
+var verMac = document.getElementById("verMac");
+var verComerPro = document.getElementById("verComerPro");
+var verTP = document.getElementById("verTP");
+var verSer = document.getElementById("verSer");
+var verConoc = document.getElementById("verConoc");
+var verComerSer = document.getElementById("verComerSer");
+var verSol = document.getElementById("verSol");
+var verOP = document.getElementById("verOP");
+var verEstado = document.getElementById("verEstado");
 
 const servidor = `http://127.0.0.1:8000/`
-console.log(link.href)
-if(link.href === `${servidor}inicio`){
-}
 
 if(link.href === `${servidor}registro`){
-    usuario1.className += " active"
+    registerUser.className += " active"
+    User.className += "active"
 }
-
 if(link.href === `${servidor}mostrar`){
-    usuario2.className += " active"
+    verUser.className += " active"
+    User.className += "active"
 }
 
 if(link.href === `${servidor}productos`){
-    usuario3.className += " active"
+    verPro.className += " active"
+    Pro.className += "active"
 }
-
 if(link.href === `${servidor}servicios`){
-    usuario4.className += " active"
+    verSer.className += " active"
+    Ser.className += "active"
 }
 if(link.href === `${servidor}solicitudes`){
-    usuario5.className += " active"
+    verSol.className += " active"
 }
 if(link.href === `${servidor}verNegocios`){
-    usuario6.className += " active"
+    verOP.className += " active"
+    Op.className += "active"
+}
+if(link.href === `${servidor}marcas/view`){
+    verMac.className += " active"
+    Pro.className += "active"
+}
+if(link.href === `${servidor}comercializaciones`){
+    verComerPro.className += " active"
+    Pro.className += "active"
+}
+if(link.href === `${servidor}tipo-productos`){
+    verTP.className += " active"
+    Pro.className += "active"
+}
+if(link.href === `${servidor}conocimientos`){
+    verEstado.className += " active"
+    Ser.className += "active"
+}
+if(link.href === `${servidor}comercializaciones-ser`){
+    verComerSer.className += " active"
+    Ser.className += "active"
+}
+if(link.href === `${servidor}estados`){
+    verComerSer.className += " active"
+    Op.className += "active"
 }

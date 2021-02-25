@@ -32,13 +32,14 @@
         </div>
       </div>
         <table class="table mt-4" method="GET" action="/usuarios">
-            <thead class="thead-dark">
+            <thead class="thead-light">
               <tr>
                 <th scope="col">Rut</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Teléfono</th>
                 <th>Rol</th>
+                <th></th>
                 <th></th>
 
               </tr>

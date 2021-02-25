@@ -90,7 +90,7 @@ Route::get('/verDocAsoc/{idNegocio}',[OportunidadNegocioController::class,'verDo
 Route::post('/up',[OportunidadNegocioController::class,'archivos'])->name('archivo.subir');
 Route::get('/down/{documento}',[OportunidadNegocioController::class,'verArchivo'])->middleware('login');
 //--Fin Negocio//
-
+Route::post('/cambiar/estado',[OportunidadNegocioController::class,'cambiar_estado'])->name('estado');
 //--------EDIT NEGOCIO----------//
 Route::get('/view/producto/{id_pro_has_op}', [OportunidadNegocioController::class,'viewPro'])->name('viewPro')->middleware('login');//producto
 Route::get('/edit/producto/{id_pro_has_op}',[OportunidadNegocioController::class,'edit_Pro'])->name('pro.edit')->middleware('login');//ver editar producto

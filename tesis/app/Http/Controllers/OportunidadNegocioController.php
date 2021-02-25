@@ -41,6 +41,20 @@ class OportunidadNegocioController extends Controller
         return view('Negocio.Fase3');
     }
 
+    public function cambiar_estado(Request $request){
+        $negocio = OportunidadNegocio::find($request['negocio']);
+        $negocio->estado_idestado = $request['estado'];
+
+        if($negocio->save()){
+            toast('Estado modificado exitosamente','success');
+            return 1;
+        }else{
+            toast('Error al modificar el estado','warning');
+            return 0;
+        }
+    }
+
+
     public function store_negocio_f1(Request $request){
         //almacenar los datos de la compañia que cotiza
         $compañia = new CompaniaCotiza();
@@ -52,7 +66,7 @@ class OportunidadNegocioController extends Controller
         if($compañia->save()){
             //guardar nombre negocio descripcion estado y usuario asociado a la creación
             date_default_timezone_set('America/Santiago');
-            $estado = Estado::where("nombre_estado","Fase 1:Creación Negocio")->first();//estado inicial 
+            $estado = Estado::where("nombre_estado","Gestionando negocio")->first();//estado inicial 
             $op = new OportunidadNegocio();
             $op->nombre_negocio = $request->nombre_negocio;
             $op->descripcion = $request->descripcion;
@@ -153,17 +167,10 @@ class OportunidadNegocioController extends Controller
         }
         $suma = $cont_pro+$cont_ser+$cont_part;
         if($suma == $contador){
-            //inserciones con exito, cambio estado a fase 2
-            $negocio = OportunidadNegocio::where("idNegocio",$negocio[0])->first();
-            $estado = Estado::where("nombre_estado","Fase 2:Inserción Productos, Servicios y Participantes")->first();
-            $negocio->estado_idestado = $estado->idEstado;
-            if($negocio->save()){
-                toast('Productos y/o Servicios agregados exitosamente','success');
-                return 0;
-            }else{
-                toast('Error al agregar producto y/o servicios','warning');
-                return 1;    
-            }
+            //inserciones con exito
+            toast('Productos y/o Servicios agregados exitosamente','success');
+            return 0;
+
         }else{
          //error en las inserciones
          toast('Error al agregar producto y/o servicios','success');
@@ -196,25 +203,11 @@ class OportunidadNegocioController extends Controller
             }
             $cont_pro = count($productos);
         }
-        if($contador == $cont_pro){
-            
+        if($contador == $cont_pro){           
             //validar que no hayan productos asociados a la oportunidad de negocio
-            $valor = ProductoHasOportunidadNegocio::where('oportunidad_negocio_idNegocio',$negocio[0])->get();
-            if(count($valor)==0){
-                $negocio = OportunidadNegocio::where("idNegocio",$negocio[0])->first();
-                $estado = Estado::where("nombre_estado","Fase 2:Inserción Productos, Servicios y Participantes")->first();
-                $negocio->estado_idestado = $estado->idEstado;
-                if($negocio->save()){
-                    toast('Productos añadidos exitosamente','success');
-                    return 0;
-                }else{
-                    toast('Error al añadir los productos','warning');
-                    return 0;    
-                }
-            }else{
-                toast('Productos añadidos exitosamente','success');
-                return 0;
-            }
+            toast('Productos añadidos exitosamente','success');
+            return 0;
+
         }else{
             toast('Error al añadir los productos','warning');
             return 0;
@@ -254,29 +247,14 @@ class OportunidadNegocioController extends Controller
                 $cont_ser = count($servicios);
             }
             if($contador == $cont_ser){
-
-                //validar que no hayan productos asociados a la oportunidad de negocio
-                $valor = OportunidadNegocioHasServicio::where('oportunidad_negocio_idNegocio',$negocio[0])->get();
-                if(count($valor)==0){
-                    $negocio = OportunidadNegocio::where("idNegocio",$negocio[0])->first();
-                    $estado = Estado::where("nombre_estado","Fase 2:Inserción Productos, Servicios y Participantes")->first();
-                    $negocio->estado_idestado = $estado->idEstado;
-                    if($negocio->save()){
-                        toast('Servicios añadidos exitosamente','success');
-                        return 0;
-                    }else{
-                        toast('Error al añadir los servicios','warning');
-                        return 0;    
-                    }
-                }else{
-                    toast('Servicios Añadidos exitosamente','success');
-                    return 0;
-                }
+                toast('Servicios añadidos exitosamente','success');
+                return 0;
             }else{
                 toast('Error al añadir los servicios','warning');
                 return 0;
             }
         }
+
     public function store_negocio_f3(){
         return 'archivos';
     }
@@ -294,7 +272,8 @@ class OportunidadNegocioController extends Controller
     //mostrar Negocios
     public function VerNegocios(){
         $negocios = OportunidadNegocio::all();
-        return view("Negocio.NegociosView",compact("negocios"));
+        $estados = Estado::all();
+        return view("Negocio.NegociosView",compact("negocios","estados"));
     }
 
     public function verProAsociado($idNegocio){
@@ -329,6 +308,7 @@ class OportunidadNegocioController extends Controller
             return redirect('/verNegocios')->with('success','Creación del negocio finalizada');
         }else{
             $documento = $request->file('documento');
+            $cont= 0;
             for ($i=0; $i < count($documento); $i++) { 
                 $archivo = new Documento();
                 $archivo->nombre_doc = $documento[$i]->getClientOriginalName();
@@ -337,19 +317,16 @@ class OportunidadNegocioController extends Controller
                 $archivo->oportunidad_negocio_idoportunidad_negocio = $request->idnegocio;
                 try{
                     $archivo->save();
+                    $cont++;
                 }catch(Exception $e){
                     return $e->getMessage();
                 }
             }
-            //cambiar fase del negocio
-            $estado = Estado::where('nombre_estado','=','Fase 3:Subida de archivos y finalización creación')->first();
-            $negocio = OportunidadNegocio::where('idNegocio',$request->idnegocio)->first();
-            $negocio->estado_idestado = $estado->idEstado;
-            //fin
-            if( $negocio->save()){
-             return redirect('/verNegocios')->with('success','Subida de documento y creación del negocio realizado con exito');
+            // validar que se almacenaron todos los documentos
+            if( $cont == count($documento)){
+             return redirect('/verNegocios')->with('success','Subida de documentos realizado con exito');
             }else{
-                return back()->with('warning','Error al subir el documento');    
+                return back()->with('warning','Error al subir los documentos');    
             } 
         }
     }

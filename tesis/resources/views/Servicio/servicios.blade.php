@@ -23,11 +23,13 @@
         </div>
       </form>
         <table class="table mt-4" method="GET" action="/usuarios">
-            <thead class="thead-dark">
+            <thead class="thead-light">
               <tr>
                 <th>IDChileCompra</th>
-                <th scope="col">Nombre Servicio</th>
+                <th>Sigla del servicio</th>
+                <th scope="col">Nombre del Servicio</th>
                 <th scope="col">Descripción</th>
+                <th></th> 
                 <th></th>
 
               </tr>
@@ -36,6 +38,7 @@
               @foreach ($servicios as $servicio)
               <tr>
                 <td>{{ $servicio->idChileCompra }}</td>
+                <td>{{$servicio->sigla_servicio}}</td>
                 <td>{{ $servicio->nombre_servicio }}</td>
                 <td>{{ $servicio->descripcion }}</td>
                 @if ($_SESSION['nombre_rol'] == 'Administrador')

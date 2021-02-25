@@ -38,8 +38,11 @@ class ProductoController extends Controller
             "tipo_producto" => "required",
             "marca" => "required",
             "partnumber" => "required | max:8"
-        ]);    
-        $sigla_producto= substr($request->nombre_producto,0,-7);
+        ]);
+        //generando sigla del producto
+        $prueba = strlen($request->nombre_producto);
+        $largo = round(($prueba-($prueba*0.8)));
+        $sigla_producto= substr($request->nombre_producto,0,$largo);
         $producto = new Producto();
         $producto->nombre_producto = $request->nombre_producto;
         $producto->descripcion = $request->descripcion;

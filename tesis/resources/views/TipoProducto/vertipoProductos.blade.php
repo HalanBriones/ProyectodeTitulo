@@ -16,10 +16,11 @@
         </div>
       </div>
         <table class="table mt-4" method="GET" action="/usuarios">
-            <thead class="thead-dark">
+            <thead class="thead-light">
               <tr>
                 <th scope="col">Nº</th>
                 <th scope="col">Nombre Tipo Producto</th>
+                <th></th>
                 <th></th>
               </tr>
             </thead>

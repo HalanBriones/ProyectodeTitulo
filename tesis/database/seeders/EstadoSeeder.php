@@ -19,7 +19,7 @@ class EstadoSeeder extends Seeder
         ]);
 
         DB::table('estado')->insert([
-            "nombre_estado" => 'Envio de cotizacón'
+            "nombre_estado" => 'Cotización enviada'
         ]);
 
         DB::table('estado')->insert([
