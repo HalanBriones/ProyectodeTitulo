@@ -45,6 +45,8 @@ Route::post('/solicitud',[SolicitudController::class,'store_solicitud'])->name('
 Route::get('/solicitudes', [SolicitudController::class,'solicitudes'])->middleware('login');
 Route::get('/solicitud/pro/{idSolicitud}',[SolicitudController::class,'productos'])->name('solicitudPro.view')->middleware('login');
 Route::get('/solicitud/ser/{idSolicitud}',[SolicitudController::class,'servicios'])->name('solicitudSer.view')->middleware('login');
+Route::post('/solicitud/revision', [SolicitudController::class,'revision']);
+Route::get('/solicitudes/revisadas', [SolicitudController::class,'solicitudes_rev']);
 //--//
 Route::get('/inicio', function () {
      return view('welcome');

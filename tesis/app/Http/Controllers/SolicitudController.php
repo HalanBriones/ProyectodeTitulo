@@ -56,6 +56,7 @@ class SolicitudController extends Controller
             $solicitud = new Solicitud();
             $solicitud->fecha_solicitud = date('Y-m-d');
             $solicitud->idcliente = $cliente->idcliente;
+            $solicitud->revision = 0;
             if($solicitud->save()){
                 $productos = $request->productos;
                 $servicios = $request->servicios;
@@ -101,8 +102,26 @@ class SolicitudController extends Controller
             toast('Error al enviar la solicitud','warning');
             return back();
         }
+    }
 
+    public function solicitudes_rev(){
+        $solicitudes = DB::table('solicitud')
+        ->join('cliente','cliente.idcliente','=','solicitud.idcliente')->get();
+        return view('Solicitud.solicitudesRevisadas',compact('solicitudes'));
+    }
 
+    public function revision(Request $request){
 
+        $solicitud = Solicitud::find($request['idsolicitud']);
+        $solicitud->revision = 1;
+        
+        if($solicitud->save()){
+            toast('Solicitud Revisada','success');
+            return 1;
+        }else{
+            toast('Error al revisar la solicitud','warning');
+            return 0;
+        }
+        return $solicitud;
     }
 }
