@@ -4,6 +4,7 @@ use App\Http\Controllers\ComercializacionController;
 use App\Http\Controllers\ConocimientoController;
 use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\EstadoController;
+use App\Http\Controllers\GraficoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\OportunidadNegocioController;
@@ -51,6 +52,10 @@ Route::get('/solicitudes/revisadas', [SolicitudController::class,'solicitudes_re
 Route::get('/inicio', function () {
      return view('welcome');
 });
+//Grafico
+Route::post('/graficos/datos', [GraficoController::class,'graficos']);
+
+
 //Usuario
 Route::get('/mostrar', [UserController::class,'index'])->middleware('login'); //envia los usuarios a la vista para mostrar usuarios
 Route::get('/registro',[UserController::class,'vistaRegistro'])->name('usuario.registro')->middleware('login'); //mostrar vista de registro

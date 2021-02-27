@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="sr-only mb-1" for="telefono_compañia">Teléfono</label>
+                            <label class="mb-1" for="telefono_compañia">Teléfono</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                 <div class="input-group-text">+569</div>

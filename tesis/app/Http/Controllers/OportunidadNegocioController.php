@@ -106,7 +106,7 @@ class OportunidadNegocioController extends Controller
         if($productos != ""){
             foreach($productos as $producto){
                 $pro_has_op = new ProductoHasOportunidadNegocio();
-                $pro_has_op->producto_idproducto = $producto["producto_id"];
+                $pro_has_op->producto_idproducto = $producto["producto_id"]; 
                 $pro_has_op->oportunidad_negocio_idNegocio = $negocio[0];
                 $pro_has_op->costo_producto = $producto["precioPcosto"];
                 $pro_has_op->precio_ventaPro = $producto["precioPventa"];
@@ -119,7 +119,21 @@ class OportunidadNegocioController extends Controller
                 $pro_has_op->precio_mes = $producto["precioxmes"];
                 $pro_has_op->comercializacion_producto_idcomercializacion_producto = $producto["comercializacionproducto_id"];
                 $pro_has_op->cantidad_productos = $producto['cantidad_productos'];
-                $pro_has_op->save();
+                try{
+                    $pro_has_op->save();
+                }catch(Exception $e){
+                    $e->getMessage();
+                }
+                //aumentar el contador respecto a cuantas veces se ofrece el producto
+                $producto = Producto::where('idproducto','=',$pro_has_op->producto_idproducto)->first();
+                $producto->cantidad_usadoPro = ($producto->cantidad_usadoPro+1)*$pro_has_op->cantidad_productos;
+
+                try{
+                    $producto->save();
+                }catch(Exception $e){
+                    $e->getMessage();
+                }
+
                 $contador++;
             }
             $cont_pro = count($productos);
@@ -148,7 +162,18 @@ class OportunidadNegocioController extends Controller
                 $op_has_ser->ganancia_vendedorSer_clp = $servicio["ganancia_vendedorSer_clp"];
                 $op_has_ser->costo_totalSer_clp = $servicio["costo_totalSer_clp"];
                 $op_has_ser->costo_total_mes_clp = $servicio["costo_total_mes_clp"];
-                $op_has_ser->save();
+                try{
+                    $op_has_ser->save();
+                }catch(Exception $e){
+                    $e->getMessage();
+                }
+                $servicio = Servicio::where('idservicio','=',$op_has_ser->servicio_idservicio)->first();
+                $servicio->cantidad_usadoSer = $servicio->cantidad_usadoSer+1; 
+                try{
+                    $servicio->save();
+                }catch(Exception $e){
+                    $e->getMessage();
+                }
                 $contador++;
             }
             $cont_ser = count($servicios);

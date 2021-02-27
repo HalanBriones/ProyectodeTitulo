@@ -48,6 +48,7 @@ class ProductoController extends Controller
         $producto->descripcion = $request->descripcion;
         $producto->sigla_producto = $sigla_producto;
         $producto->mac_idMac = $request->marca;
+        $producto->cantidad_usadoPro = 0;
         //tipo producto
         $cadena = $request->tipo_producto;
         $res = explode(",",$cadena);

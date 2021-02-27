@@ -50,7 +50,8 @@ class ServicioController extends Controller
         $servicio->conocimiento = $request->conocimiento;
         $servicio->nombre_servicio = $request->nombre_servicio;
         $servicio->descripcion = $request->descripcion;
-        $servicio->sigla_servicio = $sigla_servicio;    
+        $servicio->sigla_servicio = $sigla_servicio;
+        $servicio->cantidad_usadoSer = 0;
         $existe = Servicio::where('nombre_servicio',$servicio->nombre_servicio)->first();
         if($existe){
         return back()->with('warning', 'El Servicio ya existe');
