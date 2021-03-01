@@ -60,7 +60,7 @@
                     <div class="row mt-2">
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="precioPcosto">Costo unitario USD</label>
+                                <label class="mb-1" for="precioPcosto">Costo unitario USD</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="margen_negocioPro">Margen Producto</label>
+                                <label class="mb-1" for="margen_negocioPro">Margen Producto</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">%</div>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="margen_vendedorPro">Margen Vendedor</label>
+                                <label class="mb-1" for="margen_vendedorPro">Margen Vendedor</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">%</div>
@@ -99,7 +99,7 @@
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="preciomes">Precio mes</label>
+                                <label class="mb-1" for="preciomes">Precio mes</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
@@ -112,7 +112,7 @@
                     <div class="row mt-2">
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="precioPventa">Precio Unitario Venta Producto USD</label>
+                                <label class="mb-1" for="precioPventa">Precio Unitario Venta Producto USD</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
@@ -123,7 +123,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="utilidadPro">Utilidad neta USD</label>
+                                <label class="mb-1" for="utilidadPro">Utilidad neta USD</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
@@ -134,7 +134,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="ganancia">Ganancia Vendedor USD</label>
+                                <label class="mb-1" for="ganancia">Ganancia Vendedor USD</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>

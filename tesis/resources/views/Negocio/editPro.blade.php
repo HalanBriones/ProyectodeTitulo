@@ -36,57 +36,57 @@
                     <div class="col-2">
                         <div class="form-group mb-2">
                             <label class="mb-1" for="cantidad_productos">Cantidad productos</label>
-                            <input class="form-control" value="1" type="number" onchange="productos()" name="cantidad_productos" id="cantidad_productos" value="{{$pro_has_op->cantidad_productos}}">
+                            <input required class="form-control" value="1" type="number" onchange="productos()" name="cantidad_productos" id="cantidad_productos" value="{{$pro_has_op->cantidad_productos}}">
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="precioPcosto">Costo unitario USD</label>
+                                <label class="mb-1" for="precioPcosto">Costo unitario USD</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input type="number" class="form-control" onchange="productos()" name="precioPcosto" id="precioPcosto" placeholder="0.00" value="{{$pro_has_op->costo_producto}}">
+                                    <input required type="number" class="form-control" onchange="productos()" name="precioPcosto" id="precioPcosto" placeholder="0.00" value="{{$pro_has_op->costo_producto}}">
                                   </div>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="margen_negocioPro">Margen Producto</label>
+                                <label class="mb-1" for="margen_negocioPro">Margen Producto</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">%</div>
                                     </div>
-                                    <input type="number" class="form-control" onchange="productos()" name="margen_negocioPro" id="margen_negocioPro" placeholder="0" value="{{$pro_has_op->margen_negocioPro}}">
+                                    <input required type="number" class="form-control" onchange="productos()" name="margen_negocioPro" id="margen_negocioPro" placeholder="0" value="{{$pro_has_op->margen_negocioPro}}">
                                   </div>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="margen_vendedorPro">Margen Vendedor</label>
+                                <label class="mb-1" for="margen_vendedorPro">Margen Vendedor</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">%</div>
                                     </div>
-                                    <input type="number" class="form-control" onchange="productos()" name="margen_vendedorPro" id="margen_vendedorPro" placeholder="0" value="{{$pro_has_op->margen_vendedorPro}}">
+                                    <input required type="number" class="form-control" onchange="productos()" name="margen_vendedorPro" id="margen_vendedorPro" placeholder="0" value="{{$pro_has_op->margen_vendedorPro}}">
                                   </div>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
                                 <label class="mb-1" for="meses">Cantidad meses</label>
-                                <input  class="form-control" onchange="productos()" type="number"  name="meses" id="meses" value="{{$pro_has_op->numero_meses}}">
+                                <input required  class="form-control" onchange="productos()" type="number"  name="meses" id="meses" value="{{$pro_has_op->numero_meses}}">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="preciomes">Precio mes</label>
+                                <label class="mb-1" for="preciomes">Precio mes</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input  type="number" onchange="productos()" class="form-control" name="preciomes" id="preciomes" placeholder="0.00" value="">
+                                    <input readonly type="number" onchange="productos()" class="form-control" name="preciomes" id="preciomes" placeholder="0.00" value="">
                                   </div>
                             </div>
                         </div>
@@ -94,34 +94,34 @@
                     <div class="row mt-2">
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="precioPventa">Precio Unitario Venta Producto USD</label>
+                                <label class="mb-1" for="precioPventa">Precio Unitario Venta Producto USD</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any"  type="number" class="form-control" name="precioPventa" id="precioPventa" placeholder="0.00" value="{{$pro_has_op->precio_ventaPro}}">
+                                    <input readonly step="any"  type="number" class="form-control" name="precioPventa" id="precioPventa" placeholder="0.00" value="{{$pro_has_op->precio_ventaPro}}">
                                   </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="utilidadPro">Utilidad neta USD</label>
+                                <label class="mb-1" for="utilidadPro">Utilidad neta USD</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input type="number" step="any" class="form-control" name="utilidadPro" id="utilidadPro" placeholder="0.00" value="{{$pro_has_op->utilidadPro}}">
+                                    <input readonly type="number" step="any" class="form-control" name="utilidadPro" id="utilidadPro" placeholder="0.00" value="{{$pro_has_op->utilidadPro}}">
                                   </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="ganancia">Ganancia Vendedor USD</label>
+                                <label class="mb-1" for="ganancia">Ganancia Vendedor USD</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input  type="number" step="any" class="form-control" name="ganancia" id="ganancia" placeholder="0.00" value="{{$pro_has_op->ganancia_vendedorPro}}">
+                                    <input readonly type="number" step="any" class="form-control" name="ganancia" id="ganancia" placeholder="0.00" value="{{$pro_has_op->ganancia_vendedorPro}}">
                                   </div>
                             </div>
                         </div>
@@ -129,34 +129,34 @@
                     <div class="row mt-2">
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="precioPventa">Precio  Venta Total Producto USD</label>
+                                <label class="mb-1" for="precioPventa">Precio  Venta Total Producto USD</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input  class="form-control" step="any" type="number" name="precioPventa_total" id="precioPventa_total">
+                                    <input readonly class="form-control" step="any" type="number" name="precioPventa_total" id="precioPventa_total">
                                   </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="utilidadPro">Utilidad Total USD</label>
+                                <label class="mb-1" for="utilidadPro">Utilidad Total USD</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input  step="any" class="form-control" type="number" name="utilidadPro_total" id="utilidadPro_total">
+                                    <input readonly step="any" class="form-control" type="number" name="utilidadPro_total" id="utilidadPro_total">
                                   </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="ganancia">Ganancia Total Vendedor USD</label>
+                                <label class="mb-1" for="ganancia">Ganancia Total Vendedor USD</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" class="form-control" type="number" name="gananciaTotal_vendedor" id="gananciaTotal_vendedor">
+                                    <input readonly step="any" class="form-control" type="number" name="gananciaTotal_vendedor" id="gananciaTotal_vendedor">
                                   </div>
                             </div>
                         </div>

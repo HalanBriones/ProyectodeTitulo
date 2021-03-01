@@ -22,7 +22,7 @@
                         <div class="d-flex justify-content-center">
                             <div class="check-group">
                                 @foreach($comercializaciones as $comercializacion)
-                                <input type="checkbox"  class=" ml-2 form-check-input" name="comercializaciones[]" value={{ $comercializacion->idcomercializacion_producto }}> {{ $comercializacion->nombre_comercializacion }}<br>
+                                <input type="checkbox"  class="form-check-input" name="comercializaciones[]" value={{ $comercializacion->idcomercializacion_producto }}> {{ $comercializacion->nombre_comercializacion }}<br>
                                 @endforeach
                             </div>
                         </div>

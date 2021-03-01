@@ -18,12 +18,12 @@
                     <div class="row d-flex justify-content-end">
                         <div class="col-2 ">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="valor_uf">Valor UF actual</label>
+                                <label class="mb-1" for="valor_uf">Valor UF actual</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" type="number" onchange="servicios()" class="form-control" value=0   name="valor_uf" id="valor_uf">
+                                    <input required step="any" type="number" onchange="servicios()" class="form-control" value=0   name="valor_uf" id="valor_uf">
                                 </div>
                             </div>
                         </div>
@@ -57,34 +57,34 @@
                     <div class="row mt-3" id="segundo-div">
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="valor_cliente_hora">Precio Cliente hora UF</label>
+                                <label class="mb-1" for="valor_cliente_hora">Precio Cliente hora UF</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any"  type="number" class="form-control" name="valor_cliente_hora" id="valor_cliente_hora" value="{{$ser_has_op->valor_cliente_hora}}">
+                                    <input readonly step="any"  type="number" class="form-control" name="valor_cliente_hora" id="valor_cliente_hora" value="{{$ser_has_op->valor_cliente_hora}}">
                                 </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="precioSventa">Precio Total Cliente UF</label>
+                                <label class="mb-1" for="precioSventa">Precio Total Cliente UF</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" value="{{$ser_has_op->valor_total_cliente}}" type="number" class="form-control" name="precioSventa" id="precioSventa">
+                                    <input readonly step="any" value="{{$ser_has_op->valor_total_cliente}}" type="number" class="form-control" name="precioSventa" id="precioSventa">
                                 </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="valor_venta_mes">Precio venta mes UF</label>
+                                <label class="mb-1" for="valor_venta_mes">Precio venta mes UF</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" value="{{$ser_has_op->valor_venta_mes}}" type="number" class="form-control" name="valor_venta_mes" id="valor_venta_mes">
+                                    <input readonly step="any" value="{{$ser_has_op->valor_venta_mes}}" type="number" class="form-control" name="valor_venta_mes" id="valor_venta_mes">
                                 </div>
                             </div>
                         </div>
@@ -99,18 +99,18 @@
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="n_meses">Numero meses</label>
+                                <label class="mb-1" for="n_meses">Numero meses</label>
                                 <input value="{{$ser_has_op->meses}}" type="number" class="form-control" onchange="servicios()" name="n_meses" id="n_meses">
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="valor_venta_mes">Precio Total Cliente CLP</label>
+                                <label class="mb-1" for="valor_venta_mes">Precio Total Cliente CLP</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" value="{{$ser_has_op->valor_total_cliente_clp}}" type="number" class="form-control" name="valor_total_cliente_clp" id="valor_total_cliente_clp">
+                                    <input readonly step="any" value="{{$ser_has_op->valor_total_cliente_clp}}" type="number" class="form-control" name="valor_total_cliente_clp" id="valor_total_cliente_clp">
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                     <div class="row mt-3" id="tercer-div">
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="costoxhora">Costo por Hora UF</label>
+                                <label class="mb-1" for="costoxhora">Costo por Hora UF</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
@@ -130,45 +130,45 @@
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="costo_total_mes">Costo total mes UF</label>
+                                <label class="mb-1" for="costo_total_mes">Costo total mes UF</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" value="{{$ser_has_op->costo_total_mes}}" type="number" class="form-control" name="costo_total_mes" id="costo_total_mes">
+                                    <input readonly step="any" value="{{$ser_has_op->costo_total_mes}}" type="number" class="form-control" name="costo_total_mes" id="costo_total_mes">
                                 </div>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="costo_total">Costo horas total UF</label>
+                                <label class="mb-1" for="costo_total">Costo horas total UF</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" value="{{$ser_has_op->costo_totalSer}}" type="number" class="form-control" name="costo_total" id="costo_total">
+                                    <input readonly step="any" value="{{$ser_has_op->costo_totalSer}}" type="number" class="form-control" name="costo_total" id="costo_total">
                                 </div>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="costo_totalSer_clp">Costo total CLP</label>
+                                <label class="mb-1" for="costo_totalSer_clp">Costo total CLP</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" value="{{$ser_has_op->costo_totalSer_clp}}" type="number" class="form-control" name="costo_totalSer_clp" id="costo_totalSer_clp">
+                                    <input readonly step="any" value="{{$ser_has_op->costo_totalSer_clp}}" type="number" class="form-control" name="costo_totalSer_clp" id="costo_totalSer_clp">
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="costo_total_mes_clp">Costo total mes CLP</label>
+                                <label class="mb-1" for="costo_total_mes_clp">Costo total mes CLP</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" value="{{$ser_has_op->costo_total_mes_clp}}" type="number" class="form-control" name="costo_total_mes_clp" id="costo_total_mes_clp">
+                                    <input readonly step="any" value="{{$ser_has_op->costo_total_mes_clp}}" type="number" class="form-control" name="costo_total_mes_clp" id="costo_total_mes_clp">
                                 </div>
                             </div>
                         </div>
@@ -176,40 +176,40 @@
                     <div class="row mt-3 d-flex justify-content-between">
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="utilidadSer">Utilidad Total UF</label>
+                                <label class="mb-1" for="utilidadSer">Utilidad Total UF</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" value="{{$ser_has_op->utilidadSer}}" type="number" class="form-control" name="utilidadSer" id="utilidadSer">
+                                    <input readonly step="any" value="{{$ser_has_op->utilidadSer}}" type="number" class="form-control" name="utilidadSer" id="utilidadSer">
                                 </div>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="gananciaSer">Ganancia Vendedor UF</label>
+                                <label class="mb-1" for="gananciaSer">Ganancia Vendedor UF</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" value="{{$ser_has_op->ganancia_vendedorSer}}" type="number" class="form-control" onchange="servicios()" name="gananciaSer" id="gananciaSer">
+                                    <input readonly step="any" value="{{$ser_has_op->ganancia_vendedorSer}}" type="number" class="form-control" onchange="servicios()" name="gananciaSer" id="gananciaSer">
                                 </div>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="ganancia_vendedorSer_clp">Ganancia vendedor CLP</label>
+                                <label class="mb-1" for="ganancia_vendedorSer_clp">Ganancia vendedor CLP</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">$</div>
                                     </div>
-                                    <input step="any" value="{{$ser_has_op->ganancia_vendedorSer_clp}}" type="number" class="form-control" name="ganancia_vendedorSer_clp" id="ganancia_vendedorSer_clp">
+                                    <input readonly step="any" value="{{$ser_has_op->ganancia_vendedorSer_clp}}" type="number" class="form-control" name="ganancia_vendedorSer_clp" id="ganancia_vendedorSer_clp">
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="margen_negocioSer">Margen Servicio</label>
+                                <label class="mb-1" for="margen_negocioSer">Margen Servicio</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">%</div>
@@ -220,7 +220,7 @@
                         </div>
                         <div class="col-2">
                             <div class="form-group">
-                                <label class="sr-only mb-1" for="margen_vendedorSer">Margen Vendedor</label>
+                                <label class="mb-1" for="margen_vendedorSer">Margen Vendedor</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <div class="input-group-text">%</div>

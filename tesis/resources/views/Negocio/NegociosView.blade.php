@@ -9,7 +9,7 @@
         <div class="col d-flex justify-content-start">
           <h3>Oportunidades de Negocio</h3>
         </div>
-        <div class="col d-flex justify-content-end">
+        <div class="col-2 ">
           <a href="/estados" class="btn btn-sm btn-dark" >Estado</a>
         </div>
       </div>

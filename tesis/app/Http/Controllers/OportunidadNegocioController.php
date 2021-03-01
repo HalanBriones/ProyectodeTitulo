@@ -484,7 +484,6 @@ class OportunidadNegocioController extends Controller
     }
 
     public function editar_servicio(OportunidadNegocioHasServicio $ser_has_op,Request $request){
-
         $ser_has_op->costo_hora = $request->costoxhora ;
         $ser_has_op->cantidad_horas =$request->cantidad_hora;
         $ser_has_op->margen_NegocioSer = $request->margen_negocioSer;
@@ -501,7 +500,6 @@ class OportunidadNegocioController extends Controller
         $ser_has_op->costo_totalSer_clp = $request->costo_totalSer_clp;
         $ser_has_op->costo_total_mes_clp = $request->costo_total_mes_clp ;
         $ser_has_op->utilidadSer = $request->utilidadSer;
-
 
         if($ser_has_op->save()){
             toast('Valores de servicio editados correctamente','success');

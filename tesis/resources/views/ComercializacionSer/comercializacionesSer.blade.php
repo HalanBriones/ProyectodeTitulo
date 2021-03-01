@@ -14,7 +14,7 @@
         </div>
         <div class="col">
           <div class="row">
-            <div class="col d-flex justify-content-start">
+            <div class="col">
               <a href="/conocimientos" class="btn btn-sm btn-dark" >Conocimiento</a>
             </div>
             <div class="col"><input class="form-control"type="search" name="nombre_comer" placeholder="Comercialización"></div>
@@ -59,7 +59,7 @@
     @if ($_SESSION['nombre_rol'] == 'Administrador')
     <div class="d-flex justify-content-center">
       <div class="mt-2 mb-5">
-          <a href="/comercializacion-pro" class="btn btn-dark btn-sm active center" role="button" aria-pressed="true">Crear Comercialización</a>
+          <a href="/comercializacion-ser" class="btn btn-dark btn-sm active center" role="button" aria-pressed="true">Crear Comercialización</a>
       </div>
     </div>
     @endif
