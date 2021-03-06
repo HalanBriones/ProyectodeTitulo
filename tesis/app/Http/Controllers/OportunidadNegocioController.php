@@ -65,12 +65,13 @@ class OportunidadNegocioController extends Controller
 
         if($compañia->save()){
             //guardar nombre negocio descripcion estado y usuario asociado a la creación
-            date_default_timezone_set('America/Santiago');
+            // date_default_timezone_set('America/Santiago');
             $estado = Estado::where("nombre_estado","Gestionando negocio")->first();//estado inicial 
             $op = new OportunidadNegocio();
             $op->nombre_negocio = $request->nombre_negocio;
             $op->descripcion = $request->descripcion;
             $op->estado_idestado = $estado->idEstado;
+            $op->fecha_creacion = date("Y-m-d");
             session_start(["name" =>"Login"]);
             $op->usuario_rut = $_SESSION['rut'];
             $op->idcompañia_cotiza = $compañia->idcompañia_cotiza;
@@ -296,9 +297,38 @@ class OportunidadNegocioController extends Controller
 
     //mostrar Negocios
     public function VerNegocios(){
-        $negocios = OportunidadNegocio::all();
+        $negocios = OportunidadNegocio::orderBy('fecha_creacion','desc')->get();
         $estados = Estado::all();
         return view("Negocio.NegociosView",compact("negocios","estados"));
+    }
+
+    public function buscarNegocio(Request $request){
+        $estados = Estado::all();
+        if($request->estado == null && $request->cliente != null){
+            $compañia = CompaniaCotiza::where('compañia','like',"%$request->cliente%")->first();
+            $negocios = OportunidadNegocio::where('idcompañia_cotiza','=',$compañia->idcompañia_cotiza)->get();
+            return view("Negocio.NegociosView",compact("negocios","estados"));
+        }
+        if($request->cliente =="" && $request->estado != null){
+            $negocios = OportunidadNegocio::where('estado_idestado','=',$request->estado)->get();
+            return view("Negocio.NegociosView",compact("negocios","estados"));
+        }
+        if($request->estado == null && $request->cliente == null){
+            $negocios = OportunidadNegocio::orderBy('fecha_creacion','desc')->get();
+            return view("Negocio.NegociosView",compact("negocios","estados"));
+        }
+
+        if($request->estado != null && $request->cliente != null){
+            $compañia = CompaniaCotiza::where('compañia','like',"%$request->cliente%")->first();
+            $negocios = OportunidadNegocio::where('estado_idestado','=',$request->estado)->where('idcompañia_cotiza','=',$compañia->idcompañia_cotiza)->get();
+            return view("Negocio.NegociosView",compact("negocios","estados"));
+        }
+    }
+
+    public function cliente($idNegocio){
+        $negocio = OportunidadNegocio::where('idNegocio',$idNegocio)->first();
+        $compañia = CompaniaCotiza::where('idcompañia_cotiza','=',$negocio->idcompañia_cotiza)->first();
+        return view('Negocio.ClienteAsoc',compact('compañia'));
     }
 
     public function verProAsociado($idNegocio){

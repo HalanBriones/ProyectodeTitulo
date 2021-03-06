@@ -6,24 +6,45 @@
 @endphp
 @section('content')
       <div class="row">
-        <div class="col d-flex justify-content-start">
+        <div class="col d-flex justify-content-center">
           <h3>Oportunidades de Negocio</h3>
         </div>
-        <div class="col-2 ">
-          <a href="/estados" class="btn btn-sm btn-dark" >Estado</a>
-        </div>
       </div>
+      <form action="/busqueda/negocio" method="POST">
+        @csrf
+        <div class="row">
+          <div class="col-2 ">
+            <a href="/estados" class="btn btn-sm btn-dark" >Estado</a>
+          </div>
+          <div class="d-flex justify-content-end">
+            <div class="col-2">
+              <input id="cliente" name="cliente" class="form-control" type="search" placeholder="Cliente">
+            </div>
+            <div class="col-3">
+              <select name="estado" id="estado" class="form-control">
+                <option value="">Seleccione Estado</option>
+                @foreach ($estados as $estado)
+                    <option value="{{$estado->idEstado}}">{{$estado->nombre_estado}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-dark" type="submit">Buscar</button>
+            </div>
+          </div>
+        </div>
+      </form>
         <table class="table mt-4" method="GET" action="/verNegocios">
             <thead class="thead-light">
               <tr class="">
                 <th scope="col">Sigla</th>
                 <th scope="col">Nombre Negocio</th>
-                <th scope="col">Fecha Creación</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Productos </th>
                 <th scope="col">Servicios </th>
                 <th scope="col">Participantes</th>
                 <th scope="col">Documentos</th>
+                <th scope="col">Cliente</th>
                 @if ($_SESSION['nombre_rol'] == 'Administrador' || $_SESSION['nombre_rol'] == 'Comercial')
                   <th scope="col">Cotización</th>
                   <th scope="col">Enviar cotización</th>
@@ -40,7 +61,6 @@
                   <td>En transcurso</td> 
                 @endif
                 <td>{{$negocio->nombre_negocio}}</td>
-                <td>{{$negocio->fecha_creacion}}</td>
                 <td>{{$negocio->estado->nombre_estado}}</td>
                 <td><a  class="btn btn-ligth" href="{{route('negocio.proAsoc',['idNegocio' => $negocio->idNegocio])}}"><svg class="m-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                   <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -55,6 +75,10 @@
                   <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                 </svg></a></td>
                 <td><a class="btn btn-ligth" href="{{route('negocio.docAsoc',['idNegocio' => $negocio->idNegocio])}}"><svg class="m-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                </svg></a></td>
+                <td><a class="btn btn-ligth" href="{{route('negocio.cliente',['idNegocio' => $negocio->idNegocio])}}"><svg class="m-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                   <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                   <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                 </svg></a></td>

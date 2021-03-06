@@ -68,6 +68,7 @@ Route::post('/usuarios/{user}',[UserController::class, 'updatePerfil'])->name('u
 Route::post('/delete/usuario', [UserController::class,'delete_user'])->name('usuarios.delete');
 Route::get('/nombre/busqueda',[UserController::class,'busqueda_usuario'])->middleware('login');
 //Negocio//
+
 Route::get('/negocio-fase1', [OportunidadNegocioController::class,'vista_negocio_f1'])->name('negociof1.crear')->middleware('login');//vista fase1
 Route::post('/store_f1', [OportunidadNegocioController::class,'store_negocio_f1'])->name('negociof1.store'); //store negocio
 Route::get('/negocio-fase2', [OportunidadNegocioController::class,'vista_negocio_f2'] )->name('negociof2.crear')->middleware('login');//vista fase2
@@ -77,6 +78,8 @@ Route::get('/verNegocios',[OportunidadNegocioController::class,'verNegocios'])->
 Route::get('/verProAsoc/{idNegocio}',[OportunidadNegocioController::class,'verProAsociado'])->name('negocio.proAsoc')->middleware('login'); //ver productos Asociados
 Route::get('/verSerAsoc/{idNegocio}',[OportunidadNegocioController::class,'verSerAsociado'])->name('negocio.serAsoc')->middleware('login'); //ver servicios Asociados
 Route::get('/verParAsoc/{idNegocio}',[OportunidadNegocioController::class,'verParAsociado'])->name('negocio.partAsoc')->middleware('login'); //ver participantes Asociados
+Route::post('/busqueda/negocio', [OportunidadNegocioController::class,'buscarNegocio']);
+Route::get('/cliente/{idNegocio}', [OportunidadNegocioController::class,'cliente'])->name('negocio.cliente')->middleware('login');
 //añadir Productos
 Route::get('/añadirPro/{idNegocio}',[OportunidadNegocioController::class,'añadirPro_view'])->name('añadirPro')->middleware('login');
 Route::post('/añadirP',[OportunidadNegocioController::class,'añadir_store']);
