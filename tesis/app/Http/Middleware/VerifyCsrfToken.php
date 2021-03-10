@@ -24,6 +24,7 @@ class VerifyCsrfToken extends Middleware
         "/eliminar/servicio",
         "/cambiar/estado",
         "/solicitud/revision",
-        "/graficos/datos"
+        "/graficos/datos",
+        "/graficos/datos/servicios"
     ];
 }

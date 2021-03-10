@@ -54,7 +54,7 @@ Route::get('/inicio', function () {
 });
 //Grafico
 Route::post('/graficos/datos', [GraficoController::class,'graficos']);
-
+Route::post('/graficos/datos/servicios', [GraficoController::class,'graficos_servicios']);
 
 //Usuario
 Route::get('/mostrar', [UserController::class,'index'])->middleware('login'); //envia los usuarios a la vista para mostrar usuarios
