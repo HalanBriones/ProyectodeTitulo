@@ -4,16 +4,16 @@
     @endphp
 @section('content')
 <div class="jumbotron">
-    <h5 class="display-6">Estadísticas de Productos y Servicios</h5>
+    <h5 class="display-6">Actualización de Productos y Servicios estadístico</h5>
     <hr class="my-4">
                 {{-- MODAL --}}
                 <div class="row">
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-dark m-2" data-toggle="modal" data-target="#exampleModalCenter">
-                            Productos
+                            Estadística de Productos
                         </button>   
                         <button type="button" class="btn btn-dark m-2" data-toggle="modal" data-target="#miModal">
-                            Servicios
+                          Estadística de Servicios
                         </button>
                     </div>
                 </div>

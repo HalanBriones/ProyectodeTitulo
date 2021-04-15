@@ -19,21 +19,21 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+            <label for="nombre" class="col col-form-label">Nombre</label>
             <div class="col-lg-8">
               <input type="text" class="form-control" id="nombre" value="{{$user->nombre}}" disabled>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <label for="email" class="col col-form-label">Email</label>
             <div class="col-lg-8">
               <input type="text" class="form-control" id="email" value="{{$user->email}}" disabled>
             </div>
           </div>
 
         <div class="form-group">
-          <label for="perfil" class="col-sm-2 col-form-label">Rol</label>
+          <label for="perfil" class="col col-form-label">Rol</label>
             <div class="col-lg-8">
             <select name="rol" class="form-control " id="rol" required>
               <option value="" selected>Seleccione Rol</option>
@@ -46,13 +46,13 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <label for="apellido" class="col-sm-2 col-form-label">Apellido</label>
+            <label for="apellido" class="col col-form-label">Apellido</label>
             <div class="col-lg-8">
               <input type="text" class="form-control" id="apellido" value="{{$user->apellido}}" disabled>
             </div>
           </div>
           <div class="form-group">
-            <label for="telefono" class="col-sm-2 col-form-label">Teléfono</label>
+            <label for="telefono" class="col col-form-label">Teléfono</label>
             <div class="col-lg-8">
               <input type="text" class="form-control" id="telefono" value="{{$user->telefono}}" disabled>
             </div>

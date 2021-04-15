@@ -6,7 +6,7 @@
     </button>
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
-        <a class="nav-link text-white" href="/login">Login</a>
+        <a class="nav-link text-white" href="/login">Login empleados</a>
       </li>
     </ul>
     @include('sweetalert::alert')

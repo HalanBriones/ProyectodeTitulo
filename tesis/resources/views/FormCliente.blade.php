@@ -37,7 +37,7 @@
     <div class="container">
       <form method="POST" action="{{route('solicitud.store')}}">
         @csrf
-        <h3 class="text-center m-4 mb-2">Datos Personales</h3>
+        <h3 class="text-center m-4 mb-2">Datos Personales Cliente</h3>
           <div class="row d-flex justify-content-center" >
             <div class="col-sm-4">
                 <div class="form-group mb-2">
@@ -80,7 +80,7 @@
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Productos
+                    Productos disponibles
                   </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse modal-content " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -117,7 +117,7 @@
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                   <button class="accordion-button btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    Servicios
+                    Servicios disponibles
                   </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse modal-content" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
