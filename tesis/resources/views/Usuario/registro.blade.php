@@ -117,13 +117,19 @@
                                 <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
-    
-                                    @error('telefono')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                            <div class="input-group-text">+569</div>
+                                            </div>
+                                            <input type="number" class="form-control" name="telefono" id="telefono">
+                                            @error('telefono')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-0">
@@ -143,6 +149,7 @@
     </main>
     <script src="{{ asset('js/validacion_email.js') }}"></script>
     <script src="{{ asset('js/validar_password.js') }}"></script>
+    <script src="{{ asset('js/telefono.js') }}"></script>
     <script src="{{ asset('js/validacion_rut.js') }}"></script>
 
 

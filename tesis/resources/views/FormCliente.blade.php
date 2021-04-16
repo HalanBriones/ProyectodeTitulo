@@ -42,7 +42,7 @@
             <div class="col-sm-4">
                 <div class="form-group mb-2">
                     <label class="mb-1" for="nombre_cliente">Nombre</label>
-                    <input   type="text" class="form-control" placeholder="Nombre del Cliente" name="nombre_cliente" id="nombre_cliente" required>
+                    <input   type="text" class="form-control" placeholder="Nombre" name="nombre_cliente" id="nombre_cliente" required>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -56,7 +56,7 @@
             <div class="col-sm-4">
                 <div class="form-group mb-2">
                     <label class="mb-1" for="correo_cliente">Correo</label>
-                    <input   type="email" class="form-control" placeholder="Correo del Cliente o Compañia" name="correo_cliente" id="correo_cliente" required>
+                    <input   type="email" class="form-control" placeholder="correo@correo.cl" name="correo_cliente" id="correo_cliente" required>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -66,98 +66,74 @@
                         <div class="input-group-prepend">
                         <div class="input-group-text">+569</div>
                         </div>
-                        <input type="number" placeholder="Teléfono del cliente" class="form-control" name="telefono_cliente" id="telefono_cliente">
+                        <input type="number" placeholder="Teléfono del cliente" class="form-control" name="telefono" id="telefono">
                     </div>
                 </div>
             </div>
         </div>
-        <h3 class="text-center m-4 mb-2">¿Que Productos y/o Servicios desea Cotizar?</h3>
+        <h3 class="text-center mt-4 mb-4">¿Que Productos y/o Servicios desea Cotizar?</h3>
             
         <div class="row">
           {{-- acordeon izquierda --}}
-          <div class="col-6 d-flex justify-content-center">
-            <div class="accordion" id="accordionExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                  <button class="accordion-button btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Productos disponibles
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse modal-content " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <table class="table row d-flex justify-content-center">
-                      <thead class="">
-                        <tr>
-                          <th scope="col">Nombre Producto</th>
-                          <th scope="col">Marca</th>
-                          <th scope="col">Tipo de Producto</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody class="">
-                        <tr hidden><td><input checked type="checkbox" name="productos[]" value="0"></td></tr>
-                          @foreach ($productos as $pro)
-                          <tr>
-                            <td>{{$pro->nombre_producto}}</td>
-                            <td>{{$pro->nombre_marca}}</td>
-                            <td>{{$pro->nombre_tipo_producto}}</td>
-                            <td><input type="checkbox" name="productos[]" id="productos" value="{{$pro->idproducto}}"></td>
-                          </tr>
-                          @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="col-6">
+            <h4 class="text-center mb-4">Productos Disponibles</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Nombre del Producto</th>
+                  <th scope="col">Marca</th>
+                  <th scope="col">Tipo de Producto</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="">
+                <tr hidden><td><input checked type="checkbox" name="productos[]" value="0"></td></tr>
+                  @foreach ($productos as $pro)
+                  <tr>
+                    <td>{{$pro->nombre_producto}}</td>
+                    <td>{{$pro->nombre_marca}}</td>
+                    <td>{{$pro->nombre_tipo_producto}}</td>
+                    <td><input type="checkbox" name="productos[]" id="productos" value="{{$pro->idproducto}}"></td>
+                  </tr>
+                  @endforeach
+              </tbody>
+            </table>
           </div>
           {{-- acordeon derecha --}}
-          <div class="col-6 d-flex justify-content-center">
-            <div class="accordion" id="accordionExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                  <button class="accordion-button btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    Servicios disponibles
-                  </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse modal-content" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <table class="table row d-flex justify-content-center">
-                      <thead class="">
-                        <tr>
-                          <th scope="col">Nombre Servicio</th>
-                          <th scope="col">Conocimiento</th>
-                          <th scope="col">ID Chile Compra</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr hidden><td><input checked type="checkbox" name="servicios[]" value="0"></td></tr>
-                          @foreach ($servicios as $ser)
-                          <tr>
-                            <td>{{$ser->nombre_servicio}}</td>
-                            <td>{{$ser->conocimiento}}</td>
-                            <td>{{$ser->idChileCompra}}</td>
-                            <td><input type="checkbox" name="servicios[]" id="servicios" value="{{$ser->idservicio}}"></td>
-                          </tr>
-                          @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="col-6">
+                <h4 class="text-center mb-4">Servicios disponibles</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Nombre del Servicio</th>
+                  <th scope="col">Conocimiento</th>
+                  <th scope="col">ID Chile Compra</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr hidden><td><input checked type="checkbox" name="servicios[]" value="0"></td></tr>
+                  @foreach ($servicios as $ser)
+                  <tr>
+                    <td>{{$ser->nombre_servicio}}</td>
+                    <td>{{$ser->conocimiento}}</td>
+                    <td>{{$ser->idChileCompra}}</td>
+                    <td><input type="checkbox" name="servicios[]" id="servicios" value="{{$ser->idservicio}}"></td>
+                  </tr>
+                  @endforeach
+              </tbody>
+            </table>
           </div>
         </div>
-        <div class="mt-5 row d-flex justify-content-center">
+        <div class="mt-2 mb-5 row d-flex justify-content-center">
           <button class="btn btn-dark" type="submit">Enviar</button>
         </div>
       </form>
       @include('sweetalert::alert')
     </div>
+    <script src="{{asset('js/telefono.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="form-validation.js"></script>
 </body>
 </html>
 

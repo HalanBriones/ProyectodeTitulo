@@ -66,7 +66,7 @@ class UserController extends Controller
             "email_vali" => ["email"],
             "password" => "required | min:8",
             "password_conf" => "require | min:8",
-            "telefono" => "required | max:9"
+            "telefono" => "required"
         ]);
 
         $rut = str_ireplace("-", "", $request->rut);

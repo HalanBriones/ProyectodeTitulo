@@ -34,6 +34,11 @@
                 @endforeach
             </tbody>
           </table>
+          <div class="row">
+              <div class="col-3">
+                <a class="btn btn-sm btn-dark" href="/solicitudes">Atras</a>
+              </div>
+          </div>
     </div>
     @include('sweetalert::alert')
 
