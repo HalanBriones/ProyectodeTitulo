@@ -18,7 +18,7 @@ var verSol = document.getElementById("verSol");
 var verOP = document.getElementById("verOP");
 var verEstado = document.getElementById("verEstado");
 
-const servidor = `http://127.0.0.1:8000/`
+const servidor = `http://52.233.78.112/`
 
 if(link.href === `${servidor}registro`){
     registerUser.className += " active"
