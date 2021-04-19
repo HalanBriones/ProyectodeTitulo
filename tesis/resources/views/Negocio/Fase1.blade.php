@@ -58,7 +58,7 @@
                                 <div class="input-group-prepend">
                                 <div class="input-group-text">+569</div>
                                 </div>
-                                <input type="number" placeholder="Teléfono del cliente" class="form-control" name="telefono_compañia" id="telefono_compañia">
+                                <input type="number" placeholder="Teléfono del cliente" class="form-control" name="telefono_compañia" id="telefono">
                             </div>
                         </div>
                     </div>
@@ -73,4 +73,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="{{'js/negocio.js'}}"></script>
     <script src="{{'js/comercializacion.js'}}"></script>
+    <script src="{{asset('js/telefono.js')}}"></script>
 @endsection
