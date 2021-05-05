@@ -12,7 +12,7 @@
         <table class="table mt-4" method="GET" action="/usuarios">
             <thead class="thead-dark">
               <tr>
-                <th>Producto/th>
+                <th>Producto</th>
                 <th>Modelo/Versión</th>
                 <th>Tipo Producto</th>
                 <th>Marca</th>

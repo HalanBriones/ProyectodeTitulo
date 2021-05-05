@@ -10,6 +10,6 @@ class Solicitud extends Model
     use HasFactory;
     protected $table = 'solicitud';
     protected $primaryKey = 'idSolicitud';
-    protected $fillable = ['fecha_solicitud'];
+    protected $fillable = ['fecha_solicitud','revision'];
     public $timestamps = false;
 }
