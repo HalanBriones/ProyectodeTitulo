@@ -37,7 +37,7 @@ class TipoProductoController extends Controller
             if($tipoProducto->save()){
                 foreach($comercializaciones as $comer){
                     $tipo_has_comer = new TipoProductoHasComercializacion();
-                    $tipo_has_comer->tipo_producto_idtipo_producto = $tipoProducto->idtipoProducto;
+                    $tipo_has_comer->tipo_producto_idtipo_producto = $tipoProducto->idtipo_producto;
                     $tipo_has_comer->comercializacion_producto_idcomercializacion_producto = $comer;
 
                     $tipo_has_comer->save();
