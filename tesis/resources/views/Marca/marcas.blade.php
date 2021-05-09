@@ -35,8 +35,8 @@
               <tr>
                 <th scope="col">N°</th>
                 <th scope="col">Nombre de la Marca</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
