@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group mb-2">
-                            <label class="mb-1" for="compañia">Compañia</label>
+                            <label class="mb-1" for="compañia">Cliente</label>
                             <input   type="text" class="form-control" placeholder="Nombre del Cliente" name="compañia" id="compañia" required>
                         </div>
                     </div>
