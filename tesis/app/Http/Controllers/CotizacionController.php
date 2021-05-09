@@ -9,6 +9,7 @@ use App\Models\OportunidadNegocio;
 use Barryvdh\DomPDF\Facade as PDF;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use DOMDocument;
@@ -76,7 +77,7 @@ class CotizacionController extends Controller
         $data = [];
         try{
             Mail::send('Cotizacion.CorreoCotizacion', $data, function ($message) use ($compañia) {
-                $message->from('halanbm98@gmail.com', 'ITECHI');
+                $message->from('contacto@itechi.cl', 'ITECHI');
                 $message->to($compañia->correo);
                 $message->subject('Cotización');
                 $message->attach(storage_path('app/public/') . 'archivo.pdf');
