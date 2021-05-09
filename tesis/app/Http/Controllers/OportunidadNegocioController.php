@@ -604,8 +604,9 @@ class OportunidadNegocioController extends Controller
                 $negocios = OportunidadNegocio::all();
         if($cont == count($request->participante)){
             $negocios = OportunidadNegocio::all();
+            $estados = Estado::all();
             toast('Participantes añadidos exitosamente','success');
-            return view('Negocio.NegociosView',compact('negocios'));
+            return view('Negocio.NegociosView',compact('negocios','estados'));
         }
  
     }    
