@@ -24,9 +24,9 @@
                         <div  class="form-check mt-3">
                             @foreach ($usuarios as $usuario)
                                 @if ($usuario->rut != $rut)
-                                <input  type="checkbox" value="{{$usuario->rut}}" class="ml-2 form-check-input" name="participante[]">{{$usuario->nombre}} {{$usuario->apellido}}<br>
+                                <input  type="checkbox" value="{{$usuario->rut}}" class="form-check-input" name="participante[]">{{$usuario->nombre}} {{$usuario->apellido}}<br>
                                 @else
-                                <input disabled checked  type="checkbox" value="{{$usuario->rut}}" class="ml-2 form-check-input" name="participante[]">{{$usuario->nombre}} {{$usuario->apellido}}<br>
+                                <input disabled checked  type="checkbox" value="{{$usuario->rut}}" class="form-check-input" name="participante[]">{{$usuario->nombre}} {{$usuario->apellido}}<br>
                                 @endif
                             @endforeach
                         </div>

@@ -19,9 +19,9 @@
                 <th>Costo por Mes</th>
                 <th></th>
                 <th></th>
-                @if ($_SESSION['nombre_rol'] == 'Tecnico')
+                {{-- @if ($_SESSION['nombre_rol'] == 'Tecnico')
                 <th>Configuración</th>  
-              @endif
+              @endif --}}
               </tr>
             </thead>
             <tbody>

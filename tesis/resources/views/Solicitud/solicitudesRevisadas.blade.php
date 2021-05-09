@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row mt-4">
           <div class="col-8"><h3 class="text-center" >Solicitudes Revisadas</h3></div>
-          <div class="col-4"><a href="#" class="btn btn-sm btn-dark">Solicitudes</a></div>
+          <div class="col-4"><a href="/solicitudes" class="btn btn-sm btn-dark">Solicitudes</a></div>
       </div>
         <table class="table mt-4" method="GET" action="/usuarios">
             <thead class="thead-light">
