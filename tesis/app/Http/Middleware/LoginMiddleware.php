@@ -17,7 +17,6 @@ class LoginMiddleware
     public function handle(Request $request, Closure $next)
     {
         session_start(['name' => 'Login']);
-
         try {
             if ($_SESSION['rut']) {
                 return $next($request);
